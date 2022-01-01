@@ -1,6 +1,8 @@
-import { Link, makeStyles, Typography, CardMedia } from "@material-ui/core";
-import logo_header from "../../assets/logo_header.svg";
+import { Typography, CardMedia } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
+import logo_header from "../../assets/logo_header.svg";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   logo: {
     height: 20,
@@ -27,7 +29,7 @@ const LeftNav = () => {
   const classes = useStyles();
   return (
     <div className={classes.div}>
-      <Link>
+      <Link to="/">
         <CardMedia
           component="img"
           image={logo_header}
@@ -37,10 +39,18 @@ const LeftNav = () => {
         />
       </Link>
       <Typography>
-        <Link className={classes.linkItem}>Movies</Link>
-        <Link className={classes.linkItem}>TV Shows</Link>
-        <Link className={classes.linkItem}>People</Link>
-        <Link className={classes.linkItem}>More</Link>
+        <Link to="/search/movie/the/1" className={classes.linkItem}>
+          Movies
+        </Link>
+        <Link to="search/tv/the/1" className={classes.linkItem}>
+          TV Shows
+        </Link>
+        <Link to="search/person/the/1" className={classes.linkItem}>
+          People
+        </Link>
+        <Link hred="#" className={classes.linkItem}>
+          More
+        </Link>
       </Typography>
     </div>
   );

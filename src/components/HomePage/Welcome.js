@@ -1,18 +1,22 @@
-import { fade, makeStyles, Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import { mergeClasses } from "@material-ui/styles";
 import { camelCase } from "lodash";
-
-const useStyles = makeStyles(() => ({
+import { alpha } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
   welcomeSection: (props) => ({
     height: "calc(100vh/2.5)",
     backgroundPosition: "top center",
     backgroundSize: "cover",
-    color: "white", // chua co background image
+    color: "white",
     minHeight: 300,
     maxHeight: 360,
     backgroundRepeat: "no-repeat",
-    width: 1300, //max primary page width
-    backgroundImage: `url(${props.backdrop})`,
+    width: 1300,
+    backgroundImage: `linear-gradient(to right,
+      ${alpha(theme.palette.secondary.main, 0.9)},
+      ${alpha(theme.palette.primary.main, 0.9)}),
+      url(${props.backdrop})`,
+    color: theme.palette.getContrastText(theme.palette.primary.main),
   }),
   media: {
     height: "100%",

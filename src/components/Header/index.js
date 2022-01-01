@@ -1,6 +1,6 @@
 import LeftNav from "./LeftNav";
 import RightNav from "./RightNav";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   subDiv: {
@@ -10,6 +10,8 @@ const useStyles = makeStyles(() => ({
     top: 0,
     left: 0,
     width: 1300, // can phai dat ten bien cho nay
+    paddingTop: 0,
+    paddingBottom: 0,
     paddingLeft: 40,
     paddingRight: 40,
   },

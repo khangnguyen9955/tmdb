@@ -1,6 +1,7 @@
-import { Link, makeStyles, Menu, Typography } from "@material-ui/core";
+import { makeStyles, Menu, Typography } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
 import LanguageIcon from "@mui/icons-material/Language";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   div: {
     display: "flex",
@@ -25,8 +26,12 @@ const RightNav = () => {
     <div className={classes.div}>
       <Typography className={classes.div}>
         <LanguageIcon className={classes.linkItem} />
-        <Link className={classes.linkItem}> Login</Link>
-        <Link className={classes.linkItem}> Join TMDB</Link>
+        <Link to="/login" className={classes.linkItem} component={Link}>
+          Login
+        </Link>
+        <Link to="/signup" className={classes.linkItem} component={Link}>
+          Join TMDB
+        </Link>
         <SearchIcon className={classes.linkItem} />
       </Typography>
     </div>
