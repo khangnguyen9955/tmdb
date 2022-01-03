@@ -1,4 +1,6 @@
-import { makeStyles, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import { mergeClasses } from "@material-ui/styles";
 import { camelCase } from "lodash";
 import { alpha } from "@material-ui/core/styles";

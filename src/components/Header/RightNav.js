@@ -1,4 +1,6 @@
-import { makeStyles, Menu, Typography } from "@material-ui/core";
+import { Menu, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import SearchIcon from "@mui/icons-material/Search";
 import LanguageIcon from "@mui/icons-material/Language";
 import { Link } from "react-router-dom";

@@ -42,13 +42,13 @@ const LeftNav = () => {
         <Link to="/search/movie/the/1" className={classes.linkItem}>
           Movies
         </Link>
-        <Link to="search/tv/the/1" className={classes.linkItem}>
+        <Link to="/search/tv/the/1" className={classes.linkItem}>
           TV Shows
         </Link>
-        <Link to="search/person/the/1" className={classes.linkItem}>
+        <Link to="/search/person/the/1" className={classes.linkItem}>
           People
         </Link>
-        <Link hred="#" className={classes.linkItem}>
+        <Link to="#" className={classes.linkItem}>
           More
         </Link>
       </Typography>

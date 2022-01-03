@@ -3,7 +3,7 @@ import React from "react";
 import MovieCard from "../common/MovieCard";
 import SearchPagination from "./SearchPagination";
 
-function Collection({ collections, params }) {
+function Collections({ collections, params }) {
   return collections.results.length > 0 ? (
     <>
       {collections.results.map((collection) => (
@@ -19,4 +19,4 @@ function Collection({ collections, params }) {
     <Typography>!!!</Typography>
   );
 }
-export default Collection;
+export default Collections;

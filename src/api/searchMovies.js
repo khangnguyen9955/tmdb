@@ -7,7 +7,7 @@ const searchMovies = async (query, page) => {
     const { data } = await axios.get(`${url}/search/movie`, {
       params: {
         api_key: API_KEY,
-        language: "en-Us",
+        language: "en-US",
         query: query,
         page: page,
       },

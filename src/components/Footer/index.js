@@ -77,40 +77,40 @@ const Footer = () => {
             <Grid item md="auto" xs={12}>
               <Typography variant="h6">THE BASICS</Typography>
               <Typography>
-                <Link>About TMDB</Link>
-                <Link>Contact us</Link>
-                <Link>Support Forum</Link>
-                <Link>API</Link>
-                <Link>System Status</Link>
+                <Link to="#">About TMDB</Link>
+                <Link to="#">Contact us</Link>
+                <Link to="#">Support Forum</Link>
+                <Link to="#">API</Link>
+                <Link to="#">System Status</Link>
               </Typography>
             </Grid>
 
             <Grid item md="auto" xs={12}>
               <Typography variant="h6">GET INVOLVED</Typography>
               <Typography>
-                <Link>Contribution Bible</Link>
-                <Link>3rd Party Application</Link>
-                <Link>Add New Movie</Link>
-                <Link>Add New TV Show</Link>
+                <Link to="#">Contribution Bible</Link>
+                <Link to="#">3rd Party Application</Link>
+                <Link to="#">Add New Movie</Link>
+                <Link to="#">Add New TV Show</Link>
               </Typography>
             </Grid>
 
             <Grid item md="auto" xs={12}>
               <Typography variant="h6">COMMUNITY</Typography>
               <Typography>
-                <Link>Guidelines</Link>
-                <Link>Discussions</Link>
-                <Link>Leaderboard</Link>
-                <Link>Twitter</Link>
+                <Link to="#">Guidelines</Link>
+                <Link to="#">Discussions</Link>
+                <Link to="#">Leaderboard</Link>
+                <Link to="#">Twitter</Link>
               </Typography>
             </Grid>
 
             <Grid item md="auto" xs={12}>
               <Typography variant="h6">LEGAL</Typography>
               <Typography>
-                <Link>Term of Use</Link>
-                <Link>API Terms of Use</Link>
-                <Link>Privacy Policy</Link>
+                <Link to="#">Term of Use</Link>
+                <Link to="#">API Terms of Use</Link>
+                <Link to="#">Privacy Policy</Link>
               </Typography>
             </Grid>
           </Grid>

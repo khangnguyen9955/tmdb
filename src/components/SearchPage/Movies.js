@@ -1,7 +1,8 @@
-import React from "react";
 import { Typography } from "@mui/material";
+import { makeStyles } from "@material-ui/styles";
 import MovieCard from "../common/MovieCard";
 import SearchPagination from "./SearchPagination";
+
 const Movies = ({ movies, params }) => {
   return movies.results.length > 0 ? (
     <>

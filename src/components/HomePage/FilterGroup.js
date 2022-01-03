@@ -1,6 +1,7 @@
-import { Box, makeStyles, Typography, withStyles } from "@material-ui/core";
+import { Box, Typography, withStyles } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { green } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core/styles";
 
 const StyledToggleButton = withStyles((theme) => ({
   root: {

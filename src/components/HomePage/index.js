@@ -1,4 +1,6 @@
-import { Container, Fade, makeStyles } from "@material-ui/core";
+import { Container, Fade } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import { useState, useEffect } from "react";
 import Welcome from "./Welcome";
 import JoinToday from "./JoinToday";

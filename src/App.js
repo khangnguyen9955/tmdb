@@ -5,24 +5,24 @@ import Footer from "./components/Footer";
 import "./index.css";
 import theme from "./theme";
 import { CssBaseline } from "@mui/material";
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import SearchPage from "./components/SearchPage";
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <main
-        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
       >
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<HomePage />} exact />
-            <Route
-              path="/search/:type/:query/:page"
-              element={<SearchPage />}
-              exact
-            />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/search/:type/:query/:page" element={<SearchPage />} />
           </Routes>
           <Footer />
         </Router>

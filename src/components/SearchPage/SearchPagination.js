@@ -3,9 +3,9 @@ import { Pagination } from "@mui/material";
 import { Box } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 const SearchPagination = (total_pages, params) => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const handleChange = (e, newPage) => {
-    history.push(`/search/${params.type}/${params.query}/${newPage}`);
+    navigate.push(`/search/${params.type}/${params.query}/${newPage}`);
   };
   return (
     total_pages > 1 && (
