@@ -1,4 +1,5 @@
 import { CircularProgress, Container, Grid } from "@mui/material";
+import { makeStyles } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
 import Movies from "./Movies";
 import Companies from "./Companies";
@@ -15,7 +16,27 @@ import searchTvShows from "../../api/searchTvShows";
 import { useParams } from "react-router-dom";
 import Loading from "../common/Loading";
 import { Box } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  main: {
+    marginTop: 64,
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+    paddingTop: 30,
+    paddingBottom: 30,
+    paddingLeft: 40,
+    paddingRight: 40,
+    alignContent: "flex-start",
+    maxWidth: 1100,
+    width: 1100,
+    justifyContent: "space-between",
+  },
+}));
+
 const SearchPage = () => {
+  const classes = useStyles();
   const [results, setResults] = useState({});
   const [loading, setLoading] = useState(true);
   const [resultsLoading, setResultsLoading] = useState(true);
@@ -41,6 +62,7 @@ const SearchPage = () => {
     };
     fetchData();
   }, [query, page]);
+  console.log(results);
   return loading ? (
     <Loading />
   ) : resultsLoading ? (
@@ -53,8 +75,8 @@ const SearchPage = () => {
       <CircularProgress />
     </Box>
   ) : (
-    <Container>
-      <Grid container>
+    <Container className={classes.main}>
+      <Grid container className={classes.container}>
         {type === "movie" && <Movies movies={results.movies} params={params} />}
         {type === "tv" && <TVShows tvShows={results.tvShows} params={params} />}
         {type === "person" && (

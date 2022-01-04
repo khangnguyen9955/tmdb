@@ -3,6 +3,7 @@ import { Typography } from "@mui/material";
 import MovieCard from "../common/MovieCard";
 import SearchPagination from "./SearchPagination";
 const TVShows = ({ tvShows, params }) => {
+  console.log(tvShows);
   return tvShows.results.length > 0 ? (
     <>
       {tvShows.results.map((tvShow) => (

@@ -2,14 +2,28 @@ import React from "react";
 import { Pagination } from "@mui/material";
 import { Box } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-const SearchPagination = (total_pages, params) => {
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles(() => ({
+  main: {
+    marginTop: 30,
+    maxWidth: "100%",
+    width: "100%",
+    height: 50,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+}));
+const SearchPagination = ({ total_pages, params }) => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const handleChange = (e, newPage) => {
-    navigate.push(`/search/${params.type}/${params.query}/${newPage}`);
+    navigate(`/search/${params.type}/${params.query}/${newPage}`);
   };
   return (
     total_pages > 1 && (
-      <Box display="flex" justifyContent="center" mt={2}>
+      <Box className={classes.main} mt={2}>
         <Pagination
           count={total_pages}
           page={parseInt(params.page)}

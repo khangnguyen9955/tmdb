@@ -39,7 +39,6 @@ const useStyles = makeStyles(() => ({
   },
   overview: {},
 }));
-
 const MovieCard = ({ details, media_type = "movie" }) => {
   const classes = useStyles();
   return (
@@ -47,7 +46,7 @@ const MovieCard = ({ details, media_type = "movie" }) => {
       <CardActionArea component={Link} to={`/${media_type}/${details.id}`}>
         <CardMedia
           component="img"
-          img={details.poster_path}
+          image={details.poster_path}
           alt={details.title}
           title={details.title}
           loading="lazy"
