@@ -48,11 +48,11 @@ const SearchPage = () => {
       setResultsLoading(true);
       const searchResults = await Promise.all([
         searchMovies(query, page),
+        searchTvShows(query, page),
         searchCollections(query, page),
         searchCompanies(query, page),
         searchKeywords(query, page),
         searchPeople(query, page),
-        searchTvShows(query, page),
       ]);
       const [movies, companies, people, tvShows, collections, keywords] =
         searchResults;
