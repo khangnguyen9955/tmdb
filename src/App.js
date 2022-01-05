@@ -6,7 +6,8 @@ import "./index.css";
 import theme from "./theme";
 import { CssBaseline } from "@mui/material";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import SearchPage from "./components/SearchPage";
+import SearchPage from "./components/PopularPage";
+import PopularPage from "./components/PopularPage";
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
@@ -22,7 +23,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/search/:type/:query/:page" element={<SearchPage />} />
+            <Route path="/:type/:page" element={<PopularPage />} />
           </Routes>
           <Footer />
         </Router>

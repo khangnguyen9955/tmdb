@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
     cursor: "pointer",
     color: "#fff",
+    fontWeight: 600,
   },
   searchIcon: {
     color: "blue",

@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { DateTime } from "luxon";
 import React from "react";
 import { Link } from "react-router-dom";
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     position: "relative",
     display: "flex",
@@ -19,7 +19,6 @@ const useStyles = makeStyles(() => ({
     borderRadius: 8,
     marginBottom: 24,
     width: 180,
-    height: 390,
   },
   cardMedia: {
     width: "100%",
@@ -37,10 +36,19 @@ const useStyles = makeStyles(() => ({
     position: "relative",
     width: "100%",
   },
-  overview: {},
+  details: {
+    fontSize: "1em",
+    color: "rgba(0,0,0,0.6)",
+  },
+  title: {
+    fontWeight: 700,
+    color: "#000",
+    textDecoration: "none",
+  },
 }));
 const MovieCard = ({ details, media_type = "movie" }) => {
   const classes = useStyles();
+
   return (
     <Card className={classes.card}>
       <CardActionArea component={Link} to={`/${media_type}/${details.id}`}>
@@ -55,10 +63,17 @@ const MovieCard = ({ details, media_type = "movie" }) => {
       </CardActionArea>
       <CardContent className={classes.cardContent}>
         <div>
-          <Typography>{details.title}</Typography>
-          <Typography>
+          <Typography
+            variant="subtitle1"
+            component={Link}
+            to={`/${media_type}/${details.id}`}
+            className={classes.title}
+          >
+            {details.title}
+          </Typography>
+          <Typography className={classes.details}>
             {details.release_date &&
-              DateTime.fromISO(details.release_date).toFormat("MMM dd, yyy")}
+              DateTime.fromISO(details.release_date).toFormat("MMM dd, yyyy")}
           </Typography>
         </div>
       </CardContent>

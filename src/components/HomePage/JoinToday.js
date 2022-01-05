@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   ul: {
-    margin: 0,
-    // 20px === padding grid item
+    marginLeft: 20,
     padding: "0 20px",
-    listStyleType: "square",
+    listStyleType: "circle",
+    opacity: 0.8,
   },
 }));
 
@@ -51,10 +51,8 @@ const JoinToday = () => {
 
   return (
     <div className={classes.joinToday}>
-      <Box>
-        <Typography variant="h4" style={{ paddingLeft: "48px" }}>
-          Join Today
-        </Typography>
+      <Box style={{ paddingLeft: "38px" }}>
+        <Typography variant="h4">Join Today</Typography>
       </Box>
 
       <Grid container spacing={3}>
@@ -75,7 +73,7 @@ const JoinToday = () => {
           </Button>
         </Grid>
 
-        <Grid item md={5} xs={12} style={{ paddingTop: "20px" }}>
+        <Grid item md={5} style={{ paddingTop: "10px" }}>
           <ul className={classes.ul}>
             <Typography>Enjoy TMDB ad free</Typography>
             <Typography>Maintain a personal watchlist</Typography>

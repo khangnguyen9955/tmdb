@@ -2,9 +2,7 @@ import { Typography } from "@mui/material";
 import MovieCard from "../common/MovieCard";
 import SearchPagination from "./SearchPagination";
 
-const Movies = ({ movies, params }) => {
-  console.log(movies);
-
+const PopularMovies = ({ movies, params }) => {
   return movies.results.length > 0 ? (
     <>
       {movies.results.map((movie) => (
@@ -17,4 +15,4 @@ const Movies = ({ movies, params }) => {
   );
 };
 
-export default Movies;
+export default PopularMovies;

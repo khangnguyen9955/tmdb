@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
     cursor: "pointer",
     color: "#fff",
+    fontWeight: 600,
   },
   div: {
     display: "flex",
@@ -39,13 +40,13 @@ const LeftNav = () => {
         />
       </Link>
       <Typography>
-        <Link to="/search/movie/the/1" className={classes.linkItem}>
+        <Link to="/movie/1" className={classes.linkItem}>
           Movies
         </Link>
-        <Link to="/search/tv/the/1" className={classes.linkItem}>
+        <Link to="/tv/1" className={classes.linkItem}>
           TV Shows
         </Link>
-        <Link to="/search/person/the/1" className={classes.linkItem}>
+        <Link to="/person/1" className={classes.linkItem}>
           People
         </Link>
         <Link to="#" className={classes.linkItem}>

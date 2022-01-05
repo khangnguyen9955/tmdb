@@ -19,7 +19,7 @@ const SearchPagination = ({ total_pages, params }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const handleChange = (e, newPage) => {
-    navigate(`/search/${params.type}/${params.query}/${newPage}`);
+    navigate(`/${params.type}/${newPage}`);
   };
   return (
     total_pages > 1 && (

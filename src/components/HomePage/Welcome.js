@@ -1,15 +1,11 @@
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { mergeClasses } from "@material-ui/styles";
-import { camelCase } from "lodash";
 import { alpha } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   welcomeSection: (props) => ({
     height: "calc(100vh/2.5)",
     backgroundPosition: "top center",
     backgroundSize: "cover",
-    color: "white",
     minHeight: 300,
     maxHeight: 360,
     backgroundRepeat: "no-repeat",
@@ -61,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputForm: {
     width: "100%",
-    color: "white",
     height: 46,
     lineHeight: "1.1em",
     color: "rgba(0,0,0,0.5)",

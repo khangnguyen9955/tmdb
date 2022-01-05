@@ -2,6 +2,16 @@ import { createTheme } from "@material-ui/core";
 
 const defaultTheme = createTheme();
 const theme = createTheme({
+  MuiCard: {
+    root: {
+      borderRadius: 8,
+    },
+  },
+  MuiCardActionArea: {
+    root: {
+      borderRadius: 8,
+    },
+  },
   typography: {
     h3: {
       fontWeight: "bold",

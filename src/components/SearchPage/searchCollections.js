@@ -1,9 +1,9 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 import MovieCard from "../common/MovieCard";
-import SearchPagination from "./SearchPagination";
+import SearchPagination from "../PopularPage/SearchPagination";
 
-function Collections({ collections, params }) {
+function searchCollections({ collections, params }) {
   return collections.results.length > 0 ? (
     <>
       {collections.results.map((collection) => (
@@ -19,4 +19,4 @@ function Collections({ collections, params }) {
     <Typography>!!!</Typography>
   );
 }
-export default Collections;
+export default searchCollections;
