@@ -1,5 +1,4 @@
-import { Typography, CardMedia } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Typography, CardMedia, makeStyles } from "@material-ui/core";
 
 import logo_header from "../../assets/logo_header.svg";
 import { Link } from "react-router-dom";

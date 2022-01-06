@@ -1,6 +1,6 @@
+import { makeStyles } from "@material-ui/core";
 import LeftNav from "./LeftNav";
 import RightNav from "./RightNav";
-import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   subDiv: {

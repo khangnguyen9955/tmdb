@@ -1,7 +1,6 @@
-import { Box, Typography, withStyles } from "@material-ui/core";
+import { Box, makeStyles, Typography, withStyles } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { green } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
 
 const StyledToggleButton = withStyles((theme) => ({
   root: {
@@ -64,8 +63,12 @@ const FilterGroup = ({
         className={classes.margin}
         size="small"
       >
-        <StyledToggleButton value={value1}>{label1}</StyledToggleButton>
-        <StyledToggleButton value={value2}>{label2}</StyledToggleButton>
+        <StyledToggleButton value={value1} sx={{ fontWeight: "600" }}>
+          {label1}
+        </StyledToggleButton>
+        <StyledToggleButton value={value2} sx={{ fontWeight: "600" }}>
+          {label2}
+        </StyledToggleButton>
       </ToggleButtonGroup>
     </Box>
   );

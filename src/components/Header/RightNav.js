@@ -1,5 +1,4 @@
-import { Menu, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Menu, Typography } from "@material-ui/core";
 
 import SearchIcon from "@mui/icons-material/Search";
 import LanguageIcon from "@mui/icons-material/Language";

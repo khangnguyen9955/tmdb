@@ -1,13 +1,14 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 import MovieCard from "../common/MovieCard";
+import SearchCard from "../common/SearchCard";
 import SearchPagination from "../PopularPage/SearchPagination";
 
-function searchCollections({ collections, params }) {
+function SearchCollections({ collections, params }) {
   return collections.results.length > 0 ? (
     <>
       {collections.results.map((collection) => (
-        <MovieCard
+        <SearchCard
           key={collection.id}
           details={collection}
           media_type={params.type}
@@ -19,4 +20,4 @@ function searchCollections({ collections, params }) {
     <Typography>!!!</Typography>
   );
 }
-export default searchCollections;
+export default SearchCollections;

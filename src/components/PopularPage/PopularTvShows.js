@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import MovieCard from "../common/MovieCard";
 import SearchPagination from "./SearchPagination";
-const TVShows = ({ tvShows, params }) => {
+const PopularTVShows = ({ tvShows, params }) => {
   return tvShows.results.length > 0 ? (
     <>
       {tvShows.results.map((tvShow) => (
@@ -14,4 +14,4 @@ const TVShows = ({ tvShows, params }) => {
   );
 };
 
-export default TVShows;
+export default PopularTVShows;

@@ -11,46 +11,61 @@ import React from "react";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   card: {
-    position: "relative",
     display: "flex",
-    flexWrap: "wrap",
-    alignContent: "flex-start",
-    border: "1px solid #e3e3e3",
-    marginBottom: 24,
-    width: 180,
+    maxWidth: "calc(100vw-82px)",
+    marginBottom: theme.spacing(3),
+  },
+  area: {
+    minWidth: 94,
+    height: 141,
   },
   cardMedia: {
-    width: "100%",
-    height: 275,
+    height: "100%",
+    width: 100,
+    borderRadius: 0,
   },
-
   cardContent: {
-    display: "flex",
-    whiteSpace: "normal",
-    flexWrap: "wrap",
-    alignContent: "flex-start",
-    paddingTop: 26,
-    paddingRight: 10,
-    paddingLeft: 10,
-    paddingBottom: 12,
-    position: "relative",
     width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+    alignContent: "center",
+    alignItems: "center",
+    boxSizing: "border-box",
+    padding: "10px 15px",
+  },
+  overview: {
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 2,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
+  title: {
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 1,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    textDecoration: "none",
+    color: "black",
   },
   details: {
     fontSize: "1em",
     color: "rgba(0,0,0,0.6)",
   },
-  title: {
-    color: "#000",
-    textDecoration: "none",
-  },
 }));
-const MovieCard = ({ details, media_type = "movie" }) => {
+const SearchCard = ({ details, media_type = "movie" }) => {
   const classes = useStyles();
-  console.log(details);
   return (
-    <Card className={classes.card} sx={{ borderRadius: "8px" }}>
-      <CardActionArea component={Link} to={`/${media_type}/${details.id}`}>
+    <Card className={classes.card}>
+      <CardActionArea
+        component={Link}
+        to={`/${media_type}/${details.id}`}
+        className={classes.area}
+        sx={{ width: "91px" }}
+      >
         <CardMedia
           component="img"
           image={details.poster_path}
@@ -67,7 +82,7 @@ const MovieCard = ({ details, media_type = "movie" }) => {
             component={Link}
             to={`/${media_type}/${details.id}`}
             className={classes.title}
-            sx={{ fontWeight: "700", lineHeight: "1.2" }}
+            sx={{ fontWeight: "700" }}
           >
             {details.title}
           </Typography>
@@ -75,10 +90,13 @@ const MovieCard = ({ details, media_type = "movie" }) => {
             {details.release_date &&
               DateTime.fromISO(details.release_date).toFormat("MMM dd, yyyy")}
           </Typography>
+          <div className={classes.overview}>
+            <Typography>{details.overview}</Typography>
+          </div>
         </div>
       </CardContent>
     </Card>
   );
 };
 
-export default MovieCard;
+export default SearchCard;

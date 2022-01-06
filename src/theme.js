@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core";
+import { createTheme } from "@mui/material/styles";
 
 const defaultTheme = createTheme();
 const theme = createTheme({
@@ -27,6 +27,7 @@ const theme = createTheme({
     },
     subtitle1: {
       fontWeight: "bold",
+      lineHeight: 1.2,
     },
   },
   palette: {

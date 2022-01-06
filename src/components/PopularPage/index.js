@@ -1,12 +1,9 @@
 import { CircularProgress, Container, Grid, Typography } from "@mui/material";
-import { makeStyles } from "@material-ui/styles";
+
 import React, { useEffect, useState } from "react";
-import Movies from "./PopularMovies";
-import People from "./PopularPeople";
-import TVShows from "./PopularTvShows";
 import { useParams } from "react-router-dom";
 import Loading from "../common/Loading";
-import { Box } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import popularMovies from "../../api/popularMovies";
 import popularPeople from "../../api/popularPeople";
 import popularTvShows from "../../api/popularTvShows";

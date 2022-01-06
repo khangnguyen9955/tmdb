@@ -1,5 +1,11 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Box, Button, Grid, Typography, alpha } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  alpha,
+  makeStyles,
+} from "@material-ui/core";
 import { purple } from "@material-ui/core/colors";
 import join_today from "../../assets/join_today.jpeg";
 

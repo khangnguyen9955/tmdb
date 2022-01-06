@@ -7,6 +7,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+
 import footer_image from "../../assets/footer_image.svg";
 const useStyles = makeStyles((theme) => ({
   logo: {

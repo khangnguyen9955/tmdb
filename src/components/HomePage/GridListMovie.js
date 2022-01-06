@@ -1,5 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Box, Typography, makeStyles } from "@material-ui/core";
 
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
@@ -54,7 +53,7 @@ const GridListMovie = ({ movies }) => {
             </CardActionArea>
             <Box p={1} pt={2} position="relative">
               <Box></Box>
-              <Typography variant="subtitle2">{movie.title}</Typography>
+              <Typography variant="subtitle1">{movie.title}</Typography>
               <Typography variant="subtitle2" color="textSecondary">
                 {DateTime.fromISO(movie.release_date).toFormat("MMM dd, yyyy")}
               </Typography>
