@@ -4,7 +4,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
-  tab: { display: "inline-flex", justifyContent: "space-between" },
+  title: {
+    backgroundColor: "rgba(1,180,228,1)",
+    display: "flex",
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "space-between",
+    padding: "20px",
+    color: "#fff",
+  },
+  tabs: { width: 260, minWidth: 260 },
+  tab: {
+    display: "inline-flex",
+    justifyContent: "space-between",
+    padding: "24px 12px",
+  },
+  label: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+  },
+  total: { padding: "0 5px", border: "1px solid black", borderRadius: 10 },
 }));
 const SearchResults = ({
   moviesResults,
@@ -51,13 +72,14 @@ const SearchResults = ({
   return (
     <Card>
       <Box>
-        <Typography>Search Results</Typography>
+        <Typography className={classes.title}>Search Results</Typography>
       </Box>
       <Tabs
         orientation="vertical"
         variant="fullWidth"
         indicatorColor="primary"
         value={params.type}
+        className={classes.tabs}
       >
         {allTabs.map((tab) => (
           <Tab

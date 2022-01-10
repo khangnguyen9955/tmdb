@@ -2,7 +2,7 @@ import { Typography } from "@material-ui/core";
 import React from "react";
 import MovieCard from "../common/MovieCard";
 import SearchCard from "../common/SearchCard";
-import SearchPagination from "../PopularPage/SearchPagination";
+import SearchPagination from "../SearchPage/SearchPagination";
 
 function SearchTvShows({ tvShows, params }) {
   return tvShows.results.length > 0 ? (
@@ -13,7 +13,7 @@ function SearchTvShows({ tvShows, params }) {
       <SearchPagination total_pages={tvShows.total_pages} params={params} />
     </>
   ) : (
-    <Typography>!!!</Typography>
+    <Typography>There are no TV Shows that matched your query.</Typography>
   );
 }
 export default SearchTvShows;

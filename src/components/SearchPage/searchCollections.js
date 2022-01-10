@@ -1,8 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
-import MovieCard from "../common/MovieCard";
 import SearchCard from "../common/SearchCard";
-import SearchPagination from "../PopularPage/SearchPagination";
+import SearchPagination from "../SearchPage/SearchPagination";
 
 function SearchCollections({ collections, params }) {
   return collections.results.length > 0 ? (
@@ -17,7 +16,7 @@ function SearchCollections({ collections, params }) {
       <SearchPagination total_pages={collections.total_pages} params={params} />
     </>
   ) : (
-    <Typography>!!!</Typography>
+    <Typography>There are no collections that matched your query.</Typography>
   );
 }
 export default SearchCollections;

@@ -2,7 +2,7 @@ import axios from "axios";
 import no_image from "../assets/no_image.png";
 import { API_KEY, url, poster_url, backdrop_url } from "./config";
 
-export const fetchTrending = async (time) => {
+const fetchTrending = async (time) => {
   try {
     const { data } = await axios.get(`${url}/trending/all/${time}`, {
       params: {
@@ -26,3 +26,5 @@ export const fetchTrending = async (time) => {
     console.log(err);
   }
 };
+
+export default fetchTrending;

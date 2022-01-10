@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 40,
     paddingRight: 40,
     alignContent: "flex-start",
-    maxWidth: 1100,
-    width: 1100,
+    maxWidth: 1300,
+    width: 1300,
     justifyContent: "space-between",
   },
 }));
@@ -73,7 +73,7 @@ const SearchPage = () => {
       <CircularProgress />
     </Box>
   ) : (
-    <Container className={classes.main}>
+    <Container className={classes.main} sx={{ minWidth: 1300 }}>
       <Grid container spacing={3} className={classes.container}>
         <Grid item md={3} xs={12}>
           <SearchResults

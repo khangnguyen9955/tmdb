@@ -2,7 +2,7 @@ import { makeStyles, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchPagination from "../PopularPage/SearchPagination";
+import SearchPagination from "../SearchPage/SearchPagination";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -54,7 +54,7 @@ function SearchCompanies({ companies, params }) {
       <SearchPagination total_pages={companies.total_pages} params={params} />
     </>
   ) : (
-    <Typography>!!!</Typography>
+    <Typography>There are no companies that matched your query.</Typography>
   );
 }
 export default SearchCompanies;

@@ -1,5 +1,6 @@
 import { Typography, makeStyles } from "@material-ui/core";
 import { alpha } from "@material-ui/core/styles";
+import Search from "../Header/Search";
 const useStyles = makeStyles((theme) => ({
   welcomeSection: (props) => ({
     height: "calc(100vh/2.5)",
@@ -82,14 +83,17 @@ const Welcome = ({ backdrop }) => {
                 now.
               </Typography>
             </div>
-            <div className={classes.search}>
+
+            <Search handleClose={() => null} />
+
+            {/* <div className={classes.search}>
               <form className={classes.searchForm}>
                 <input
                   className={classes.inputForm}
                   placeholder="Search for a movie, tv show, person...."
                 ></input>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

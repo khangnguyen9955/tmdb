@@ -30,8 +30,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-around",
     flexWrap: "wrap",
-    alignContent: "center",
-    alignItems: "center",
     boxSizing: "border-box",
     padding: "10px 15px",
   },

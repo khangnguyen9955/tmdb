@@ -2,7 +2,7 @@ import { Typography } from "@material-ui/core";
 import React from "react";
 import MovieCard from "../common/MovieCard";
 import SearchCard from "../common/SearchCard";
-import SearchPagination from "../PopularPage/SearchPagination";
+import SearchPagination from "../SearchPage/SearchPagination";
 
 function SearchMovies({ movies, params }) {
   return movies.results.length > 0 ? (
@@ -13,7 +13,7 @@ function SearchMovies({ movies, params }) {
       <SearchPagination total_pages={movies.total_pages} params={params} />
     </>
   ) : (
-    <Typography>!!!</Typography>
+    <Typography>There are no movies that matched your query.</Typography>
   );
 }
 export default SearchMovies;

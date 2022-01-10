@@ -1,22 +1,28 @@
-import { Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import MovieCard from "../common/MovieCard";
-import SearchPagination from "../PopularPage/SearchPagination";
-
+import { Link } from "react-router-dom";
+import SearchPagination from "../SearchPage/SearchPagination";
+const useStyles = makeStyles((theme) => ({
+  title: {
+    textDecoration: "none",
+    color: "black",
+  },
+}));
 function SearchKeywords({ keywords, params }) {
+  const classes = useStyles();
   return keywords.results.length > 0 ? (
     <>
       {keywords.results.map((keyword) => (
-        <MovieCard
-          key={keyword.id}
-          details={keyword}
-          media_type={params.type}
-        />
+        <Typography key={keyword.id}>
+          <Link to={`/keyword/${keyword.id}`} className={classes.title}>
+            {keyword.name}
+          </Link>
+        </Typography>
       ))}
       <SearchPagination total_pages={keywords.total_pages} params={params} />
     </>
   ) : (
-    <Typography>!!!</Typography>
+    <Typography>There are no keywords that matched your query.</Typography>
   );
 }
 export default SearchKeywords;

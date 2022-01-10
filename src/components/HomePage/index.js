@@ -6,7 +6,7 @@ import JoinToday from "./JoinToday";
 import { fetchPopular } from "../../api/fetchPopular";
 import GridListMovie from "./GridListMovie";
 import FilterGroup from "./FilterGroup";
-import { fetchTrending } from "../../api/fetchTrending";
+import fetchTrending from "../../api/fetchTrending";
 const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: 64,

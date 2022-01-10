@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const RightNav = () => {
+const RightNav = ({open,handleOpen,handleClose}) => {
   const classes = useStyles();
   return (
     <div className={classes.div}>
