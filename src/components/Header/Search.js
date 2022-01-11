@@ -2,11 +2,11 @@ import fetchTrending from "../../api/fetchTrending";
 import searchMovies from "../../api/searchMovies";
 import useDebounce from "../common/useDebounce";
 
+import SearchIcon from "@mui/icons-material/Search";
 import { alpha, InputBase, makeStyles } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import Autocomplete from "@mui/material/Autocomplete";
 import { useNavigate } from "react-router-dom";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
@@ -19,17 +19,22 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   searchIcon: (props) => ({
-    padding: theme.spacing(0, props.paddingLeft),
+    padding: 20,
     height: "100%",
     position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
+    top: 0,
+    right: -1,
+    padding: "10px 26px",
+    display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
   }),
   inputRoot: {
     color: "inherit",
     width: "100%",
+    paddingLeft: 10,
   },
   inputInput: (props) => ({
     padding: theme.spacing(1, 1, 1, 0),
@@ -41,19 +46,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = ({ paddingLeft = 2, searchRef, handleClose }) => {
   const classes = useStyles();
-  const [inputValue, setInputValue] = useState("the");
-  const debouncedInput = useDebounce(inputValue, 500);
   const [options, setOptions] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const debouncedInput = useDebounce(inputValue, 300);
   const navigate = useNavigate();
-  useEffect(() => {
-    const fetchData = async () => {
-      const trending = await fetchTrending("day");
-      const trendingMovie = trending.map((movie) => {
-        options.push(movie.title);
-      });
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const trending = await fetchTrending("day");
+  //     const trendingMovie = trending.map((movie) => {
+  //       options.push(movie.title);
+  //     });
+  //   };
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     if (debouncedInput) {
@@ -62,12 +67,17 @@ const Search = ({ paddingLeft = 2, searchRef, handleClose }) => {
         setOptions(searchResults.results.map((movie) => movie.title));
       };
       fetchData();
+    } else {
+      const fetchData = async () => {
+        const searchResults = await fetchTrending("day");
+        setOptions(searchResults.map((movie) => movie.title));
+      };
+      fetchData();
     }
   }, [debouncedInput]);
-
   const handleChange = (e, newValue) => {
     if (newValue) {
-      navigate.push(`/search/movie/${newValue}/1`);
+      navigate(`/search/movie/${newValue}/1`);
       handleClose();
     }
   };
@@ -78,31 +88,39 @@ const Search = ({ paddingLeft = 2, searchRef, handleClose }) => {
   const getSearch = (e) => {
     e.preventDefault();
     if (inputValue) {
-      navigate.push(`/search/movie/${inputValue}/1`);
+      navigate(`/search/movie/${inputValue}/1`);
       handleClose();
     }
   };
-
   return (
     <form onSubmit={getSearch} className={classes.search}>
       <Autocomplete
         freeSolo
+        options={options}
         onChange={handleChange}
         inputValue={inputValue}
         onInputChange={handleInputChange}
-        options={options}
         filterOptions={(options) => options}
         ref={searchRef}
-        renderInput={(params) => (
-          <InputBase
-            ref={searchRef}
-            inputProps={{ ...params.inputProps }}
-            placeholder="Search for a movie, tv show, person..."
-            autoFocus
-            classes={{ root: classes.inputRoot, input: classes.inputInput }}
-          />
-        )}
+        disableClearable
+        renderInput={(params) => {
+          const { InputLabelProps, InputProps, ...rest } = params;
+          return (
+            <InputBase
+              ref={params.inputProps.ref}
+              focused
+              placeholder="Search for a movie, tv show, person..."
+              inputProps={{ ...params.inputProps }}
+              {...params.InputProps}
+              {...rest}
+              classes={{ root: classes.inputRoot, input: classes.inputInput }}
+            />
+          );
+        }}
       />
+      <div className={classes.searchIcon} onClick={getSearch}>
+        <SearchIcon />
+      </div>
     </form>
   );
 };

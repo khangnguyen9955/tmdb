@@ -61,6 +61,10 @@ const SearchPage = () => {
     };
     fetchData();
   }, [query, page]);
+  console.log(results);
+  console.log(query);
+  console.log(page);
+
   return loading ? (
     <Loading />
   ) : resultsLoading ? (

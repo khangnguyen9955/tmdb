@@ -83,8 +83,7 @@ const Welcome = ({ backdrop }) => {
                 now.
               </Typography>
             </div>
-
-            <Search handleClose={() => null} />
+            <Search className={classes.search} handleClose={() => null} />
 
             {/* <div className={classes.search}>
               <form className={classes.searchForm}>

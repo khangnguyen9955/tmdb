@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const MovieCard = ({ details, media_type = "movie" }) => {
   const classes = useStyles();
-  console.log(details);
   return (
     <Card className={classes.card} sx={{ borderRadius: "8px" }}>
       <CardActionArea component={Link} to={`/${media_type}/${details.id}`}>
