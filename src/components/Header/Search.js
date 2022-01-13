@@ -19,16 +19,14 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   searchIcon: (props) => ({
-    padding: 20,
     height: "100%",
     position: "absolute",
     top: 0,
     right: -1,
-    padding: "10px 26px",
+    padding: "10px 14px",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    alignItems: "center",
     cursor: "pointer",
   }),
   inputRoot: {
