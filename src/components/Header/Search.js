@@ -1,7 +1,7 @@
 import fetchTrending from "../../api/fetchTrending";
 import searchMovies from "../../api/searchMovies";
 import useDebounce from "../common/useDebounce";
-
+import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha, InputBase, makeStyles } from "@material-ui/core";
 import { useEffect, useState } from "react";
@@ -48,15 +48,6 @@ const Search = ({ paddingLeft = 2, searchRef, handleClose }) => {
   const [inputValue, setInputValue] = useState("");
   const debouncedInput = useDebounce(inputValue, 300);
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const trending = await fetchTrending("day");
-  //     const trendingMovie = trending.map((movie) => {
-  //       options.push(movie.title);
-  //     });
-  //   };
-  //   fetchData();
-  // }, []);
 
   useEffect(() => {
     if (debouncedInput) {

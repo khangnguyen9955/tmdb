@@ -28,6 +28,8 @@ const theme = createTheme({
     subtitle1: {
       fontWeight: "bold",
       lineHeight: 1.2,
+      textDecoration: "none",
+      color: "black",
     },
   },
   palette: {

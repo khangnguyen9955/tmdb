@@ -1,5 +1,5 @@
 import { Box, Typography, makeStyles } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -49,11 +49,19 @@ const GridListMovie = ({ movies }) => {
                 className={classes.cardMedia}
                 image={movie.poster_path}
                 title={movie.title}
+                component={Link}
+                to={`/${movie.media_type}/${movie.id}}`}
               />
             </CardActionArea>
             <Box p={1} pt={2} position="relative">
               <Box></Box>
-              <Typography variant="subtitle1">{movie.title}</Typography>
+              <Typography
+                variant="subtitle1"
+                component={Link}
+                to={`/${movie.media_type}/${movie.id}}`}
+              >
+                {movie.title}
+              </Typography>
               <Typography variant="subtitle2" color="textSecondary">
                 {DateTime.fromISO(movie.release_date).toFormat("MMM dd, yyyy")}
               </Typography>
