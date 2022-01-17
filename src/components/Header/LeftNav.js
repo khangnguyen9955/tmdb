@@ -39,13 +39,13 @@ const LeftNav = () => {
         />
       </Link>
       <Typography>
-        <Link to="/movie/1" className={classes.linkItem}>
+        <Link to="/popular/movie/1" className={classes.linkItem}>
           Movies
         </Link>
-        <Link to="/tv/1" className={classes.linkItem}>
+        <Link to="/popular/tv/1" className={classes.linkItem}>
           TV Shows
         </Link>
-        <Link to="/person/1" className={classes.linkItem}>
+        <Link to="/popular/person/1" className={classes.linkItem}>
           People
         </Link>
         <Link to="#" className={classes.linkItem}>
