@@ -25,8 +25,8 @@ const fetchMovie = async (id) => {
             iso_3166_1: data.release_dates.results[0].iso_3166_1,
             certification:
               data.release_dates.results[0].release_dates[0].certification,
-            release_dates:
-              data.release_dates.results[0].release_dates[0].release_dates,
+            release_date:
+              data.release_dates.results[0].release_dates[0].release_date,
           }
         : {},
       credits: {

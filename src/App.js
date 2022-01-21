@@ -8,7 +8,7 @@ import { CssBaseline } from "@mui/material";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import PopularPage from "./components/PopularPage";
 import SearchPage from "./components/SearchPage";
-import MoviePage from "./components/MoviePage";
+import MoviePage from "./components/MoviePage/MoviePage";
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
