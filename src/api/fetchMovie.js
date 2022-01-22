@@ -33,7 +33,7 @@ const fetchMovie = async (id) => {
         cast: data.credits.cast.map((person) => ({
           ...person,
           profile_path: person.profile_path
-            ? poster_url + person.poster_path
+            ? poster_url + person.profile_path
             : no_image,
         })),
         crew: data.credits.crew.map((person) => ({

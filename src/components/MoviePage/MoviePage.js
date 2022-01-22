@@ -16,7 +16,6 @@ const MoviePage = () => {
   const params = useParams();
   const { id } = params;
   const [loading, setLoading] = useState(true);
-  console.log(movie);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -25,7 +24,7 @@ const MoviePage = () => {
     };
     fetchData();
   }, [id]);
-
+  console.log(movie);
   return loading ? (
     <Loading />
   ) : (

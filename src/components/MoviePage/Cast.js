@@ -12,50 +12,106 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  cast: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+  },
+  gridList: {
+    flexGrow: 1,
+    flexWrap: "nowrap",
+  },
+  card: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 4,
+    minWidth: 140,
+  },
+  cardActionArea: {
+    borderRadius: 8,
+  },
+  cardMedia: {
+    paddingTop: "130%",
+    height: 0,
+    borderRadius: 8,
+  },
+  viewMore: {
+    fontSize: "1em",
+    alignItems: "center",
+    alignContent: "center",
+    fontWeight: "bold",
+    display: "flex",
+    margin: "auto",
+  },
+  textViewMore: {
+    color: "black",
+    fontSize: "1em",
+    fontWeight: "bold",
+  },
+  name: { fontSize: 16, fontWeight: "bold", color: "black" },
+  character: {
+    fontSize: "0.9em",
+  },
+}));
 const Cast = ({ cast, media_type, id }) => {
   const classes = useStyles();
-  console.log(cast);
   return (
     <>
       <div>
         <Typography gutterBottom>Top Billed Cast</Typography>
       </div>
-      <div>
-        <GridList cellHeight="auto" cols={2.5} spacing={8}>
+      <div className={classes.cast}>
+        <ImageList
+          cellHeight="auto"
+          cols={7.5}
+          spacing={8}
+          className={classes.gridList}
+        >
           {cast.slice(0, 9).map((person) => (
-            <ImageList>
-              <ImageListItem className={classes.card}>
-                <CardActionArea
-                  className={classes.cardActionARea}
+            <ImageListItem className={classes.card}>
+              <CardActionArea
+                className={classes.cardActionArea}
+                component={Link}
+                to={`/person/${person.id}`}
+              >
+                <CardMedia
+                  image={person.profile_path}
+                  title={person.name}
+                  className={classes.cardMedia}
+                />
+              </CardActionArea>
+              <Box m={1}>
+                <Typography
                   component={Link}
                   to={`/person/${person.id}`}
+                  className={classes.name}
                 >
-                  <CardMedia
-                    image={person.profile_path}
-                    title={person.name}
-                    className={classes.cardMedia}
-                  />
-                </CardActionArea>
-                <Box m={1}>
-                  <Typography
-                    variant="subtitle1"
-                    component={Link}
-                    to={`/person/${person.id}`}
-                  >
-                    {person.name}
-                  </Typography>
-                  <Typography>{person.character}</Typography>
-                </Box>
-              </ImageListItem>
-            </ImageList>
+                  {person.name}
+                </Typography>
+                <Typography className={classes.character}>
+                  {person.character}
+                </Typography>
+              </Box>
+            </ImageListItem>
           ))}
           {cast.length >= 9 && (
-            <ImageList className={classes.viewMore}>
-              <Link to={`/${media_type}/${id}/cast`}>View More</Link>
-            </ImageList>
+            <ImageListItem item className={classes.viewMore}>
+              <Typography
+                component={Link}
+                to={`/${media_type}/${id}/cast`}
+                className={classes.textViewMore}
+              >
+                View More
+              </Typography>
+            </ImageListItem>
           )}
-        </GridList>
+        </ImageList>
+      </div>
+      <div>
+        <Typography>Full Cast & Crew</Typography>
       </div>
     </>
   );
