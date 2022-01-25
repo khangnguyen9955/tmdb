@@ -5,6 +5,9 @@ import Header from "./Header";
 import fetchMovie from "../../api/fetchMovie";
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import Cast from "./Cast";
+import Media from "./Media";
+import Recommendations from "./Recommendations";
+import Details from "./Details";
 const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: 64,
@@ -33,11 +36,19 @@ const MoviePage = () => {
       <Container>
         <Grid container spacing={3} justify="center">
           <Grid item xs={12} md={9}>
-            <Cast cast={movie.credits.cast} id={id} />
+            <Cast
+              cast={movie.credits.cast}
+              media_type={movie.media_type}
+              id={id}
+            />
+            <Media details={movie} />
+            <Recommendations
+              recommendations={movie.recommendations}
+              media_type={movie.media_type}
+            />
           </Grid>
-
           <Grid item xs={12} md={3}>
-            Facts
+            <Details details={movie} />
           </Grid>
         </Grid>
       </Container>

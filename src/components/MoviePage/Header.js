@@ -247,7 +247,7 @@ const Header = ({ details, created_by }) => {
             <Grid item container spacing={2} className={classes.creatorArea}>
               {created_by &&
                 created_by.map((creator) => (
-                  <Grid xs={6} md={4} key={creator.id}>
+                  <Grid item xs={6} md={4} key={creator.id}>
                     <Typography
                       className={classes.creatorName}
                       component={Link}

@@ -3,6 +3,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Divider,
   GridList,
   GridListTile,
   ImageList,
@@ -55,13 +56,28 @@ const useStyles = makeStyles((theme) => ({
   character: {
     fontSize: "0.9em",
   },
+  fullCast: {
+    fontWeight: 600,
+    color: "black",
+    fontSize: "1.1em",
+  },
+  fullCastDiv: {
+    marginBottom: 30,
+  },
+  topCast: {
+    fontWeight: 600,
+    fontSize: "1.4em",
+    marginTop: 20,
+  },
 }));
 const Cast = ({ cast, media_type, id }) => {
   const classes = useStyles();
   return (
     <>
       <div>
-        <Typography gutterBottom>Top Billed Cast</Typography>
+        <Typography gutterBottom className={classes.topCast}>
+          Top Billed Cast
+        </Typography>
       </div>
       <div className={classes.cast}>
         <ImageList
@@ -71,7 +87,7 @@ const Cast = ({ cast, media_type, id }) => {
           className={classes.gridList}
         >
           {cast.slice(0, 9).map((person) => (
-            <ImageListItem className={classes.card}>
+            <ImageListItem key={person.id} className={classes.card}>
               <CardActionArea
                 className={classes.cardActionArea}
                 component={Link}
@@ -110,9 +126,16 @@ const Cast = ({ cast, media_type, id }) => {
           )}
         </ImageList>
       </div>
-      <div>
-        <Typography>Full Cast & Crew</Typography>
+      <div className={classes.fullCastDiv}>
+        <Typography
+          className={classes.fullCast}
+          component={Link}
+          to={`/movie/${id}/cast`}
+        >
+          Full Cast & Crew
+        </Typography>
       </div>
+      <Divider />
     </>
   );
 };
