@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Details = ({ details }) => {
   const classes = useStyles();
-  console.log(details.keywords);
   return (
     <>
       <div>

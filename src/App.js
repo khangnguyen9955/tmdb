@@ -9,6 +9,8 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import PopularPage from "./components/PopularPage";
 import SearchPage from "./components/SearchPage";
 import MoviePage from "./components/MoviePage/MoviePage";
+import TVPage from "./components/MoviePage/TVPage";
+import ScrollToTop from "./components/common/scrollToTop";
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
@@ -22,11 +24,13 @@ function App() {
       >
         <Router>
           <Header />
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/popular/:type/:page" element={<PopularPage />} />
             <Route path="/search/:type/:query/:page" element={<SearchPage />} />
             <Route path="/movie/:id" element={<MoviePage />} />
+            <Route path="/tv/:id" element={<TVPage />} />
           </Routes>
           <Footer />
         </Router>

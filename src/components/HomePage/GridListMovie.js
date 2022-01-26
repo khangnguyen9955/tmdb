@@ -5,6 +5,7 @@ import ImageListItem from "@material-ui/core/ImageListItem";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import { DateTime } from "luxon";
+import CustomDonut from "../common/customDonut";
 
 const useStyles = makeStyles((theme) => ({
   gridListMovie: {
@@ -54,7 +55,9 @@ const GridListMovie = ({ movies }) => {
               />
             </CardActionArea>
             <Box p={1} pt={2} position="relative">
-              <Box></Box>
+              <Box position="absolute" top={-18} padding={0}>
+                <CustomDonut vote_average={movie.vote_average} size={30} />
+              </Box>
               <Typography
                 variant="subtitle1"
                 component={Link}

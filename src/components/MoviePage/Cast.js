@@ -81,7 +81,7 @@ const Cast = ({ cast, media_type, id }) => {
       </div>
       <div className={classes.cast}>
         <ImageList
-          cellHeight="auto"
+          rowHeight="auto"
           cols={7.5}
           spacing={8}
           className={classes.gridList}
@@ -114,7 +114,7 @@ const Cast = ({ cast, media_type, id }) => {
             </ImageListItem>
           ))}
           {cast.length >= 9 && (
-            <ImageListItem item className={classes.viewMore}>
+            <ImageListItem item="true" className={classes.viewMore}>
               <Typography
                 component={Link}
                 to={`/${media_type}/${id}/cast`}

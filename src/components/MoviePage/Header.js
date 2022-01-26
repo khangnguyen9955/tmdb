@@ -105,7 +105,7 @@ const Header = ({ details, created_by }) => {
     <div className={classes.header}>
       <Container className={classes.container}>
         <Grid container spacing={3} alignItems="center" justify="center">
-          <Grid item md={3} xs={6} className={classes.imageArea}>
+          <Grid item="true" md={3} xs={6} className={classes.imageArea}>
             <CardMedia
               component="img"
               alt={details.title}
@@ -116,7 +116,7 @@ const Header = ({ details, created_by }) => {
             />
           </Grid>
           <Grid
-            item
+            item="true"
             container
             spacing={2}
             md={9}
@@ -124,7 +124,7 @@ const Header = ({ details, created_by }) => {
             direction="column"
             pl={4}
           >
-            <Grid item>
+            <Grid item="true">
               <Grid className={classes.titleArea}>
                 <Typography className={classes.title}>
                   {details.title}{" "}
@@ -179,16 +179,16 @@ const Header = ({ details, created_by }) => {
               </Typography>
             </Grid>
             <Grid
-              item
+              item="true"
               container
               spacing={3}
               alignItems="center"
               className={classes.actions}
             >
-              <Grid item className={classes.donut}>
+              <Grid item="true" className={classes.donut}>
                 <CustomDonut vote_average={details.vote_average} size={60} />
               </Grid>
-              <Grid item>
+              <Grid item="true">
                 <Typography>
                   <b>
                     User
@@ -199,7 +199,7 @@ const Header = ({ details, created_by }) => {
               </Grid>
               {(details.media_type === "movie" ||
                 details.media_type === "tv") && (
-                <Grid item className={classes.wrapper}>
+                <Grid item="true" className={classes.wrapper}>
                   <Tooltip title="Login to edit and create custom lists">
                     <Fab
                       size="medium"
@@ -244,10 +244,15 @@ const Header = ({ details, created_by }) => {
               <Typography variant="h6">Overview</Typography>
               <Typography variant="body2">{details.overview}</Typography>
             </Grid>
-            <Grid item container spacing={2} className={classes.creatorArea}>
+            <Grid
+              item="true"
+              container
+              spacing={2}
+              className={classes.creatorArea}
+            >
               {created_by &&
                 created_by.map((creator) => (
-                  <Grid item xs={6} md={4} key={creator.id}>
+                  <Grid item="true" xs={6} md={4} key={creator.id}>
                     <Typography
                       className={classes.creatorName}
                       component={Link}

@@ -60,7 +60,7 @@ const CustomDonut = ({ vote_average = 0, size }) => {
         options={{
           responsive: true,
           maintainAspectRatio: false,
-          cutout: 25,
+          cutout: "85%",
           tooltips: {
             enabled: false,
           },

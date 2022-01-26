@@ -35,7 +35,7 @@ const MoviePage = () => {
       <Header details={movie} created_by={movie.credits.cast.slice(0, 5)} />
       <Container>
         <Grid container spacing={3} justify="center">
-          <Grid item xs={12} md={9}>
+          <Grid item="true" xs={12} md={9}>
             <Cast
               cast={movie.credits.cast}
               media_type={movie.media_type}
@@ -47,7 +47,7 @@ const MoviePage = () => {
               media_type={movie.media_type}
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item="true" xs={12} md={3}>
             <Details details={movie} />
           </Grid>
         </Grid>

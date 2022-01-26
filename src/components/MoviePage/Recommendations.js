@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Recommendations = ({ recommendations, media_type }) => {
   const classes = useStyles();
+  console.log(recommendations);
   return (
     <>
       <div className={classes.div}>
@@ -44,7 +45,7 @@ const Recommendations = ({ recommendations, media_type }) => {
             <ImageList
               className={classes.imageList}
               cols={3.5}
-              cellHeight="auto"
+              rowHeight="auto"
               spacing={16}
             >
               {recommendations.slice(0, 9).map((recommendation) => (
