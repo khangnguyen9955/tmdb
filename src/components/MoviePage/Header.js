@@ -88,11 +88,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontWeight: 700,
-    fontSize: "2.2rem",
+    fontSize: "2rem",
   },
   titleArea: {
     display: "inline-flex",
-    alignItems: "center",
+    alignItems: "baseline",
   },
   donut: {
     paddingRight: "0 !important",

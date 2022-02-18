@@ -8,6 +8,7 @@ import Cast from "./Cast";
 import Media from "./Media";
 import Recommendations from "./Recommendations";
 import Details from "./Details";
+import fetchNetwork from "../../api/fetchNetwork";
 const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: 64,
@@ -27,7 +28,6 @@ const MoviePage = () => {
     };
     fetchData();
   }, [id]);
-  console.log(movie);
   return loading ? (
     <Loading />
   ) : (

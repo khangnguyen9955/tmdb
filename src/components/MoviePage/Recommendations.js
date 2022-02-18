@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Recommendations = ({ recommendations, media_type }) => {
   const classes = useStyles();
-  console.log(recommendations);
   return (
     <>
       <div className={classes.div}>

@@ -130,7 +130,7 @@ const Cast = ({ cast, media_type, id }) => {
         <Typography
           className={classes.fullCast}
           component={Link}
-          to={`/movie/${id}/cast`}
+          to={`/${media_type}/${id}/cast`}
         >
           Full Cast & Crew
         </Typography>

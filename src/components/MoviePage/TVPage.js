@@ -8,6 +8,8 @@ import Media from "./Media";
 import Recommendations from "./Recommendations";
 import Details from "./Details";
 import fetchTV from "../../api/fetchTV";
+import CurrentSeason from "./CurrentSeason";
+import fetchNetwork from "../../api/fetchNetwork";
 const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: 64,
@@ -27,7 +29,6 @@ const TVPage = () => {
     };
     fetchData();
   }, [id]);
-
   return loading ? (
     <Loading />
   ) : (
@@ -37,6 +38,7 @@ const TVPage = () => {
         <Grid container spacing={3} justify="center">
           <Grid item="true" xs={12} md={9}>
             <Cast cast={tv.credits.cast} media_type={tv.media_type} id={id} />
+            <CurrentSeason lastSeason={tv.seasons[tv.seasons.length - 1]} />
             <Media details={tv} />
             <Recommendations
               recommendations={tv.recommendations}
