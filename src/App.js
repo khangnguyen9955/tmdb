@@ -12,6 +12,7 @@ import MoviePage from "./components/MoviePage/MoviePage";
 import TVPage from "./components/MoviePage/TVPage";
 import ScrollToTop from "./components/common/scrollToTop";
 import Biography from "./components/PersonPage/Biography";
+import PersonPage from "./components/PersonPage";
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
@@ -32,6 +33,7 @@ function App() {
             <Route path="/search/:type/:query/:page" element={<SearchPage />} />
             <Route path="/movie/:id" element={<MoviePage />} />
             <Route path="/tv/:id" element={<TVPage />} />
+            <Route path="/person/:id" element={<PersonPage />} />
           </Routes>
           <Footer />
         </Router>

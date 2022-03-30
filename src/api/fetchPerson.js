@@ -21,33 +21,33 @@ const fetchPerson = async (id) => {
         ? poster_url + data.profile_path
         : no_image,
       movie_credits: {
-        cast: data.movie_credits.cast.map((movie) => ({
-          ...movie,
-          poster_path: movie.poster_path
-            ? poster_url + movie.poster_path
+        cast: data.movie_credits.cast.map((person) => ({
+          ...person,
+          poster_path: person.poster_path
+            ? poster_url + person.poster_path
             : no_image,
         })),
-        crew: data.movie_credits.cast.map((movie) => ({
-          ...movie,
-          poster_path: movie.poster_path
-            ? poster_url + movie.poster_path
-            : no_image,
-        })),
-      },
-      tv_credits: {
-        cast: data.movie_credits.cast.map((movie) => ({
-          ...movie,
-          poster_path: movie.poster_path
-            ? poster_url + movie.poster_path
-            : no_image,
-        })),
-        crew: data.movie_credits.cast.map((movie) => ({
-          ...movie,
-          poster_path: movie.poster_path
-            ? poster_url + movie.poster_path
+        crew: data.movie_credits.crew.map((person) => ({
+          ...person,
+          poster_path: person.poster_path
+            ? poster_url + person.poster_path
             : no_image,
         })),
       },
+      // tv_credits: {
+      //   cast: data.movie_credits.cast.map((movie) => ({
+      //     ...movie,
+      //     poster_path: movie.poster_path
+      //       ? poster_url + movie.poster_path
+      //       : no_image,
+      //   })),
+      //   crew: data.movie_credits.cast.map((movie) => ({
+      //     ...movie,
+      //     poster_path: movie.poster_path
+      //       ? poster_url + movie.poster_path
+      //       : no_image,
+      //   })),
+      // },
       external_ids: {
         twitter_id: data.external_ids.twitter_id
           ? twitter_url + data.external_ids.twitter_id

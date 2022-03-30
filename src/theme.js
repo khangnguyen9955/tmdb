@@ -31,7 +31,7 @@ const theme = createTheme({
       textDecoration: "none",
       color: "black",
     },
-     },
+  },
   palette: {
     primary: {
       main: "#142851",

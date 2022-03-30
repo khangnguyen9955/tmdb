@@ -1,4 +1,5 @@
-import { makeStyles, Button, Box, Typography } from "@material-ui/core";
+import { Button, Box, Typography } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
 const useStyles = makeStyles((theme) => ({
@@ -14,9 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     display: "flex",
-    width: 20,
     justifyContent: "flex-end",
     overflowAnchor: "none",
+  },
+  biography: {
+    fontWeight: "600 !important",
+    fontSize: "1.3em !important",
+    marginBottom: "8px !important",
   },
 }));
 
@@ -46,7 +51,7 @@ const Biography = ({ person }) => {
         {person.name}
       </Typography>
       <Box>
-        <Typography variant="subtitle1">Biography</Typography>
+        <Typography className={classes.biography}>Biography</Typography>
         {person.biography ? (
           <>
             <Typography

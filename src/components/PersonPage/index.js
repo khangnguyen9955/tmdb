@@ -1,4 +1,5 @@
-import { Container, Grid, makeStyles } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
 import fetchPerson from "../../api/fetchPerson";
 import Loading from "../common/Loading";
@@ -6,21 +7,26 @@ import Biography from "./Biography";
 import KnownFor from "./KnownFor";
 import MovieCredits from "./MovieCredits.js";
 import PersonalInfo from "./PersonalInfo";
+import { useParams } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   leftColumn: {
     "& > *": {
-      marginBottom: theme.spacing(1),
+      marginBottom: 4,
     },
   },
   rightColumn: {
     "& > *": {
-      marginBottom: theme.spacing(2),
+      marginBottom: 8,
     },
+  },
+  main: {
+    marginTop: 128,
   },
 }));
 const PersonPage = ({ match }) => {
   const classes = useStyles();
-  const { id } = match.params;
+  const params = useParams();
+  const { id } = params;
   const [person, setPerson] = useState({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,11 +36,11 @@ const PersonPage = ({ match }) => {
     };
     fetchData();
   }, [id]);
-
+  console.log(person);
   return loading ? (
     <Loading />
   ) : (
-    <Container>
+    <Container className={classes.main}>
       <Grid container spacing={3}>
         <Grid item md={3} sx={12} className={classes.leftColumn}>
           <PersonalInfo person={person} />
