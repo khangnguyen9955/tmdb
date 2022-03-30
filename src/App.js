@@ -11,6 +11,7 @@ import SearchPage from "./components/SearchPage";
 import MoviePage from "./components/MoviePage/MoviePage";
 import TVPage from "./components/MoviePage/TVPage";
 import ScrollToTop from "./components/common/scrollToTop";
+import Biography from "./components/PersonPage/Biography";
 function App() {
   return (
     <MuiThemeProvider theme={theme}>

@@ -2,22 +2,21 @@ import { Box, makeStyles, Typography, withStyles } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { green } from "@material-ui/core/colors";
 
-const StyledToggleButton = withStyles((theme) => ({
-  root: {
-    // Typography subtitle1
+const useStyles = makeStyles((theme) => ({
+  buttonGroup: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: "bold",
     fontSize: "1rem",
     lineHeight: 1.75,
     letterSpacing: "0.00938em",
-
     color: theme.palette.primary.main,
     textTransform: "none",
     borderRadius: 15,
     padding: theme.spacing(0, 2),
-    "&$selected": {
+    marginLeft: theme.spacing(2),
+    "&. selected": {
       backgroundColor: theme.palette.primary.main,
-      "& $label": {
+      "&. label": {
         color: "#fff",
         // text gradient
         backgroundImage: `linear-gradient(to right, ${green[100]}, ${green["A400"]})`,
@@ -32,14 +31,6 @@ const StyledToggleButton = withStyles((theme) => ({
         backgroundColor: theme.palette.primary.main,
       },
     },
-  },
-  selected: {},
-  label: {},
-}))(ToggleButton);
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    marginLeft: theme.spacing(2),
   },
 }));
 
@@ -60,15 +51,16 @@ const FilterGroup = ({
         value={value}
         exclusive
         onChange={handleChange}
-        className={classes.margin}
+        className={classes.buttonGroup}
         size="small"
+
       >
-        <StyledToggleButton value={value1} sx={{ fontWeight: "600" }}>
+        <ToggleButton value={value1} sx={{ fontWeight: "600" }}>
           {label1}
-        </StyledToggleButton>
-        <StyledToggleButton value={value2} sx={{ fontWeight: "600" }}>
+        </ToggleButton>
+        <ToggleButton value={value2} sx={{ fontWeight: "600" }}>
           {label2}
-        </StyledToggleButton>
+        </ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );
