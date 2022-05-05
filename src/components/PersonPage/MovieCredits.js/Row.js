@@ -118,7 +118,11 @@ const Row = ({ row }) => {
         }}
       >
         <Card className={classes.card}>
-          <CardActionArea className={classes.cardActionArea}>
+          <CardActionArea
+            component={Link}
+            to={`/movie/${row.id}`}
+            className={classes.cardActionArea}
+          >
             <CardMedia
               component="img"
               alt={row.title}
