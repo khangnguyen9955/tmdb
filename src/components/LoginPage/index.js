@@ -1,6 +1,6 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {Link, useNavigate} from "react-router-dom"
 import {useDispatch} from "react-redux";
@@ -47,12 +47,11 @@ const useStlyes = makeStyles((theme) => (
 
 const LoginPage = () => {
 	const classes = useStlyes();
-	const {handleSubmit, errors, register} = useForm();
+	const {handleSubmit, formState: {errors}, register} = useForm();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	// const {error, isLoading} = useSelector((state) => state.user);
 	const onSubmit = (data) => {
-		console.log(data)
 		data.username = data.username.toLowerCase();
 		dispatch(loginUser(data));
 		navigate("/");
@@ -87,7 +86,7 @@ const LoginPage = () => {
 									size="small"
 									label="Username"
 									margin="normal"
-									{...register("username", {required: "Required"})}
+									{...register("username", {required: "Required", minLength: 6})}
 								/>
 								<TextField
 									variant="outlined"
@@ -99,26 +98,43 @@ const LoginPage = () => {
 									size="small"
 									label="Password"
 									margin="normal"
-									{...register("password", {required: "Required"})}
+									{...register("password", {required: "Required", minLength: 6})}
 
 								/>
 							</Box>
-							{/*{(*/}
-							{/*	 errors.username || errors.password*/}
-							{/* ) && (*/}
-							{/*	 // || error.loginUser*/}
-							{/*	 <div>*/}
-							{/*		 <Typography color="error">*/}
-							{/*			 /!*{error.loginUser ? error.loginUser : "Please enter your username and password"}*!/*/}
-							{/*			 Please enter your username and password*/}
-							{/*		 </Typography>*/}
-							{/*	 </div>*/}
-							{/* )}*/}
+							{(
+								 errors.username || errors.password || errors.loginUser
+							 ) && (
+								 <div>
+									 <Typography color="error">
+										 {errors.username?.type === "required" && (
+											 "Please enter your username"
+										 )}
+
+
+									 </Typography>
+									 <Typography color="error">
+										 {errors.password?.type === "required" && (
+											 "Please enter your password"
+										 )}
+									 </Typography>
+									 <Typography color="error">
+										 {errors.username?.type === "minLength" && (
+											 "Your username must be at least 6 characters long"
+										 )}
+									 </Typography>
+									 <Typography color="error">
+										 {errors.password?.type === "minLength" && (
+											 "Your password must be at least 6 characters long"
+										 )}
+									 </Typography>
+								 </div>
+							 )}
 							<Box display="flex" mt={2}>
-								<Button type="submit" variant="contained" color="primary">
+								<Button type="submit" variant="contained" style={{backgroundColor: "rgba(1,180,228,1)"}}>
 									Login
 								</Button>
-								<Button component={Link} to="/" color="primary">
+								<Button component={Link} to="/" style={{color: "rgba(1,180,228,1)"}}>
 									Cancel
 								</Button>
 								{/*{isLoading && <CircularProgress/>}*/}

@@ -13,35 +13,37 @@ import TVPage from "./components/MoviePage/TVPage";
 import ScrollToTop from "./components/common/scrollToTop";
 import PersonPage from "./components/PersonPage";
 import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
 
 function App() {
-    return (
-        <MuiThemeProvider theme={theme}>
-            <CssBaseline/>
-            <main
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    minHeight: "100vh",
-                }}
-            >
-                <Router>
-                    <Header/>
-                    <ScrollToTop/>
-                    <Routes>
-                        <Route path="/" element={<HomePage/>}/>
-                        <Route path="/popular/:type/:page" element={<PopularPage/>}/>
-                        <Route path="/search/:type/:query/:page" element={<SearchPage/>}/>
-                        <Route path="/movie/:id" element={<MoviePage/>}/>
-                        <Route path="/tv/:id" element={<TVPage/>}/>
-                        <Route path="/person/:id" element={<PersonPage/>}/>
-                        <Route path="/login" element={<LoginPage/>}/>
-                    </Routes>
-                    <Footer/>
-                </Router>
-            </main>
-        </MuiThemeProvider>
-    );
+	return (
+		<MuiThemeProvider theme={theme}>
+			<CssBaseline/>
+			<main
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					minHeight: "100vh",
+				}}
+			>
+				<Router>
+					<Header/>
+					<ScrollToTop/>
+					<Routes>
+						<Route path="/" element={<HomePage/>}/>
+						<Route path="/popular/:type/:page" element={<PopularPage/>}/>
+						<Route path="/search/:type/:query/:page" element={<SearchPage/>}/>
+						<Route path="/movie/:id" element={<MoviePage/>}/>
+						<Route path="/tv/:id" element={<TVPage/>}/>
+						<Route path="/person/:id" element={<PersonPage/>}/>
+						<Route path="/login" element={<LoginPage/>}/>
+						<Route path="/register" element={<RegisterPage/>}/>
+					</Routes>
+					<Footer/>
+				</Router>
+			</main>
+		</MuiThemeProvider>
+	);
 }
 
 export default App;
