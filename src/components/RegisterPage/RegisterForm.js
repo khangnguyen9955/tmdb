@@ -165,5 +165,4 @@ const RegisterForm = () => {
 		</Grid>
 	);
 };
-// Bi gi za ta
 export default RegisterForm;
