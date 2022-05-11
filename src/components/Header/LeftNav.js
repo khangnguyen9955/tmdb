@@ -1,59 +1,121 @@
-import { Typography, CardMedia, makeStyles } from "@material-ui/core";
+import {CardMedia, IconButton, makeStyles, Menu, MenuItem, Typography} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 
 import logo_header from "../../assets/logo_header.svg";
-import { Link } from "react-router-dom";
-const useStyles = makeStyles(() => ({
-  logo: {
-    height: 20,
-    width: 160,
-    marginRight: 16,
-  },
-  linkItem: {
-    marginRight: 14,
-    textDecoration: "none",
-    cursor: "pointer",
-    color: "#fff",
-    fontWeight: 600,
-  },
-  div: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    height: 40,
-    flexWrap: "nowrap",
-    overflow: "visibile",
-  },
-}));
+import {Link} from "react-router-dom";
+import {useState} from "react";
+
+const useStyles = makeStyles((theme) => (
+	{
+		logo: {
+			width: 160,
+			borderRadius: 0,
+		},
+		centerLogo: {
+			[theme.breakpoints.down("sm")]: {
+				position: "absolute",
+				left: "50%",
+				transform: "translateX(-50%)",
+			},
+		},
+		links: {
+			marginLeft: theme.spacing(3),
+			"& > a": {
+				marginRight: theme.spacing(3),
+			},
+			[theme.breakpoints.down("sm")]: {
+				display: "none",
+			},
+		},
+		menuButton: {
+			display: "none",
+			color: theme.palette.getContrastText(theme.palette.primary.main),
+			[theme.breakpoints.down("sm")]: {
+				display: "inline-block",
+			},
+		},
+	}
+));
+
 
 const LeftNav = () => {
-  const classes = useStyles();
-  return (
-    <div className={classes.div}>
-      <Link to="/">
-        <CardMedia
-          component="img"
-          image={logo_header}
-          title="logo"
-          alt="logo"
-          className={classes.logo}
-        />
-      </Link>
-      <Typography>
-        <Link to="/popular/movie/1" className={classes.linkItem}>
-          Movies
-        </Link>
-        <Link to="/popular/tv/1" className={classes.linkItem}>
-          TV Shows
-        </Link>
-        <Link to="/popular/person/1" className={classes.linkItem}>
-          People
-        </Link>
-        <Link to="#" className={classes.linkItem}>
-          More
-        </Link>
-      </Typography>
-    </div>
-  );
+	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = useState(null);
+
+	const handleMenuOpen = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleMenuClose = () => {
+		setAnchorEl(null);
+	};
+
+
+	const renderMenu = (
+		<Menu
+			anchorEl={anchorEl}
+			getContentAnchorEl={null}
+			anchorOrigin={{
+				vertical: "bottom",
+				horizontal: "left",
+			}}
+			transformOrigin={{
+				vertical: "top",
+				horizontal: "left",
+			}}
+			keepMounted
+			open={!!anchorEl}
+			onClose={handleMenuClose}
+		>
+			<MenuItem
+				component={Link}
+				to="/search/movie/the/1"
+				onClick={handleMenuClose}
+			>
+				Movies
+			</MenuItem>
+			<MenuItem
+				component={Link}
+				to="/search/tv/the/1"
+				onClick={handleMenuClose}
+			>
+				TV Shows
+			</MenuItem>
+			<MenuItem
+				component={Link}
+				to="/search/person/the/1"
+				onClick={handleMenuClose}
+			>
+				People
+			</MenuItem>
+		</Menu>
+	);
+	return (
+		<>
+			<IconButton
+				edge="start"
+				onClick={handleMenuOpen}
+				className={classes.menuButton}
+			>
+				<MenuIcon/>
+			</IconButton>
+			<Link to="/" className={classes.centerLogo}>
+				<CardMedia
+					component="img"
+					image={logo_header}
+					title="logo"
+					alt="logo"
+					className={classes.logo}
+				/>
+			</Link>
+			<Typography variant="subtitle1" className={classes.links}>
+				<Link to="/search/movie/the/1">Movies</Link>
+				<Link to="/search/tv/the/1">TV Shows</Link>
+				<Link to="/search/person/the/1">People</Link>
+			</Typography>
+			{renderMenu}
+		</>
+	);
 };
 
 export default LeftNav;

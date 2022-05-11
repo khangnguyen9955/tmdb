@@ -1,6 +1,5 @@
 import axios from "axios";
-import {loginFailure, loginStart, loginSuccess} from "./authSlice";
-
+import {LOGIN_FAILURE, LOGIN_START, LOGIN_SUCCESS, LOGOUT} from "./types";
 
 export const loginUser = (user) => async (dispatch) => {
 	dispatch(loginStart());
@@ -10,7 +9,8 @@ export const loginUser = (user) => async (dispatch) => {
 		dispatch(loginSuccess(res.data))
 	}
 	catch (err) {
-		dispatch(loginFailure());
+		console.log({login: err.response.data});
+		dispatch(loginFailure({login: err.response.data}));
 	}
 };
 
@@ -22,10 +22,38 @@ export const registerUser = (newUser) => async (dispatch) => {
 		dispatch(loginSuccess(res.data));
 	}
 	catch (err) {
-		dispatch(loginFailure());
+		dispatch(loginFailure({signup: err.response.data}));
 	}
 }
 
+export const logOut = () => async (dispatch) => {
+	localStorage.removeItem("token");
+	dispatch(logoutUser());
+}
 
 
+const loginStart = () => (
+	{
+		type: LOGIN_START,
+	}
+);
 
+
+const loginFailure = (err) => (
+	{
+		type: LOGIN_FAILURE,
+		err,
+	}
+);
+
+const loginSuccess = (user) => (
+	{
+		type: LOGIN_SUCCESS,
+		user,
+	}
+)
+const logoutUser = () => (
+	{
+		type: LOGOUT,
+	}
+)
