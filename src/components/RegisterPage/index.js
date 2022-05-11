@@ -5,7 +5,7 @@ import RegisterForm from "./RegisterForm";
 
 const RegisterPage = () => {
 	return (
-		<Container style={{marginTop: 64}}>
+		<Container>
 			<Grid container spacing={3}>
 				<AddtionalInfor/>
 				<RegisterForm/>

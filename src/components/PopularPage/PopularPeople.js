@@ -2,6 +2,7 @@ import {makeStyles} from "@material-ui/core";
 import {Box, CardActionArea, CardContent, CardMedia, Typography,} from "@mui/material";
 import React from "react";
 import SearchPagination from "./SearchPagination";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(() => (
 	{
@@ -43,8 +44,11 @@ const PopularPeople = ({people, params}) => {
 		<>
 			{people.results.map((person) => (
 				<Box className={classes.container}>
-					<CardActionArea>
+					<CardActionArea
+						component={Link}
+						to={`/person/${person.id}`}>
 						<CardMedia
+
 							component="img"
 							image={person.profile_path}
 							title={person.name}

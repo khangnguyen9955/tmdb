@@ -14,7 +14,6 @@ const useStlyes = makeStyles((theme) => (
 			justifyContent: "center",
 			alignItems: "flex-start",
 			alignContent: "flex-start",
-			marginTop: 64,
 
 		},
 		linkText: {

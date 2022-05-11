@@ -95,7 +95,7 @@ const RightNav = ({open, handleOpen, handleClose}) => {
 					 </Typography>
 					 <Typography
 						 component={Link}
-						 to="/signup"
+						 to="/register"
 						 className={clsx(classes.signup, classes.typography)}
 						 variant="subtitle1"
 

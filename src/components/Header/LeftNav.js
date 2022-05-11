@@ -69,21 +69,21 @@ const LeftNav = () => {
 		>
 			<MenuItem
 				component={Link}
-				to="/search/movie/the/1"
+				to="/popular/movie/1"
 				onClick={handleMenuClose}
 			>
 				Movies
 			</MenuItem>
 			<MenuItem
 				component={Link}
-				to="/search/tv/the/1"
+				to="/popular/tv/1"
 				onClick={handleMenuClose}
 			>
 				TV Shows
 			</MenuItem>
 			<MenuItem
 				component={Link}
-				to="/search/person/the/1"
+				to="/popular/person/1"
 				onClick={handleMenuClose}
 			>
 				People
@@ -109,9 +109,9 @@ const LeftNav = () => {
 				/>
 			</Link>
 			<Typography variant="subtitle1" className={classes.links}>
-				<Link to="/search/movie/the/1">Movies</Link>
-				<Link to="/search/tv/the/1">TV Shows</Link>
-				<Link to="/search/person/the/1">People</Link>
+				<Link to="/popular/movie/1">Movies</Link>
+				<Link to="/popular/tv/1">TV Shows</Link>
+				<Link to="/popular/person/1">People</Link>
 			</Typography>
 			{renderMenu}
 		</>
