@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme) => (
 				paddingLeft: theme.spacing(2),
 			},
 		},
+		alignHeader: {
+			margin: "auto",
+			width: "100%",
+			maxWidth: 1280,
+
+		}
 	}
 ));
 
@@ -59,7 +65,7 @@ const Header = () => {
 	return (
 		<div className={classes.header}>
 			<AppBar position="static">
-				<Toolbar>
+				<Toolbar className={classes.alignHeader}>
 					<LeftNav/>
 					<div className={classes.header}/>
 
