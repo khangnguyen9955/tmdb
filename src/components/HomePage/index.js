@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => (
 			flexWrap: "wrap",
 			backgroundColor: "#fff",
 			maxWidth: "100%",
+			padding: 0,
 		},
 		box: {
 			display: "flex",
-			justifyContent: "center",
 			alignItems: " flex-start",
 			alignContent: "flex-start",
 			width: "100%",
