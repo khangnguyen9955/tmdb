@@ -6,6 +6,8 @@ import company_header from "../../assets/company_header.jpeg";
 const useStyles = makeStyles((theme) => (
 	{
 		header: {
+			width: "100%",
+			
 			position: "relative",
 			backgroundImage: `linear-gradient(to right, 
 		   ${alpha(theme.palette.secondary.main, 0.9)},

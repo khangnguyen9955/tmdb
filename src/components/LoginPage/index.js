@@ -6,7 +6,7 @@ import LoginForm from "./LoginForm";
 const LoginPage = () => {
 
 	return (
-		<Container style={{minHeight: 600,}}>
+		<Container style={{minHeight: 550,}}>
 			<InforLogin/>
 			<LoginForm/>
 		</Container>

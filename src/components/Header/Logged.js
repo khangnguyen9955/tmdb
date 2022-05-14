@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => (
 
 
 const Logged = ({username}) => {
-	console.log(username);
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -75,7 +74,7 @@ const Logged = ({username}) => {
 				color: "rgba(0,0,0,0.5)",
 			}}>View profile</a>
 			<Divider/>
-			<MenuItem component={Link} to="/watchlist" onClick={handleMenuClose} className={classes.profileItem}>
+			<MenuItem component={Link} to="/profile" onClick={handleMenuClose} className={classes.profileItem}>
 				Watchlist
 			</MenuItem>
 			<MenuItem

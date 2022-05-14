@@ -12,8 +12,10 @@ import MoviePage from "./components/MoviePage/MoviePage";
 import TVPage from "./components/MoviePage/TVPage";
 import ScrollToTop from "./components/common/scrollToTop";
 import PersonPage from "./components/PersonPage";
+import PublicRoute from "./components/common/PublicRoute";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
 	return (
@@ -36,8 +38,10 @@ function App() {
 						<Route path="/movie/:id" element={<MoviePage/>}/>
 						<Route path="/tv/:id" element={<TVPage/>}/>
 						<Route path="/person/:id" element={<PersonPage/>}/>
-						<Route path="/login" element={<LoginPage/>}/>
-						<Route path="/register" element={<RegisterPage/>}/>
+						<Route path="/login" element={<PublicRoute><LoginPage/> </PublicRoute>}/>
+						<Route path="/register" element={<PublicRoute><RegisterPage/> </PublicRoute>}/>
+						<Route path="/profile" element={< ProfilePage/>}/>
+
 					</Routes>
 					<Footer/>
 				</Router>
