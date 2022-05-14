@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => (
 
 
 const Logged = ({username}) => {
+	console.log(username);
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const [anchorEl, setAnchorEl] = useState(null);

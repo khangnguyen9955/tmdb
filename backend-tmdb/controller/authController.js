@@ -16,7 +16,6 @@ const authController = {
 	},
 	//generate  refresh token
 	generateRefreshToken: (user) => {
-		console.log("userID", user.id);
 		return jwt.sign(
 			{
 				id: user.id,
@@ -52,7 +51,6 @@ const authController = {
 		}
 		catch (err) {
 			res.status(500).json(err);
-			console.log(err);
 		}
 	},
 	//login

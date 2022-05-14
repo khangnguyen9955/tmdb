@@ -23,13 +23,15 @@ const userReducer = (state = initialState, action) => {
 		case LOGIN_SUCCESS:
 			return {
 				...state,
+				isAuth: true,
 				isFetching: false,
-				currentUser: action.payload,
+				currentUser: action.user,
 				error: {},
 			};
 		case LOGOUT:
 			return {
 				...state,
+				isAuth: false,
 				isFetching: false,
 				currentUser: {},
 				error: {},

@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => (
 const RightNav = ({open, handleOpen, handleClose}) => {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
-	const {currentUser, isAuth} = useSelector((state) => state.auth.currentUser);
+	const {currentUser, isAuth} = useSelector((state) => state.auth);
+	console.log(useSelector((state) => state.auth));
+	console.log(isAuth);
 
 	const handleMenuOpen = (event) => {
 		setAnchorEl(event.currentTarget);

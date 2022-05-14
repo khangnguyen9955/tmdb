@@ -9,7 +9,6 @@ export const loginUser = (user) => async (dispatch) => {
 		dispatch(loginSuccess(res.data))
 	}
 	catch (err) {
-		console.log({login: err.response.data});
 		dispatch(loginFailure({login: err.response.data}));
 	}
 };
@@ -41,6 +40,7 @@ const loginStart = () => (
 
 const loginFailure = (err) => (
 	{
+
 		type: LOGIN_FAILURE,
 		err,
 	}
