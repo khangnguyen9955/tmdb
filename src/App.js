@@ -18,36 +18,36 @@ import RegisterPage from "./components/RegisterPage";
 import ProfilePage from "./components/ProfilePage";
 
 function App() {
-	return (
-		<MuiThemeProvider theme={theme}>
-			<CssBaseline/>
-			<main
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					minHeight: "100vh",
-				}}
-			>
-				<Router>
-					<Header/>
-					<ScrollToTop/>
-					<Routes>
-						<Route path="/" element={<HomePage/>}/>
-						<Route path="/popular/:type/:page" element={<PopularPage/>}/>
-						<Route path="/search/:type/:query/:page" element={<SearchPage/>}/>
-						<Route path="/movie/:id" element={<MoviePage/>}/>
-						<Route path="/tv/:id" element={<TVPage/>}/>
-						<Route path="/person/:id" element={<PersonPage/>}/>
-						<Route path="/login" element={<PublicRoute><LoginPage/> </PublicRoute>}/>
-						<Route path="/register" element={<PublicRoute><RegisterPage/> </PublicRoute>}/>
-						<Route path="/profile" element={< ProfilePage/>}/>
+    return (
+        <MuiThemeProvider theme={theme}>
+            <CssBaseline/>
+            <main
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: "100vh",
+                }}
+            >
+                <Router>
+                    <Header/>
+                    <ScrollToTop/>
+                    <Routes>
+                        <Route path="/" element={<HomePage/>}/>
+                        <Route path="/popular/:type/:page" element={<PopularPage/>}/>
+                        <Route path="/search/:type/:query/:page" element={<SearchPage/>}/>
+                        <Route path="/movie/:id" element={<MoviePage/>}/>
+                        <Route path="/tv/:id" element={<TVPage/>}/>
+                        <Route path="/person/:id" element={<PersonPage/>}/>
+                        <Route path="/login" element={<PublicRoute><LoginPage/> </PublicRoute>}/>
+                        <Route path="/register" element={<PublicRoute><RegisterPage/> </PublicRoute>}/>
+                        <Route path="/profile" element={< ProfilePage/>}/>
 
-					</Routes>
-					<Footer/>
-				</Router>
-			</main>
-		</MuiThemeProvider>
-	);
+                    </Routes>
+                    <Footer/>
+                </Router>
+            </main>
+        </MuiThemeProvider>
+    );
 }
 
 export default App;

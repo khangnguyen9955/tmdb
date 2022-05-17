@@ -6,17 +6,17 @@ import Filter from "./Filter";
 import ProfileHeader from "./ProfileHeader";
 
 const ProfilePage = () => {
-	return (
-		<>
-			<Background children={<ProfileHeader user={{}}/>}/>
-			<Container>
-				<Grid>
-					<FilterGroup/>
-					<Filter/>
-				</Grid>
-			</Container>
-		</>
-	);
+    return (
+        <>
+            <Background children={<ProfileHeader user={{}}/>}/>
+            <Container>
+                <Grid>
+                    <FilterGroup/>
+                    <Filter/>
+                </Grid>
+            </Container>
+        </>
+    );
 };
 
 export default ProfilePage;
