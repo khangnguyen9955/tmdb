@@ -4,14 +4,14 @@ import AddtionalInfor from "./AddtionalInfor";
 import RegisterForm from "./RegisterForm";
 
 const RegisterPage = () => {
-	return (
-		<Container>
-			<Grid container spacing={3}>
-				<AddtionalInfor/>
-				<RegisterForm/>
-			</Grid>
-		</Container>
-	);
+    return (
+        <Container>
+            <Grid container spacing={3} marginBottom={10}>
+                <AddtionalInfor/>
+                <RegisterForm/>
+            </Grid>
+        </Container>
+    );
 };
 
 export default RegisterPage;

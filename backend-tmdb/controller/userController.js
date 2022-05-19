@@ -15,8 +15,7 @@ const userController = {
     },
     addWatchList: async (req, res) => {
         const userId = req.user.id;
-        const movie = req.body.movies;
-        console.log(movie)
+        const movie = req.body.movie;
         try {
             Watchlist.findOne({userId})
                 .then((findWatchlist) => {
@@ -26,14 +25,13 @@ const userController = {
                                 if (findMovie) {
                                     res.status(400).json({messgage: "Movie is in your watchlist already!"});
                                 } else {
-                                    console.log("???");
                                     // add the movie to the watchlist and then save it
                                     Watchlist.updateOne({
                                         userId,
                                         movies: {$not: {$elemMatch: {id: movie.id}}}
                                     }, {$push: {movies: movie}})
                                         .then(() => {
-                                            res.status(200).json({message: "Added"});
+                                            res.status(200).json(movie);
                                         });
                                     // done
                                 }

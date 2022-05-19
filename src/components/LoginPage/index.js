@@ -5,12 +5,12 @@ import LoginForm from "./LoginForm";
 
 const LoginPage = () => {
 
-	return (
-		<Container style={{minHeight: 550,}}>
-			<InforLogin/>
-			<LoginForm/>
-		</Container>
-	);
+    return (
+        <Container style={{marginTop: 30, marginBottom: 30}}>
+            <InforLogin/>
+            <LoginForm/>
+        </Container>
+    );
 };
 
 export default LoginPage;
