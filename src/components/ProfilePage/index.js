@@ -11,12 +11,10 @@ const ProfilePage = () => {
     const {currentUser} = useSelector((state) => state.auth);
     const {isAuth} = useSelector((state) => state.auth);
     const {watchlist} = useSelector((state) => state.watchlist);
-    console.log(isAuth);
-    console.log(watchlist);
-    console.log(currentUser);
+
     return (
         <>
-            <Background children={<ProfileHeader user={{}}/>}/>
+            <Background children={<ProfileHeader user={currentUser}/>}/>
             <Container>
                 <Grid>
                     <FilterGroup/>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Avatar, Divider, IconButton, makeStyles, Menu, MenuItem} from "@material-ui/core";
+import {Avatar, Divider, IconButton, makeStyles, Menu, MenuItem, Typography} from "@material-ui/core";
 import {purple} from "@mui/material/colors";
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
@@ -62,7 +62,7 @@ const Logged = ({username}) => {
                 {username}
 
             </MenuItem>
-            <a href="/profile" style={{
+            <Typography component={Link} to="/profile" style={{
                 textDecoration: "none",
                 padding: "6px 20px",
                 fontSize: "0.8em",
@@ -72,7 +72,7 @@ const Logged = ({username}) => {
                 alignItems: "center",
                 fontWeight: 400,
                 color: "rgba(0,0,0,0.5)",
-            }}>View profile</a>
+            }}>View profile</Typography>
             <Divider/>
             <MenuItem component={Link} to="/profile" onClick={handleMenuClose} className={classes.profileItem}>
                 Watchlist

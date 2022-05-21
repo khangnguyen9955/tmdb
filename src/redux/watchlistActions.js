@@ -41,9 +41,7 @@ export const getWatchlist = () => async (dispatch) => {
 
     dispatch(getWatchlistRequest());
     try {
-        console.log("wtf");
         const res = await axios.get("http://localhost:8000/watchlist/", {headers: {token: getAuth()}});
-        console.log(res.data);
         dispatch(getWatchlistSuccess(res.data));
     } catch (err) {
         dispatch(getWatchlistFailure());
