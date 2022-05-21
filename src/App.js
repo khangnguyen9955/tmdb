@@ -16,8 +16,24 @@ import PublicRoute from "./components/common/PublicRoute";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import ProfilePage from "./components/ProfilePage";
+import {useDispatch, useSelector} from "react-redux";
+import {getWatchlist} from "./redux/watchlistActions";
+import {useEffect} from "react";
 
 function App() {
+    const dispatch = useDispatch();
+
+    const {isAuth} = useSelector((state) => state.auth);
+    const {wathclist} = useSelector((state) => state.watchlist);
+
+    useEffect(() => {
+        if (isAuth) {
+            dispatch(getWatchlist());
+        }
+
+    }, [dispatch, isAuth]);
+
+
     return (
         <MuiThemeProvider theme={theme}>
             <CssBaseline/>
