@@ -19,6 +19,7 @@ import ProfilePage from "./components/ProfilePage";
 import {useDispatch, useSelector} from "react-redux";
 import {getWatchlist} from "./redux/watchlistActions";
 import {useEffect} from "react";
+import PrivateRoute from "./components/common/PrivateRoute";
 
 function App() {
     const dispatch = useDispatch();
@@ -56,7 +57,7 @@ function App() {
                         <Route path="/person/:id" element={<PersonPage/>}/>
                         <Route path="/login" element={<PublicRoute><LoginPage/> </PublicRoute>}/>
                         <Route path="/register" element={<PublicRoute><RegisterPage/> </PublicRoute>}/>
-                        <Route path="/profile" element={< ProfilePage/>}/>
+                        <Route path="/profile" element={<PrivateRoute>< ProfilePage/> </PrivateRoute>}/>
 
                     </Routes>
                     <Footer/>
