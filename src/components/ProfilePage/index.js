@@ -11,7 +11,7 @@ import Rating from "./Rating";
 
 const useStyles = makeStyles((theme) => ({
     container: {
-
+        marginLeft: 5,
         width: "100%",
         display: "flex",
         justifyContent: "center",
@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
     },
     item: {padding: "6px 0 4px 0", marginRight: 40, borderBottom: "4px solid #fff"},
     tabs: {
+        '& .MuiTabs-flexContainer': {
+            overflowY: "hidden",
+
+
+        },
         '& button': {
             minWidth: 20,
             textTransform: "initial",
@@ -80,7 +85,7 @@ const ProfilePage = () => {
     const [category, setCategory] = useState(0);
     const classes = useStyles();
 
-    function handleChangeCategory(e, newValue) {
+    function handleChangeCategory(event, newValue) {
         setCategory(newValue);
     }
 
@@ -247,7 +252,7 @@ const ProfilePage = () => {
                 )}
                 {category === 3 && (
                     <>
-                        <Grid container justify="space-between" className={classes.gridItem}>
+                        <Grid container justifyContent="space-between" className={classes.gridItem}>
                             <FilterGroup totalMovie={totalMovie.length} totalTV={totalTv.length} type={type}
                                          handleChangeType={handleChangeType}/>
                             <Filter sortBy={sortBy} handleSortBy={handleSortBy}/>
