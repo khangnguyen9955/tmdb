@@ -18,12 +18,14 @@ const useStyles = makeStyles((theme) => ({
     grid: {
         marginBottom: 20,
         marginTop: 20,
+        justifyContent: "space-between"
     },
     gridItem: {
         justifyContent: "space-between"
     },
     title: {
-        fontWeight: 700, fontSize: "1.5em"
+        fontWeight: 700, fontSize: "1.5em",
+        width: "100%"
     },
     titleStats: {
         color: "rgba(3,37,65,1)",
@@ -116,100 +118,97 @@ const ProfilePage = () => {
             <Divider/>
 
             <Container>
-                <Grid>
-                    {category === 0 && (
-                        <Grid container spacing={2}>
-                            <Grid container className={classes.grid}>
-                                <Typography className={classes.title}>
-                                    Stats
+                {category === 0 && (
+                    <Grid container spacing={2}>
+                        <Grid container item className={classes.grid}>
+                            <Typography className={classes.title}>
+                                Stats
+                            </Typography>
+
+                            <Box>
+                                <Typography className={classes.titleStats}> Total edits
                                 </Typography>
-                                <Grid container className={classes.gridItem}>
-                                    <Box>
-                                        <Typography className={classes.titleStats}> Total edits
-                                        </Typography>
-                                        <Typography className={classes.contentStats}>0</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography className={classes.titleStats}> Total ratings
-                                        </Typography>
-                                        <Typography className={classes.contentStats}>0</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography className={classes.titleStats}> Total edits
-                                        </Typography>
-                                        <Typography>You haven't logged any movies or TV shows.</Typography>
-                                    </Box>
-                                </Grid>
-                            </Grid>
-                            <Grid container className={classes.grid}>
-                                <Typography className={classes.title}>
-                                    Upcoming From Watchlist
+                                <Typography className={classes.contentStats}>0</Typography>
+                            </Box>
+                            <Box>
+                                <Typography className={classes.titleStats}> Total ratings
                                 </Typography>
-                                <Grid container className={classes.gridItem}>
-                                    <Typography>
-                                        There are no upcoming movies on your watchlist.
-                                    </Typography>
-                                    <Typography className={classes.link} onClick={handleNavigateWatchlist}>
-                                        Go to your watchlist
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                            <Grid container className={classes.grid}>
-                                <Typography className={classes.title}>
-                                    Recent Discussions
+                                <Typography className={classes.contentStats}>0</Typography>
+                            </Box>
+                            <Box>
+                                <Typography className={classes.titleStats}> Total edits
                                 </Typography>
-                                <Grid container className={classes.gridItem}>
-                                    <Typography>
-                                        You are not watching any discussions.
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                            <Grid container className={classes.grid} style={{marginBottom: 60}}>
-                                <Typography className={classes.title}>
-                                    Recent Activity
-                                </Typography>
-                                <Grid container className={classes.gridItem}>
-                                    <Typography>
-                                        You haven't made any recent edits.
-                                    </Typography>
-                                    <Typography className={classes.link}>
-                                        View more
-                                    </Typography>
-                                </Grid>
-                            </Grid>
+                                <Typography>You haven't logged any movies or TV shows.</Typography>
+                            </Box>
+
                         </Grid>
-                    )}
-                    {category === 3 && (
-                        <>
+                        <Grid item container className={classes.grid}>
+                            <Typography className={classes.title}>
+                                Upcoming From Watchlist
+                            </Typography>
+                            <Typography>
+                                There are no upcoming movies on your watchlist.
+                            </Typography>
+                            <Typography className={classes.link} onClick={handleNavigateWatchlist}>
+                                Go to your watchlist
+                            </Typography>
+
+                        </Grid>
+                        <Grid container item className={classes.grid}>
+                            <Typography className={classes.title}>
+                                Recent Discussions
+                            </Typography>
+
+                            <Typography>
+                                You are not watching any discussions.
+                            </Typography>
+
+                        </Grid>
+                        <Grid container item className={classes.grid} style={{marginBottom: 60}}>
+                            <Typography className={classes.title}>
+                                Recent Activity
+                            </Typography>
+
+                            <Typography>
+                                You haven't made any recent edits.
+                            </Typography>
+                            <Typography className={classes.link}>
+                                View more
+                            </Typography>
+
+                        </Grid>
+                    </Grid>
+                )}
+                {category === 3 && (
+                    <>
+                        <Grid container justify="space-between" style={{marginTop: 20}}>
                             <FilterGroup totalMovie={totalMovie.length} totalTV={totalTv.length} type={type}
                                          handleChangeType={handleChangeType}/>
                             <Filter sortBy={sortBy} handleSortBy={handleSortBy}/>
-
-
-                            {type === "movie" &&
-                                totalMovie
-                                    .sort((a, b) =>
-                                        sortBy === "date_added"
-                                            ? new Date(b.createdAt) - new Date(a.createdAt)
-                                            : sortBy === "release_date"
-                                                ? new Date(b.release_date) - new Date(a.release_date)
-                                                : b.popularity - a.popularity
-                                    )
-                                    .map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
-                            {type === "tv" &&
-                                totalTv
-                                    .sort((a, b) =>
-                                        sortBy === "date_added"
-                                            ? new Date(b.createdAt) - new Date(a.createdAt)
-                                            : sortBy === "release_date"
-                                                ? new Date(b.release_date) - new Date(a.release_date)
-                                                : b.popularity - a.popularity
-                                    )
-                                    .map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
-                        </>
-                    )
-                    }
-                </Grid>
+                        </Grid>
+                        {type === "movie" &&
+                            totalMovie
+                                .sort((a, b) =>
+                                    sortBy === "date_added"
+                                        ? new Date(b.createdAt) - new Date(a.createdAt)
+                                        : sortBy === "release_date"
+                                            ? new Date(b.release_date) - new Date(a.release_date)
+                                            : b.popularity - a.popularity
+                                )
+                                .map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+                        {type === "tv" &&
+                            totalTv
+                                .sort((a, b) =>
+                                    sortBy === "date_added"
+                                        ? new Date(b.createdAt) - new Date(a.createdAt)
+                                        : sortBy === "release_date"
+                                            ? new Date(b.release_date) - new Date(a.release_date)
+                                            : b.popularity - a.popularity
+                                )
+                                .map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+                    </>
+                )
+                }
             </Container>
         </>
     );

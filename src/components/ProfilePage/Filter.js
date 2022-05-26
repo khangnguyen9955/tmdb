@@ -3,8 +3,14 @@ import {FormControl, Grid, makeStyles, MenuItem, Select, Typography} from "@mate
 
 const useStyles = makeStyles((theme) => (
     {
-        filter: {},
-        formControl: {},
+        grid: {
+            display: "flex",
+            alignItems: "center",
+        },
+        formControl: {marginLeft: 15},
+        title: {
+            color: "#805be7"
+        }
     }
 ));
 
@@ -12,10 +18,10 @@ const useStyles = makeStyles((theme) => (
 const Filter = ({sortBy, handleSortBy}) => {
     const classes = useStyles();
     return (
-        <Grid md="auto" xs={12} className={classes.filter}>
+        <Grid item md="auto" xs={12} className={classes.grid}>
             <Typography>Filter By: </Typography>
             <FormControl className={classes.formControl}>
-                <Select value={sortBy} onChange={handleSortBy}>
+                <Select value={sortBy} onChange={handleSortBy} className={classes.title}>
                     <MenuItem value="popularity">
                         Popularity
                     </MenuItem>
