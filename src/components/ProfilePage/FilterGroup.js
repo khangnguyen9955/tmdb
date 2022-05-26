@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
 
         '& .MuiTabs-indicator': {
+            marginBottom: 10,
             backgroundColor: '#805be7',
 
         },
@@ -33,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "1em",
         fontWeight: "normal",
         marginLeft: 20,
-        textTransform: "initial"
+        textTransform: "initial",
+        marginBottom: 10,
     },
 
 }));

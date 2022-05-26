@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import FilterGroup from "./FilterGroup";
 import Filter from "./Filter";
 import MovieCard from "./MovieCard";
+import Rating from "./Rating";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -14,18 +15,19 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         display: "flex",
         justifyContent: "center",
+
     },
-    grid: {
+
+    gridItem: {
         marginBottom: 20,
         marginTop: 20,
-        justifyContent: "space-between"
-    },
-    gridItem: {
-        justifyContent: "space-between"
+        justifyContent: "space-between",
     },
     title: {
         fontWeight: 700, fontSize: "1.5em",
-        width: "100%"
+        width: "100%",
+        fontFamily: "'Source Sans Pro', Arial, sans-serif"
+
     },
     titleStats: {
         color: "rgba(3,37,65,1)",
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     contentStats: {
         fontSize: "3.6em",
         lineHeight: 1,
-        marign: 0,
+        margin: 0,
         fontWeight: 700,
         color: "#805be7",
     },
@@ -45,6 +47,17 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer",
     },
     item: {padding: "6px 0 4px 0", marginRight: 40, borderBottom: "4px solid #fff"},
+    tabs: {
+        '& button': {
+            minWidth: 20,
+            textTransform: "initial",
+            fontSize: "1em"
+        },
+        '& .MuiTabs-indicator': {
+            backgroundColor: '#805be7',
+
+        },
+    },
 
 }))
 
@@ -57,6 +70,7 @@ const ProfilePage = () => {
     const totalTv = watchlist.filter((movie) => movie.media_type === "tv");
     const totalMovie = watchlist.filter((movie) => movie.media_type === "movie");
     const [sortBy, setSortBy] = useState("date_added");
+
     const handleChangeType = (event, newValue) => {
         setType(newValue);
     }
@@ -66,8 +80,7 @@ const ProfilePage = () => {
     const [category, setCategory] = useState(0);
     const classes = useStyles();
 
-    function handleChangeCateogry(e, newValue) {
-        console.log(newValue);
+    function handleChangeCategory(e, newValue) {
         setCategory(newValue);
     }
 
@@ -77,40 +90,36 @@ const ProfilePage = () => {
 
     return (
         <>
-            <Background children={<ProfileHeader user={currentUser}/>}/>
+            <div style={{position: "relative", width: "100%"}}>
+                <Background children={<ProfileHeader user={currentUser}/>}/>
+            </div>
             <div className={classes.container}>
-                <Tabs sx={{
-                    backgroundColor: "#fff",
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-
-                }}
-                      value={category}
-                      indicatorColor="primary"
-                      textColor="primary"
-                      onChange={handleChangeCateogry}
+                <Tabs
+                    className={classes.tabs}
+                    value={category}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    onChange={handleChangeCategory}
                 >
                     <Tab
                         className={classes.item}
                         label="Overview"
-
+                        disableRipple
                     />
                     <Tab
-
+                        disableRipple
                         className={classes.item}
                         label="Discussion"/>
                     <Tab
-
+                        disableRipple
                         className={classes.item}
                         label="Rating"/>
                     <Tab
-
+                        disableRipple
                         className={classes.item}
                         label="Watchlist"/>
                     <Tab
-
+                        disableRipple
                         className={classes.item}
                         label="Lists"/>
                 </Tabs>
@@ -119,8 +128,8 @@ const ProfilePage = () => {
 
             <Container>
                 {category === 0 && (
-                    <Grid container spacing={2}>
-                        <Grid container item className={classes.grid}>
+                    <Grid container>
+                        <Grid container item className={classes.gridItem}>
                             <Typography className={classes.title}>
                                 Stats
                             </Typography>
@@ -142,7 +151,7 @@ const ProfilePage = () => {
                             </Box>
 
                         </Grid>
-                        <Grid item container className={classes.grid}>
+                        <Grid item container className={classes.gridItem}>
                             <Typography className={classes.title}>
                                 Upcoming From Watchlist
                             </Typography>
@@ -154,7 +163,7 @@ const ProfilePage = () => {
                             </Typography>
 
                         </Grid>
-                        <Grid container item className={classes.grid}>
+                        <Grid container item className={classes.gridItem}>
                             <Typography className={classes.title}>
                                 Recent Discussions
                             </Typography>
@@ -164,7 +173,7 @@ const ProfilePage = () => {
                             </Typography>
 
                         </Grid>
-                        <Grid container item className={classes.grid} style={{marginBottom: 60}}>
+                        <Grid container item className={classes.gridItem} style={{marginBottom: 60}}>
                             <Typography className={classes.title}>
                                 Recent Activity
                             </Typography>
@@ -179,9 +188,66 @@ const ProfilePage = () => {
                         </Grid>
                     </Grid>
                 )}
+                {category === 1 && (
+                    <Grid container className={classes.grid}>
+                        <Grid container item className={classes.gridItem}>
+                            <Typography className={classes.title}>
+                                My Discussions
+                            </Typography>
+                            <Grid container item style={{display: "flex", justifyContent: "space-between"}} xs={12}>
+                                <Typography noWrap style={{
+                                    marginTop: 5,
+
+                                    maxHeight: 50,
+                                    width: "70%",
+                                    border: "1px solid  rgba(227,227,227,1)",
+                                    borderRadius: 8,
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    padding: "12px 20px",
+                                    color: "#000",
+                                    background: "#fff",
+                                    boxShadow: " 0 2px 8px rgb( 0 0 0 / 10%)"
+                                }}>
+                                    You are not watching any discussions.
+                                </Typography>
+                                <Box style={{
+                                    minWidth: 260,
+                                    width: 260,
+                                    marginTop: 5,
+
+                                    overflow: "hidden",
+                                    border: "1px solid  rgba(227,227,227,1)",
+                                    borderRadius: 8,
+                                    background: "#fff",
+                                }}>
+                                    <Typography style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        alignContent: "center",
+                                        justifyContent: "space-between",
+                                        fontWeight: 600,
+                                        color: "#fff",
+                                        backgroundColor: "rgba(128,91,231,1)",
+                                        padding: 20
+
+                                    }}>
+                                        My Active boards
+                                    </Typography>
+                                    <Typography style={{margin: 20}}>
+                                        You are not watching any discussions.
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                )}
+                {category === 2 && (
+                    <Rating/>
+                )}
                 {category === 3 && (
                     <>
-                        <Grid container justify="space-between" style={{marginTop: 20}}>
+                        <Grid container justify="space-between" className={classes.gridItem}>
                             <FilterGroup totalMovie={totalMovie.length} totalTV={totalTv.length} type={type}
                                          handleChangeType={handleChangeType}/>
                             <Filter sortBy={sortBy} handleSortBy={handleSortBy}/>

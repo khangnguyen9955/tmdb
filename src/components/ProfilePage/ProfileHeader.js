@@ -11,8 +11,13 @@ const useStyles = makeStyles((theme) => (
             minWidth: 100,
         },
         background: {
-            height: 250,
-            marginLeft: 250,
+            height: 260,
+            padding: 40,
+            flexWrap: "nowrap",
+            color: "#fff",
+            display: "flex",
+            maxWidth: 1300,
+            width: "100%",
         },
         username: {
             fontWeight: 700,
@@ -32,7 +37,8 @@ const ProfileHeader = ({user}) => {
         <Toolbar className={classes.background}>
             <Box>
                 <Avatar className={classes.avatar}>
-                    {user.username && user.username[0].toUpperCase()}
+                    {/*{user.username && user.username[0].toUpperCase()}*/}
+                    {/*   I found that the Avatar icon will be prettier than the username */}
                 </Avatar>
             </Box>
             <Box>
