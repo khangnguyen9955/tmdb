@@ -57,7 +57,7 @@ function App() {
                         <Route path="/person/:id" element={<PersonPage/>}/>
                         <Route path="/login" element={<PublicRoute><LoginPage/> </PublicRoute>}/>
                         <Route path="/register" element={<PublicRoute><RegisterPage/> </PublicRoute>}/>
-                        <Route path="/profile" element={<PrivateRoute>< ProfilePage/> </PrivateRoute>}/>
+                        <Route path="/profile/" element={<PrivateRoute>< ProfilePage/> </PrivateRoute>}/>
 
                     </Routes>
                     <Footer/>
