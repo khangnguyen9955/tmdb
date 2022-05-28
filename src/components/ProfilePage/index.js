@@ -275,6 +275,11 @@ const ProfilePage = () => {
                                             : b.popularity - a.popularity
                                 )
                                 .map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+                        {watchlist.length === 0 && (
+                            <Typography style={{margin: 20}}>
+                                You haven't added any movies in your watchlist.
+                            </Typography>
+                        )}
                     </>
                 )
                 }

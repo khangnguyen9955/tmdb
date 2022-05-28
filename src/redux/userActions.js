@@ -1,5 +1,6 @@
 import axios from "axios";
 import {LOGIN_FAILURE, LOGIN_START, LOGIN_SUCCESS, LOGOUT} from "./types";
+import {getAuth} from "./watchlistActions";
 
 export const loginUser = (user) => async (dispatch) => {
     dispatch(loginStart());
@@ -26,6 +27,17 @@ export const registerUser = (newUser) => async (dispatch) => {
 export const logOut = () => async (dispatch) => {
     localStorage.removeItem("token");
     dispatch(logoutUser());
+}
+
+export const fetchUserLogin = () => async (dispatch) => {
+    dispatch(loginStart());
+    try {
+        const res = await axios.get("http://localhost:8000/user/fetch", {headers: {token: getAuth()}});
+        console.log(res.data.user);
+        dispatch(loginSuccess(res.data.user));
+    } catch (err) {
+        dispatch(loginFailure({login: err.response.data}))
+    }
 }
 
 

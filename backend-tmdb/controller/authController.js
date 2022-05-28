@@ -90,6 +90,22 @@ const authController = {
         refreshTokens = refreshTokens.filter((token) => token !== req.cookies.refreshToken);
         return res.status(200).json("Log out");
     },
+
+    //fetch user
+    fetchUser: async (req, res) => {
+        try {
+            User.findOne({_id: req.user.id})
+                .then((user) => {
+                    console.log(user);
+                    res.status(200).json({user});
+                })
+        } catch (err) {
+            res.status(400).json({message: "There are no users"});
+        }
+
+    },
+
+
     requestRefreshToken: async (req, res) => {
         const refreshToken = req.cookies.refreshToken;
         if (!refreshToken) return res.status(401).json("You are not authenticated");
