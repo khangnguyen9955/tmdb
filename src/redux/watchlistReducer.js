@@ -66,7 +66,7 @@ const watchlistReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isRemoving: null,
-                watchlist: state.watchlist.filter((movie) => movie.id == action.id)
+                watchlist: state.watchlist.filter((movie) => movie.id === action.id)
             };
         case REMOVE_FROM_WATCHLIST_FAILURE :
             return {
