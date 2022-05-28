@@ -11,7 +11,6 @@ import Rating from "./Rating";
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        marginLeft: 5,
         width: "100%",
         display: "flex",
         justifyContent: "center",
@@ -48,10 +47,9 @@ const useStyles = makeStyles((theme) => ({
     },
     item: {padding: "6px 0 4px 0", marginRight: 40, borderBottom: "4px solid #fff"},
     tabs: {
+        marginLeft: 5,
         '& .MuiTabs-flexContainer': {
             overflowY: "hidden",
-
-
         },
         '& button': {
             minWidth: 20,
@@ -98,7 +96,7 @@ const ProfilePage = () => {
             <div style={{position: "relative", width: "100%"}}>
                 <Background children={<ProfileHeader user={currentUser}/>}/>
             </div>
-            <div className={classes.container}>
+            <Box className={classes.container}>
                 <Tabs
                     className={classes.tabs}
                     value={category}
@@ -128,7 +126,7 @@ const ProfilePage = () => {
                         className={classes.item}
                         label="Lists"/>
                 </Tabs>
-            </div>
+            </Box>
             <Divider/>
 
             <Container>

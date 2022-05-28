@@ -63,7 +63,7 @@ const Rating = () => {
     const classes = useStyles();
     return (
         <>
-            <Grid container justify="space-between" className={classes.gridContainer}>
+            <Grid container justifyContent="space-between" className={classes.gridContainer}>
                 <Grid item xs={12} md="auto" className={classes.grid}>
                     <Typography className={classes.ratingTitle}>My Ratings </Typography>
                     <Tabs value={ratingType}
@@ -99,7 +99,7 @@ const Rating = () => {
                     </FormControl>
                 </Grid>
             </Grid>
-            <Grid container justify="space-between">
+            <Grid container justifyContent="space-between">
                 <Typography>
                     You haven't rated any movies.
 
