@@ -18,19 +18,10 @@ const useStyles = makeStyles((theme) => ({
      rgba(0,0,0,1), rgba(20,20,20,0.85)),
     url(${props.backdrop_path})`,
         width: "100%",
-        position: "relative",
         zIndex: 1,
         minHeight: 570,
     }),
-    image: {
-        width: 300,
-        minWidth: 300,
-        height: 450,
-        borderRadius: 8,
-    },
-    imageArea: {
-        marginRight: 15,
-    },
+
     container: {
         color: "white",
         maxWidth: 1350,
@@ -42,16 +33,13 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 0,
     },
     actions: {
-        marginBottom: 20,
         width: "100%",
-        height: 68,
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
     },
     wrapper: {
-        position: "relative",
-        marginRight: 20,
+        display: "flex",
     },
     button: {
         marginRight: 20,
@@ -115,26 +103,24 @@ const Header = ({details, created_by}) => {
         dispatch(addToWatchlist(movie));
     };
 
-    console.log(watchlist);
-
 
     const isAdded = watchlist.some((movie) => movie.id === details.id);
     return (
         <div className={classes.header}>
             <Container className={classes.container}>
-                <Grid container spacing={3} alignItems="center" justify="center">
-                    <Grid item="true" md={3} xs={6} className={classes.imageArea}>
+                <Grid container spacing={3} alignItems="center" justifyContent="center">
+                    <Grid item md={3} xs={10}>
                         <CardMedia
                             component="img"
                             alt={details.title}
                             image={details.poster_path}
                             title={details.title}
                             loading="lazy"
-                            className={classes.image}
+                            style={{borderRadius: 8}}
                         />
                     </Grid>
                     <Grid
-                        item="true"
+                        item
                         container
                         spacing={2}
                         md={9}
@@ -142,17 +128,25 @@ const Header = ({details, created_by}) => {
                         direction="column"
                         pl={4}
                     >
-                        <Grid item="true">
-                            <Grid className={classes.titleArea}>
-                                <Typography className={classes.title}>
-                                    {details.title}{" "}
-                                </Typography>
+                        <Grid item>
+                            {/*<Grid item className={classes.titleArea}>*/}
+                            {/*    <Typography className={classes.title}>*/}
+                            {/*        {details.title}{" "}*/}
+                            {/*    </Typography>*/}
+                            {/*    {details.release_date && (*/}
+                            {/*        <Typography className={classes.year}>*/}
+                            {/*            {`(${new Date(details.release_date).getFullYear()})`}*/}
+                            {/*        </Typography>*/}
+                            {/*    )}*/}
+                            {/*</Grid>*/}
+                            <Typography className={classes.title}>
+                                {details.title}{" "}
                                 {details.release_date && (
-                                    <Typography className={classes.year}>
+                                    <Typography className={classes.year} component="span">
                                         {`(${new Date(details.release_date).getFullYear()})`}
                                     </Typography>
                                 )}
-                            </Grid>
+                            </Typography>
                             <Typography className={classes.type}>
                                 {details.release_dates && (
                                     <>
@@ -197,16 +191,16 @@ const Header = ({details, created_by}) => {
                             </Typography>
                         </Grid>
                         <Grid
-                            item="true"
+                            item
                             container
                             spacing={3}
                             alignItems="center"
                             className={classes.actions}
                         >
-                            <Grid item="true" className={classes.donut}>
+                            <Grid item className={classes.donut}>
                                 <CustomDonut vote_average={details.vote_average} size={60}/>
                             </Grid>
-                            <Grid item="true">
+                            <Grid item>
                                 <Typography>
                                     <b>
                                         User
@@ -217,7 +211,7 @@ const Header = ({details, created_by}) => {
                             </Grid>
                             {(details.media_type === "movie" ||
                                 details.media_type === "tv") && (
-                                <Grid item="true" className={classes.wrapper}>
+                                <Grid item className={classes.wrapper}>
                                     <Tooltip title="Login to edit and create custom lists">
                                         <Fab
                                             size="medium"
@@ -227,7 +221,6 @@ const Header = ({details, created_by}) => {
                                             <ListIcon/>
                                         </Fab>
                                     </Tooltip>
-
                                     <Tooltip title="Login to add this movie to your favorite list">
                                         <Fab
                                             size="medium"
@@ -263,19 +256,19 @@ const Header = ({details, created_by}) => {
                                 </Grid>
                             )}
                         </Grid>
-                        <Grid>
+                        <Grid item>
                             <Typography variant="h6">Overview</Typography>
                             <Typography variant="body2">{details.overview}</Typography>
                         </Grid>
                         <Grid
-                            item="true"
+                            item
                             container
                             spacing={2}
                             className={classes.creatorArea}
                         >
                             {created_by &&
                                 created_by.map((creator) => (
-                                    <Grid item="true" xs={6} md={4} key={creator.id}>
+                                    <Grid item xs={6} md={4} key={creator.id}>
                                         <Typography
                                             className={classes.creatorName}
                                             component={Link}

@@ -55,6 +55,7 @@ const Header = () => {
     useOutside(searchRef);
     const handleOpen = () => {
         setOpen(true);
+
         setTimeout(() => {
             searchRef.current.focus();
         }, 0);

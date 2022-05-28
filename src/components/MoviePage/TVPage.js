@@ -11,47 +11,47 @@ import fetchTV from "../../api/fetchTV";
 import CurrentSeason from "./CurrentSeason";
 
 const useStyles = makeStyles((theme) => (
-	{
-		main: {},
-	}
+    {
+        main: {},
+    }
 ));
 const TVPage = () => {
-	const classes = useStyles();
-	const [tv, setTV] = useState({});
-	const params = useParams();
-	const {id} = params;
-	const [loading, setLoading] = useState(true);
-	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			setTV(await fetchTV(id));
-			setLoading(false);
-		};
-		fetchData();
-	}, [id]);
-	return loading ? (
-		<Loading/>
-	) : (
-		       <div className={classes.main}>
-			       <Header details={tv} created_by={tv.created_by}/>
-			       <Container>
-				       <Grid container spacing={3} justify="center">
-					       <Grid item="true" xs={12} md={9}>
-						       <Cast cast={tv.credits.cast} media_type={tv.media_type} id={id}/>
-						       <CurrentSeason lastSeason={tv.seasons[tv.seasons.length - 1]}/>
-						       <Media details={tv}/>
-						       <Recommendations
-							       recommendations={tv.recommendations}
-							       media_type={tv.media_type}
-						       />
-					       </Grid>
-					       <Grid item="true" xs={12} md={3}>
-						       <Details details={tv}/>
-					       </Grid>
-				       </Grid>
-			       </Container>
-		       </div>
-	       );
+    const classes = useStyles();
+    const [tv, setTV] = useState({});
+    const params = useParams();
+    const {id} = params;
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            setTV(await fetchTV(id));
+            setLoading(false);
+        };
+        fetchData();
+    }, [id]);
+    return loading ? (
+        <Loading/>
+    ) : (
+        <div className={classes.main}>
+            <Header details={tv} created_by={tv.created_by}/>
+            <Container>
+                <Grid container spacing={3} justifyContent="center">
+                    <Grid item="true" xs={12} md={9}>
+                        <Cast cast={tv.credits.cast} media_type={tv.media_type} id={id}/>
+                        <CurrentSeason lastSeason={tv.seasons[tv.seasons.length - 1]}/>
+                        <Media details={tv}/>
+                        <Recommendations
+                            recommendations={tv.recommendations}
+                            media_type={tv.media_type}
+                        />
+                    </Grid>
+                    <Grid item="true" xs={12} md={3}>
+                        <Details details={tv}/>
+                    </Grid>
+                </Grid>
+            </Container>
+        </div>
+    );
 };
 
 export default TVPage;

@@ -10,59 +10,58 @@ import PersonalInfo from "./PersonalInfo";
 import {useParams} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => (
-	{
-		leftColumn: {
-			"& > *": {
-				marginBottom: 4,
-			},
-		},
-		rightColumn: {
-			"& > *": {
-				marginBottom: 8,
-			},
-		},
+    {
+        leftColumn: {
+            "& > *": {
+                marginBottom: 4,
+            },
+        },
+        rightColumn: {
+            "& > *": {
+                marginBottom: 8,
+            },
+        },
 
-	}
+    }
 ));
 const PersonPage = ({match}) => {
-	const classes = useStyles();
-	const params = useParams();
-	const {id} = params;
-	const [person, setPerson] = useState({});
-	const [loading, setLoading] = useState(true);
-	useEffect(() => {
-		const fetchData = async () => {
-			setPerson(await fetchPerson(id));
-			setLoading(false);
-		};
-		fetchData();
-	}, [id]);
-	console.log(person);
-	return loading ? (
-		<Loading/>
-	) : (
-		       <Container style={{marginTop: 24}}>
-			       <Grid container spacing={3}>
-				       <Grid item md={3} sx={12} className={classes.leftColumn}>
-					       <PersonalInfo person={person}/>
-				       </Grid>
-				       <Grid item md={9} sx={12} className={classes.rightColumn}>
-					       <Biography person={person}/>
-					       <KnownFor
-						       credits={
-							       person.movie_credits.cast.length
-							       ? person.movie_credits.cast
-							       : person.movie_credits.crew
-						       }
-					       />
-					       <MovieCredits
-						       cast={person.movie_credits.cast}
-						       crew={person.movie_credits.crew}
-					       />
-				       </Grid>
-			       </Grid>
-		       </Container>
-	       );
+    const classes = useStyles();
+    const params = useParams();
+    const {id} = params;
+    const [person, setPerson] = useState({});
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            setPerson(await fetchPerson(id));
+            setLoading(false);
+        };
+        fetchData();
+    }, [id]);
+    return loading ? (
+        <Loading/>
+    ) : (
+        <Container style={{marginTop: 24}}>
+            <Grid container spacing={3}>
+                <Grid item md={3} sx={12} className={classes.leftColumn}>
+                    <PersonalInfo person={person}/>
+                </Grid>
+                <Grid item md={9} sx={12} className={classes.rightColumn}>
+                    <Biography person={person}/>
+                    <KnownFor
+                        credits={
+                            person.movie_credits.cast.length
+                                ? person.movie_credits.cast
+                                : person.movie_credits.crew
+                        }
+                    />
+                    <MovieCredits
+                        cast={person.movie_credits.cast}
+                        crew={person.movie_credits.crew}
+                    />
+                </Grid>
+            </Grid>
+        </Container>
+    );
 };
 
 export default PersonPage;

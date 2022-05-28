@@ -96,7 +96,6 @@ const authController = {
         try {
             User.findOne({_id: req.user.id})
                 .then((user) => {
-                    console.log(user);
                     res.status(200).json({user});
                 })
         } catch (err) {
