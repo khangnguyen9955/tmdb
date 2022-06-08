@@ -1,5 +1,5 @@
 const Watchlist = require("../model/Watchlist");
-
+const List = require("../model/List");
 const userController = {
   getWatchList: async (req, res) => {
     try {
@@ -104,9 +104,49 @@ const userController = {
     }
   },
 
+  addNewList: async (req, res) => {
+    const userId = req.user.id;
+    const list = req.body.list;
+    console.log(list);
+    try {
+      const newList = new List({
+        userId,
+        listName: list.listName,
+        listMovie: [],
+      });
+      newList.save((err, data) => {
+        if (err) {
+          res.status(400).json({ message: err });
+        } else {
+          res.status(200).json(data);
+        }
+      });
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    }
+  },
+
   getNewList: async (req, res) => {
     try {
-      const userID = req.user.id;
+      List.find({ userId: req.user.id }).then((list) => {
+        res.status(200).json(list);
+      });
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    }
+  },
+  removeList: async (req, res) => {
+    try {
+      // List.findOneAndDelete(
+      //   { userId: req.user.id },
+      //   {
+      //     $pull: {
+      //       list,
+      //     },
+      //   }
+      // );
     } catch (err) {
       res.status(500).json(err);
       console.log(err);
