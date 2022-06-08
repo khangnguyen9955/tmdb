@@ -158,9 +158,18 @@ const userController = {
       List.updateOne(
         { userId: req.user.id },
         {
-          $pull: {},
+          $pull: {
+            lists: {
+              _id: req.body.id,
+            },
+          },
         }
-      );
+      ).then(() => {
+        res.status(200).json({
+          message: "Removed",
+          id: req.body.id,
+        });
+      });
     } catch (err) {
       res.status(500).json(err);
       console.log(err);

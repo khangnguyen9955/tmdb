@@ -9,9 +9,9 @@ router.post(
   middlewareController.verifyToken,
   userController.addNewList
 );
-// router.post(
-//   "/remove",
-//   middlewareController.verifyToken,
-//   userController.removeList
-// );
+router.post(
+  "/remove",
+  middlewareController.verifyToken,
+  userController.removeList
+);
 module.exports = router;
