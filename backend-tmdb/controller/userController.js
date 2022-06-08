@@ -109,16 +109,30 @@ const userController = {
     const list = req.body.list;
     console.log(list);
     try {
-      const newList = new List({
+      List.findOne({
         userId,
-        listName: list.listName,
-        listMovie: [],
-      });
-      newList.save((err, data) => {
-        if (err) {
-          res.status(400).json({ message: err });
+      }).then((findList) => {
+        if (findList) {
+          List.findOneAndUpdate(
+            { userId },
+            {
+              $push: {
+                lists: list,
+              },
+            }
+          );
         } else {
-          res.status(200).json(data);
+          const newList = new List({
+            userId,
+            lists: [list],
+          });
+          newList.save((err, data) => {
+            if (err) {
+              res.status(400).json({ message: err });
+            } else {
+              res.status(200).json(data);
+            }
+          });
         }
       });
     } catch (err) {
@@ -139,14 +153,12 @@ const userController = {
   },
   removeList: async (req, res) => {
     try {
-      // List.findOneAndDelete(
-      //   { userId: req.user.id },
-      //   {
-      //     $pull: {
-      //       list,
-      //     },
-      //   }
-      // );
+      List.updateOne(
+        { userId: req.user.id },
+        {
+          $pull: {},
+        }
+      );
     } catch (err) {
       res.status(500).json(err);
       console.log(err);
