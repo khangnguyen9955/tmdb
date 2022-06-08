@@ -120,7 +120,9 @@ const userController = {
                 lists: list,
               },
             }
-          );
+          ).then(() => {
+            res.status(200).json(list);
+          });
         } else {
           const newList = new List({
             userId,
