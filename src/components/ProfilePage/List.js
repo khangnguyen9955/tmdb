@@ -36,6 +36,29 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     display: "flex",
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    boxSizing: "border-box",
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    top: 0,
+    left: 0,
+    flexWrap: "wrap",
+  },
+  titleContent: {},
+  dateItem: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  numberItems: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    alignContent: "center",
   },
   box: {
     width: "calc((100vw - 200px) / 2)",
@@ -81,13 +104,11 @@ const List = () => {
             <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
               <div className={classes.image}></div>
             </Box>
-            <div className={classes.content}></div>
-          </Box>
-          <Box className={classes.box}>
-            <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
-              <div className={classes.image}></div>
-            </Box>
-            <div className={classes.content}></div>
+            <div className={classes.content}>
+              <h2 className={classes.titleContent}>Test</h2>
+              <div className={classes.numberItems}>Also Test</div>
+              <span className={classes.dateItem}> test as well</span>
+            </div>
           </Box>
         </Grid>
       </Grid>
