@@ -1,19 +1,15 @@
 import React from "react";
 import { Box, Grid, makeStyles } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
-import no_image from "../../assets/no_image2.svg";
+import no_image from "../../assets/no_image3.svg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     width: "100%",
     maxWidth: 1400,
-    paddingLeft: 40,
-    paddingRight: 40,
     paddingTop: 0,
     paddingBottom: 0,
   },
-  card: {},
-  cardMedia: {},
   image: {
     backgroundImage: `url(${no_image})`,
     width: "100%",
@@ -27,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  title: {
+  containerTitle: {
     display: "flex",
     alignItems: "baseline",
     marginBottom: 5,
@@ -46,25 +42,61 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     flexWrap: "wrap",
+    padding: "20px 40px",
+    backgroundColor: "rgba(3,37,65,0.8)",
   },
-  titleContent: {},
-  dateItem: {
-    display: "flex",
+  titleContent: {
+    color: "#fff",
+    fontSize: "2em",
+    lineHeight: "1.1em",
+    fontWeight: 700,
+    textAlign: "center",
     width: "100%",
+    overflow: "hidden",
+    margin: 0,
+    fontStyle: "italic",
+  },
+  dateItem: {
+    margin: 0,
+    padding: 0,
+    fontSize: "1em",
+    color: "rgba(255,255,255,0.5)",
+  },
+  button: {
+    fontSize: "1em",
+    alignItems: "center",
     justifyContent: "center",
-    alignContent: "center",
+    display: "inline-flex",
+    padding: "4px 8px",
+    marginLeft: 20,
+    color: "#fff",
+    fontWeight: 700,
+    backgroundColor: "rgba(128,91,231,1)",
+    borderColor: "#805be7",
+    borderRadius: 5,
+    border: "2px solid #fff",
   },
   numberItems: {
     display: "flex",
     width: "100%",
+    fontStyle: "italic",
+    textAlign: "center",
+    alignItems: "baseline",
     justifyContent: "center",
-    alignContent: "center",
+    fontWeight: 500,
+    fontSize: "1.2em",
+    color: "#fff",
+    marginTop: 10,
   },
   box: {
     width: "calc((100vw - 200px) / 2)",
     height: "calc(((100vw - 100px) / 2) / 1.78)",
-    maxWidth: "calc(( 1400px - 200px) / 2)",
+    maxWidth: "calc(( 1400px - 70px) / 2)",
     maxHeight: "calc(((1400px - 100px) / 2) / 1.78)",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      height: 150,
+    },
     overflow: "hidden",
     marginTop: 20,
     borderRadius: 4,
@@ -76,20 +108,32 @@ const useStyles = makeStyles((theme) => ({
 
 const List = () => {
   const classes = useStyles();
+
+  const handleCreatelist = () => {};
+
   return (
     <Container
       style={{
         display: "flex",
         width: "100%",
         maxWidth: 1400,
+        padding: 0,
       }}
     >
       <Grid container className={classes.container}>
-        <Grid item className={classes.title}>
-          <Typography>My Lists</Typography>
-          <Box>
-            <button>Create List</button>
-          </Box>
+        <Grid item className={classes.containerTitle}>
+          <Typography
+            sx={{
+              fontWeight: 700,
+              fontSize: "1.5em",
+              fontFamily: "'Source Sans Pro', Arial, sans-serif",
+            }}
+          >
+            My Lists
+          </Typography>
+          <div className={classes.button} onClick={handleCreatelist}>
+            Create List
+          </div>
         </Grid>
         <Grid
           item
@@ -106,8 +150,28 @@ const List = () => {
             </Box>
             <div className={classes.content}>
               <h2 className={classes.titleContent}>Test</h2>
-              <div className={classes.numberItems}>Also Test</div>
-              <span className={classes.dateItem}> test as well</span>
+              <div className={classes.numberItems}>1 item</div>
+              <span className={classes.dateItem}>Updated 1 day ago</span>
+            </div>
+          </Box>
+          <Box className={classes.box}>
+            <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
+              <div className={classes.image}></div>
+            </Box>
+            <div className={classes.content}>
+              <h2 className={classes.titleContent}>Test</h2>
+              <div className={classes.numberItems}>1 item</div>
+              <span className={classes.dateItem}>Updated 1 day ago</span>
+            </div>
+          </Box>
+          <Box className={classes.box}>
+            <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
+              <div className={classes.image}></div>
+            </Box>
+            <div className={classes.content}>
+              <h2 className={classes.titleContent}>Test</h2>
+              <div className={classes.numberItems}>1 item</div>
+              <span className={classes.dateItem}>Updated 1 day ago</span>
             </div>
           </Box>
         </Grid>

@@ -91,13 +91,13 @@ const ProfilePage = () => {
   const [category, setCategory] = useState(0);
   const classes = useStyles();
 
-  function handleChangeCategory(event, newValue) {
+  const handleChangeCategory = (event, newValue) => {
     setCategory(newValue);
-  }
+  };
 
-  function handleNavigateWatchlist() {
+  const handleNavigateWatchlist = () => {
     setCategory(3);
-  }
+  };
 
   return (
     <>
