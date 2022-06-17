@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid, makeStyles } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
-import no_image from "../../assets/no_image3.svg";
+import no_image from "../../../assets/no_image3.svg";
 
 const useStyles = makeStyles((theme) => ({
   container: {

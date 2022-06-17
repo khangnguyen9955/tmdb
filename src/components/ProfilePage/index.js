@@ -16,7 +16,7 @@ import FilterGroup from "./FilterGroup";
 import Filter from "./Filter";
 import MovieCard from "./MovieCard";
 import Rating from "./Rating";
-import List from "./List";
+import List from "./List/List";
 
 const useStyles = makeStyles((theme) => ({
   container: {
