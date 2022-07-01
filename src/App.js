@@ -28,14 +28,15 @@ function App() {
   const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    dispatch(fetchUserLogin());
+  }, []);
+
+  useEffect(() => {
     if (isAuth) {
       dispatch(fetchUserLogin());
       dispatch(getWatchlist());
     }
   }, [dispatch, isAuth]);
-  useEffect(() => {
-    dispatch(fetchUserLogin());
-  }, []);
 
   return (
     <MuiThemeProvider theme={theme}>

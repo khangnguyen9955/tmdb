@@ -28,7 +28,6 @@ export const addToWatchlist = (movie) => async (dispatch) => {
       { movie },
       { headers: { token: getAuth() } }
     );
-    console.log(res.data);
     dispatch(addToWatchlistSuccess(res.data));
   } catch (err) {
     dispatch(addToWatchlistFailure());

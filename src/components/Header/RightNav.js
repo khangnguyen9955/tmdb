@@ -48,7 +48,6 @@ const RightNav = ({ open, handleOpen, handleClose }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const { currentUser, isAuth } = useSelector((state) => state.auth);
 
-  console.log(isAuth);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };

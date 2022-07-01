@@ -106,7 +106,6 @@ const userController = {
   addNewList: async (req, res) => {
     const userId = req.user.id;
     const list = req.body.list;
-    console.log(list);
     try {
       List.findOne({
         userId,

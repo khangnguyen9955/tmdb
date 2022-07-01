@@ -17,6 +17,7 @@ import Filter from "./Filter";
 import MovieCard from "./MovieCard";
 import Rating from "./Rating";
 import List from "./List/List";
+import CreateListForm from "./List/CreateListForm";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
   },
   item: {
+    fontWeight: 600,
     padding: "6px 0 4px 0",
     marginRight: 40,
     borderBottom: "4px solid #fff",
@@ -81,7 +83,7 @@ const ProfilePage = () => {
   const totalTv = watchlist.filter((movie) => movie.media_type === "tv");
   const totalMovie = watchlist.filter((movie) => movie.media_type === "movie");
   const [sortBy, setSortBy] = useState("date_added");
-
+  const [showCreateListForm, setShowCreateListForm] = useState(false);
   const handleChangeType = (event, newValue) => {
     setType(newValue);
   };
@@ -90,6 +92,10 @@ const ProfilePage = () => {
   };
   const [category, setCategory] = useState(0);
   const classes = useStyles();
+
+  const handleCreateListForm = () => {
+    setShowCreateListForm((prevState) => !prevState);
+  };
 
   const handleChangeCategory = (event, newValue) => {
     setCategory(newValue);
@@ -101,6 +107,9 @@ const ProfilePage = () => {
 
   return (
     <>
+      {showCreateListForm && (
+        <CreateListForm createListForm={handleCreateListForm} />
+      )}
       <div style={{ position: "relative", width: "100%" }}>
         <Background children={<ProfileHeader user={currentUser} />} />
       </div>
@@ -296,7 +305,7 @@ const ProfilePage = () => {
             )}
           </>
         )}
-        {category === 4 && <List />}
+        {category === 4 && <List createListForm={handleCreateListForm} />}
       </Container>
     </>
   );

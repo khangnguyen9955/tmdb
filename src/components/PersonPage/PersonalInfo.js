@@ -45,6 +45,7 @@ const PersonalInfo = ({ person }) => {
             >
               <TwitterIcon fontSize="large" />
             </a>
+            
           </Tooltip>
         )}
         {person.external_ids.instagram_id && (

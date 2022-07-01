@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, makeStyles } from "@material-ui/core";
-import { Container, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import no_image from "../../../assets/no_image3.svg";
 
 const useStyles = makeStyles((theme) => ({
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1em",
     alignItems: "center",
     justifyContent: "center",
+    textTransform: "capitalize",
     display: "inline-flex",
     padding: "4px 8px",
     marginLeft: 20,
@@ -106,11 +107,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const List = () => {
+const List = (props) => {
   const classes = useStyles();
 
-  const handleCreatelist = () => {};
-
+  const createListForm = () => {
+    props.createListForm();
+  };
   return (
     <Container
       style={{
@@ -131,9 +133,15 @@ const List = () => {
           >
             My Lists
           </Typography>
-          <div className={classes.button} onClick={handleCreatelist}>
-            Create List
-          </div>
+          <Button>
+            <Typography
+              sx={{ fontWeight: 600 }}
+              className={classes.button}
+              onClick={createListForm}
+            >
+              Create List
+            </Typography>
+          </Button>
         </Grid>
         <Grid
           item
@@ -144,26 +152,6 @@ const List = () => {
             justifyContent: "space-between",
           }}
         >
-          <Box className={classes.box}>
-            <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
-              <div className={classes.image}></div>
-            </Box>
-            <div className={classes.content}>
-              <h2 className={classes.titleContent}>Test</h2>
-              <div className={classes.numberItems}>1 item</div>
-              <span className={classes.dateItem}>Updated 1 day ago</span>
-            </div>
-          </Box>
-          <Box className={classes.box}>
-            <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
-              <div className={classes.image}></div>
-            </Box>
-            <div className={classes.content}>
-              <h2 className={classes.titleContent}>Test</h2>
-              <div className={classes.numberItems}>1 item</div>
-              <span className={classes.dateItem}>Updated 1 day ago</span>
-            </div>
-          </Box>
           <Box className={classes.box}>
             <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
               <div className={classes.image}></div>
