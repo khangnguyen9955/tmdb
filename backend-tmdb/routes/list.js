@@ -3,7 +3,7 @@ const userController = require("../controller/userController");
 const router = require("express").Router();
 
 // Get list
-router.get("/", middlewareController.verifyToken, userController.getNewList);
+router.get("/", middlewareController.verifyToken, userController.getAllList);
 router.post(
   "/add",
   middlewareController.verifyToken,

@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Grid, makeStyles } from "@material-ui/core";
 import { Button, Container, Typography } from "@mui/material";
 import no_image from "../../../assets/no_image3.svg";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -109,6 +110,7 @@ const useStyles = makeStyles((theme) => ({
 
 const List = (props) => {
   const classes = useStyles();
+  const { lists } = useSelector((state) => state.lists);
 
   const createListForm = () => {
     props.createListForm();
@@ -152,16 +154,30 @@ const List = (props) => {
             justifyContent: "space-between",
           }}
         >
-          <Box className={classes.box}>
-            <Box style={{ width: "100%", minWidth: "100%", height: "100%" }}>
-              <div className={classes.image}></div>
-            </Box>
-            <div className={classes.content}>
-              <h2 className={classes.titleContent}>Test</h2>
-              <div className={classes.numberItems}>1 item</div>
-              <span className={classes.dateItem}>Updated 1 day ago</span>
-            </div>
-          </Box>
+          {lists.length === 0 ? (
+            <Typography style={{}}>
+              You haven't created any lists in your account.
+            </Typography>
+          ) : (
+            lists.map((list) => (
+              <Box className={classes.box} key={list._id}>
+                <Box
+                  style={{ width: "100%", minWidth: "100%", height: "100%" }}
+                >
+                  <div className={classes.image}></div>
+                </Box>
+                <div className={classes.content}>
+                  <h2 className={classes.titleContent}>{list.listName}</h2>
+                  <div className={classes.numberItems}>
+                    {list.listMovie.length ? list.listMovie.length : "0"} items
+                  </div>
+                  <span className={classes.dateItem}>
+                    Created {list.createdAt ? list.createdAt : "just now"}
+                  </span>
+                </div>
+              </Box>
+            ))
+          )}
         </Grid>
       </Grid>
     </Container>

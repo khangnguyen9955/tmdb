@@ -299,7 +299,7 @@ const ProfilePage = () => {
                 )
                 .map((movie) => <MovieCard key={movie.id} movie={movie} />)}
             {watchlist.length === 0 && (
-              <Typography style={{ margin: 20 }}>
+              <Typography style={{}}>
                 You haven't added any movies in your watchlist.
               </Typography>
             )}

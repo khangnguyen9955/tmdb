@@ -21,6 +21,7 @@ import { getWatchlist } from "./redux/watchlistActions";
 import { useEffect } from "react";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { fetchUserLogin } from "./redux/userActions";
+import { getAllList } from "./redux/listsActions";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,13 +29,10 @@ function App() {
   const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchUserLogin());
-  }, []);
-
-  useEffect(() => {
     if (isAuth) {
       dispatch(fetchUserLogin());
       dispatch(getWatchlist());
+      dispatch(getAllList());
     }
   }, [dispatch, isAuth]);
 

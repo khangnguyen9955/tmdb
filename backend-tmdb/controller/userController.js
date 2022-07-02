@@ -130,7 +130,7 @@ const userController = {
             if (err) {
               res.status(400).json({ message: err });
             } else {
-              res.status(200).json(data);
+              res.status(200).json(data.lists[0]);
             }
           });
         }
@@ -141,10 +141,14 @@ const userController = {
     }
   },
 
-  getNewList: async (req, res) => {
+  getAllList: async (req, res) => {
     try {
       List.find({ userId: req.user.id }).then((list) => {
-        res.status(200).json(list);
+        if (list[0]) {
+          res.status(200).json(list[0].lists);
+        } else {
+          res.status(200).json([]);
+        }
       });
     } catch (err) {
       res.status(500).json(err);
