@@ -3,7 +3,7 @@ const List = require("../model/List");
 const userController = {
   getWatchList: async (req, res) => {
     try {
-      Watchlist.find({ userId: req.user.id }).then((watchList) => {
+      Watchlist.find({userId: req.user.id}).then((watchList) => {
         if (watchList[0]) {
           res.status(200).json(watchList[0].movies);
         } else {
@@ -18,27 +18,27 @@ const userController = {
     const userId = req.user.id;
     const movie = req.body.movie;
     try {
-      Watchlist.findOne({ userId }).then((findWatchlist) => {
+      Watchlist.findOne({userId}).then((findWatchlist) => {
         if (findWatchlist) {
-          Watchlist.findOne({ userId, "movies.id": movie.id }).then(
-            (findMovie) => {
-              if (findMovie) {
-                res
-                  .status(400)
-                  .json({ messgage: "Movie is in your watchlist already!" });
-              } else {
-                // add the movie to the watchlist and then save it
-                Watchlist.updateOne(
-                  {
-                    userId,
-                    movies: { $not: { $elemMatch: { id: movie.id } } },
-                  },
-                  { $push: { movies: movie } }
-                ).then(() => {
-                  res.status(200).json(movie);
-                });
+          Watchlist.findOne({userId, "movies.id": movie.id}).then(
+              (findMovie) => {
+                if (findMovie) {
+                  res
+                      .status(400)
+                      .json({messgage: "Movie is in your watchlist already!"});
+                } else {
+                  // add the movie to the watchlist and then save it
+                  Watchlist.updateOne(
+                      {
+                        userId,
+                        movies: {$not: {$elemMatch: {id: movie.id}}},
+                      },
+                      {$push: {movies: movie}}
+                  ).then(() => {
+                    res.status(200).json(movie);
+                  });
+                }
               }
-            }
           );
         } else {
           const newWatchlist = new Watchlist({
@@ -47,7 +47,7 @@ const userController = {
           });
           newWatchlist.save((err, data) => {
             if (err) {
-              res.status(400).json({ message: err });
+              res.status(400).json({message: err});
             } else {
               res.status(200).json(data);
             }
@@ -87,10 +87,10 @@ const userController = {
   removeWatchList: async (req, res) => {
     try {
       Watchlist.updateOne(
-        {
-          userId: req.user.id,
-        },
-        { $pull: { movies: { id: req.body.id } } }
+          {
+            userId: req.user.id,
+          },
+          {$pull: {movies: {id: req.body.id}}}
       ).then((findMovie) => {
         res.status(200).json({
           message: "Removed",
@@ -112,12 +112,12 @@ const userController = {
       }).then((findList) => {
         if (findList) {
           List.findOneAndUpdate(
-            { userId },
-            {
-              $push: {
-                lists: list,
-              },
-            }
+              {userId},
+              {
+                $push: {
+                  lists: list,
+                },
+              }
           ).then(() => {
             res.status(200).json(list);
           });
@@ -128,7 +128,7 @@ const userController = {
           });
           newList.save((err, data) => {
             if (err) {
-              res.status(400).json({ message: err });
+              res.status(400).json({message: err});
             } else {
               res.status(200).json(data.lists[0]);
             }
@@ -140,10 +140,9 @@ const userController = {
       console.log(err);
     }
   },
-
   getAllList: async (req, res) => {
     try {
-      List.find({ userId: req.user.id }).then((list) => {
+      List.find({userId: req.user.id}).then((list) => {
         if (list[0]) {
           res.status(200).json(list[0].lists);
         } else {
@@ -158,14 +157,14 @@ const userController = {
   removeList: async (req, res) => {
     try {
       List.updateOne(
-        { userId: req.user.id },
-        {
-          $pull: {
-            lists: {
-              _id: req.body.id,
+          {userId: req.user.id},
+          {
+            $pull: {
+              lists: {
+                _id: req.body.id,
+              },
             },
-          },
-        }
+          }
       ).then(() => {
         res.status(200).json({
           message: "Removed",
@@ -177,5 +176,7 @@ const userController = {
       console.log(err);
     }
   },
+
+
 };
 module.exports = userController;

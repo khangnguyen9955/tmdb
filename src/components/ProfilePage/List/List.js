@@ -155,7 +155,7 @@ const List = (props) => {
           }}
         >
           {lists.length === 0 ? (
-            <Typography style={{}}>
+            <Typography>
               You haven't created any lists in your account.
             </Typography>
           ) : (
@@ -166,6 +166,7 @@ const List = (props) => {
                 >
                   <div className={classes.image}></div>
                 </Box>
+
                 <div className={classes.content}>
                   <h2 className={classes.titleContent}>{list.listName}</h2>
                   <div className={classes.numberItems}>
