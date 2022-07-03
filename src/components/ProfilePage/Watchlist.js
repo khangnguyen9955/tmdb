@@ -26,6 +26,7 @@ const Watchlist = () => {
           totalTV={totalTv.length}
           type={type}
           handleChangeType={handleChangeType}
+          groupTitle="My Watchlist"
         />
         <Filter sortBy={sortBy} handleSortBy={handleSortBy} />
       </Grid>
