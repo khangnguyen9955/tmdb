@@ -5,6 +5,7 @@ import Filter from "../Filter";
 import { useSelector } from "react-redux";
 import MovieCard from "../MovieCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ListMovies = ({ listId, handleBackToLists }) => {
   const { lists } = useSelector((state) => state.lists);
@@ -29,29 +30,54 @@ const ListMovies = ({ listId, handleBackToLists }) => {
     <>
       <Grid container>
         <Box
-          onClick={backToLists}
           style={{
-            cursor: "pointer",
             marginBottom: 10,
             display: "flex",
             alignContent: "center",
+            justifyContent: "space-between",
+            width: "100%",
           }}
         >
-          <ArrowBackIcon
+          <div
             style={{
-              marginRight: 5,
-              fontSize: 25,
-              color: "#805be7",
+              display: "flex",
+              cursor: "pointer",
             }}
-          />
-          <Typography
-            style={{
-              color: "#805be7",
-              fontSize: "1.1em",
-            }}
+            onClick={backToLists}
           >
-            Back to lists
-          </Typography>
+            <ArrowBackIcon
+              style={{
+                marginRight: 5,
+                fontSize: 25,
+                color: "#805be7",
+              }}
+            />
+            <Typography
+              style={{
+                color: "#805be7",
+                fontSize: "1.1em",
+              }}
+            >
+              Back to lists
+            </Typography>
+          </div>
+          <div style={{ display: "flex", cursor: "pointer" }}>
+            <DeleteIcon
+              style={{
+                marginRight: 5,
+                fontSize: 25,
+                color: "#de736b",
+              }}
+            />
+            <Typography
+              style={{
+                color: "#de736b",
+                fontSize: "1.1em",
+              }}
+            >
+              Delete this list
+            </Typography>
+          </div>
         </Box>
         <Grid container justifyContent={"space-between"}>
           <FilterGroup
