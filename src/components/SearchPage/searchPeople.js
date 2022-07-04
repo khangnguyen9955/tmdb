@@ -1,5 +1,5 @@
 import { Card, makeStyles, Typography } from "@material-ui/core";
-import { Box, CardActionArea, CardContent, CardMedia } from "@mui/material";
+import { CardActionArea, CardContent, CardMedia } from "@mui/material";
 import React from "react";
 import SearchPagination from "../SearchPage/SearchPagination";
 
@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     color: "rgba(0,0,0,0.6)",
   },
 }));
+
 function SearchPeople({ people, params }) {
   const classes = useStyles();
   return people.results.length > 0 ? (
@@ -84,4 +85,5 @@ function SearchPeople({ people, params }) {
     <Typography>There are no people that matched your query.</Typography>
   );
 }
+
 export default SearchPeople;

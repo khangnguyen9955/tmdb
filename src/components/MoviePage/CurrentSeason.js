@@ -1,11 +1,9 @@
 import {
   Box,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Divider,
-  ImageListItem,
   makeStyles,
   Typography,
 } from "@material-ui/core";

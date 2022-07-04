@@ -4,7 +4,6 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import {
   Box,
   Card,
-  CardContent,
   CardMedia,
   IconButton,
   Popover,
@@ -15,6 +14,7 @@ import {
 import { makeStyles } from "@mui/styles";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import { Link } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   cellTitle: { paddingLeft: 4, width: "90%" },
   cellIcon: {

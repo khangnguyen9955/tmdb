@@ -16,7 +16,7 @@ export const addNewList = (list) => async (dispatch) => {
   dispatch(addNewListRequest());
   try {
     const res = await axios.post(
-      "http://localhost:8000/list/add",
+      "http://localhost:8000/list/create",
       { list },
       { headers: { token: getAuth() } }
     );

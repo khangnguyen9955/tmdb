@@ -5,13 +5,20 @@ const router = require("express").Router();
 // Get list
 router.get("/", middlewareController.verifyToken, userController.getAllList);
 router.post(
-  "/add",
+  "/create",
   middlewareController.verifyToken,
-  userController.addNewList
+  userController.createNewList
 );
 router.post(
   "/remove",
   middlewareController.verifyToken,
   userController.removeList
 );
+
+router.post(
+  "/add",
+  middlewareController.verifyToken,
+  userController.addMovieToList
+);
+
 module.exports = router;

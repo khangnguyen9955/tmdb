@@ -1,11 +1,8 @@
 import {
   Box,
   CardActionArea,
-  CardContent,
   CardMedia,
   Divider,
-  GridList,
-  GridListTile,
   ImageList,
   ImageListItem,
   makeStyles,
@@ -13,6 +10,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   cast: {
     display: "flex",

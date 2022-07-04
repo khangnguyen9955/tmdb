@@ -1,6 +1,5 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
-import MovieCard from "../common/MovieCard";
 import SearchCard from "../common/SearchCard";
 import SearchPagination from "../SearchPage/SearchPagination";
 
@@ -16,4 +15,5 @@ function SearchMovies({ movies, params }) {
     <Typography>There are no movies that matched your query.</Typography>
   );
 }
+
 export default SearchMovies;

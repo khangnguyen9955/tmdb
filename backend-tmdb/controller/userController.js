@@ -1,5 +1,6 @@
 const Watchlist = require("../model/Watchlist");
 const List = require("../model/List");
+const mongoose = require("mongoose");
 const userController = {
   getWatchList: async (req, res) => {
     try {
@@ -103,7 +104,7 @@ const userController = {
     }
   },
 
-  addNewList: async (req, res) => {
+  createNewList: async (req, res) => {
     const userId = req.user.id;
     const list = req.body.list;
     try {
@@ -177,6 +178,39 @@ const userController = {
     }
   },
 
+  addMovieToList: async (req, res) => {
+    const userId = req.user.id;
+    const listId = req.body.listId;
+    const movie = req.body.movie;
+    try {
+      List.findOne({
+        userId,
+      }).then((findList) => {
+        const ObjectId = mongoose.Types.ObjectId;
+        const id = new ObjectId(listId);
+        const findListMovie = findList.lists.filter((list) =>
+            id.equals(list._id)
+        );
+        const listMovie = findListMovie[0].listMovie;
+        let isAdded = false;
+        listMovie.map((item) => {
+          if (item.id === movie.id) {
+            isAdded = true;
+          }
+        });
+        if (isAdded) {
+          res.status(200).json("This movie has been added in list");
+        } else {
+          listMovie.push(movie);
+          findList.save();
+          res.status(200).json(listMovie);
+        }
 
+      });
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    }
+  },
 };
 module.exports = userController;
