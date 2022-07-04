@@ -24,6 +24,7 @@ import {
 import { Popover } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { addMovieToList } from "../../redux/listsActions";
 
 const useStyles = makeStyles((theme) => ({
   header: (props) => ({
@@ -168,7 +169,20 @@ const Header = ({ details, created_by }) => {
   const isAdded = watchlist.some((movie) => movie.id === details.id);
 
   const handleCreateNewlist = () => {};
-
+  const handleAddMovieToList = (id) => {
+    const listId = { id };
+    const movie = {
+      id: details.id,
+      title: details.title,
+      media_type: details.media_type,
+      release_date: details.release_date,
+      poster_path: details.poster_path,
+      vote_average: details.vote_average,
+      popularity: details.popularity,
+      overview: details.overview,
+    };
+    dispatch(addMovieToList(listId, movie));
+  };
   return (
     <div className={classes.header}>
       <Container className={classes.container}>
@@ -288,8 +302,9 @@ const Header = ({ details, created_by }) => {
                       size="medium"
                       color="primary"
                       className={classes.button}
+                      onClick={handleClick}
                     >
-                      <ListIcon onClick={handleClick} />
+                      <ListIcon />
                     </Fab>
                   </Tooltip>
                   <Popover
@@ -388,6 +403,7 @@ const Header = ({ details, created_by }) => {
                           <Typography
                             key={list._id}
                             className={classes.itemList}
+                            onClick={() => handleAddMovieToList(list._id)}
                           >
                             {list.listName} ({list.listMovie.length})
                           </Typography>

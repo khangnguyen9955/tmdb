@@ -15,13 +15,13 @@ import {
 
 const initialState = {
   lists: [],
-  listMovie: [],
   isAdding: false,
   isLoading: false,
   isRemoving: null,
   isAddingMovie: false,
   isLoadingMovie: false,
   isRemovingMovie: null,
+  message: {},
 };
 
 const listsReducer = (state = initialState, action) => {
@@ -81,7 +81,8 @@ const listsReducer = (state = initialState, action) => {
     case ADD_MOVIE_TO_LIST_SUCCESS:
       return {
         ...state,
-        listMovie: [action.movie, ...state.listMovie],
+        isAddingMovie: false,
+        message: action.movie,
       };
     case ADD_MOVIE_TO_LIST_FAILURE:
       return {

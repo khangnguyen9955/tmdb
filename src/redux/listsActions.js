@@ -3,6 +3,7 @@ import { getAuth } from "./watchlistActions";
 import {
   ADD_MOVIE_TO_LIST_FAILURE,
   ADD_MOVIE_TO_LIST_REQUEST,
+  ADD_MOVIE_TO_LIST_SUCCESS,
   ADD_NEW_LIST_FAILURE,
   ADD_NEW_LIST_REQUEST,
   ADD_NEW_LIST_SUCCESS,
@@ -65,6 +66,7 @@ export const addMovieToList = (listId, movie) => async (dispatch) => {
       { listId, movie },
       { headers: { token: getAuth() } }
     );
+    console.log(res.data);
     dispatch(addMovieToListSuccess(res.data));
   } catch (e) {
     dispatch(addMovieToListFailure());
@@ -114,7 +116,7 @@ const addMovieToListRequest = () => ({
   type: ADD_MOVIE_TO_LIST_REQUEST,
 });
 const addMovieToListSuccess = (movie) => ({
-  type: ADD_NEW_LIST_SUCCESS,
+  type: ADD_MOVIE_TO_LIST_SUCCESS,
   movie,
 });
 
