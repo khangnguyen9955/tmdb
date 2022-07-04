@@ -1,4 +1,7 @@
 import {
+  ADD_MOVIE_TO_LIST_FAILURE,
+  ADD_MOVIE_TO_LIST_REQUEST,
+  ADD_MOVIE_TO_LIST_SUCCESS,
   ADD_NEW_LIST_FAILURE,
   ADD_NEW_LIST_REQUEST,
   ADD_NEW_LIST_SUCCESS,
@@ -17,27 +20,9 @@ const initialState = {
   isLoading: false,
   isRemoving: null,
   isAddingMovie: false,
-  isLoadingMove: false,
+  isLoadingMovie: false,
   isRemovingMovie: null,
 };
-//
-// Lists:[
-//     {
-//         listName: 1
-//         listMovie:[
-//             {movie1},
-//             {movie2},
-//         ]
-//     },
-//
-//     {
-//         listName:2,
-//         listMovie:[
-//             {movie1},
-//             {movie2}
-//         ]
-//     }
-// ]
 
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -88,6 +73,22 @@ const listsReducer = (state = initialState, action) => {
         ...state,
         isRemoving: null,
       };
+    case ADD_MOVIE_TO_LIST_REQUEST:
+      return {
+        ...state,
+        isAddingMovie: true,
+      };
+    case ADD_MOVIE_TO_LIST_SUCCESS:
+      return {
+        ...state,
+        listMovie: [action.movie, ...state.listMovie],
+      };
+    case ADD_MOVIE_TO_LIST_FAILURE:
+      return {
+        ...state,
+        isAddingMovie: false,
+      };
+
     default:
       return state;
   }

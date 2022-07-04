@@ -1,6 +1,8 @@
 import axios from "axios";
 import { getAuth } from "./watchlistActions";
 import {
+  ADD_MOVIE_TO_LIST_FAILURE,
+  ADD_MOVIE_TO_LIST_REQUEST,
   ADD_NEW_LIST_FAILURE,
   ADD_NEW_LIST_REQUEST,
   ADD_NEW_LIST_SUCCESS,
@@ -55,6 +57,21 @@ export const removeFromList = (listId) => async (dispatch) => {
   }
 };
 
+export const addMovieToList = (listId, movie) => async (dispatch) => {
+  dispatch(addMovieToListRequest());
+  try {
+    const res = await axios.post(
+      "http://localhost:8000/list/add",
+      { listId, movie },
+      { headers: { token: getAuth() } }
+    );
+    dispatch(addMovieToListSuccess(res.data));
+  } catch (e) {
+    dispatch(addMovieToListFailure());
+    console.log(e);
+  }
+};
+
 const removeListRequest = () => ({
   type: REMOVE_LIST_REQUEST,
 });
@@ -91,4 +108,16 @@ const addNewListSuccess = (list) => ({
 
 const addNewListFailure = () => ({
   type: ADD_NEW_LIST_FAILURE,
+});
+
+const addMovieToListRequest = () => ({
+  type: ADD_MOVIE_TO_LIST_REQUEST,
+});
+const addMovieToListSuccess = (movie) => ({
+  type: ADD_NEW_LIST_SUCCESS,
+  movie,
+});
+
+const addMovieToListFailure = () => ({
+  type: ADD_MOVIE_TO_LIST_FAILURE,
 });
