@@ -1,4 +1,5 @@
 import {
+  Box,
   CardMedia,
   Container,
   Fab,
@@ -8,7 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { DateTime } from "luxon";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ListIcon from "@mui/icons-material/List";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -20,6 +21,9 @@ import {
   addToWatchlist,
   removeFromWatchlist,
 } from "../../redux/watchlistActions";
+import { Popover } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const useStyles = makeStyles((theme) => ({
   header: (props) => ({
@@ -91,6 +95,33 @@ const useStyles = makeStyles((theme) => ({
   donut: {
     paddingRight: "0 !important",
   },
+  titleItemList: {
+    padding: 3,
+    fontWeight: 600,
+    fontSize: "0.9em",
+    color: "black",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    marginBottom: 8,
+    cursor: "pointer",
+    "&:hover": {
+      transition: "0.3s",
+      backgroundColor: "rgba(1,180,228,1)",
+      color: "white",
+    },
+  },
+  itemList: {
+    fontSize: "0.9em",
+    color: "black",
+    padding: 3,
+    whiteSpace: "nowrap",
+    marginBottom: 5,
+    cursor: "pointer",
+    "&:hover": {
+      transition: "0.2s",
+      backgroundColor: "rgba(200,200,200,0.3)",
+    },
+  },
 }));
 
 const Header = ({ details, created_by }) => {
@@ -99,6 +130,8 @@ const Header = ({ details, created_by }) => {
   const { watchlist, isLoading, isAdding, isRemoving } = useSelector(
     (state) => state.watchlist
   );
+
+  const { lists } = useSelector((state) => state.lists);
   const dispatch = useDispatch();
 
   const handleAddMovie = () => {
@@ -114,8 +147,28 @@ const Header = ({ details, created_by }) => {
     };
     dispatch(addToWatchlist(movie));
   };
+  const [anchor, setAnchor] = useState(null);
+  const [subAnchor, setSubAnchor] = useState(null);
+  const handleClick = (e) => {
+    setAnchor(e.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchor(null);
+  };
+  const open = Boolean(anchor);
+
+  const handleSubClick = (e) => {
+    setSubAnchor(e.currentTarget);
+  };
+  const handleSubClose = () => {
+    setSubAnchor(null);
+  };
+  const subOpen = Boolean(subAnchor);
 
   const isAdded = watchlist.some((movie) => movie.id === details.id);
+
+  const handleCreateNewlist = () => {};
+
   return (
     <div className={classes.header}>
       <Container className={classes.container}>
@@ -224,17 +277,131 @@ const Header = ({ details, created_by }) => {
               {(details.media_type === "movie" ||
                 details.media_type === "tv") && (
                 <Grid item className={classes.wrapper}>
-                  <Tooltip title="Login to edit and create custom lists">
+                  <Tooltip
+                    title={
+                      isAuth
+                        ? "Add to your custom list"
+                        : "Login to add this movie to your custom list"
+                    }
+                  >
                     <Fab
                       size="medium"
                       color="primary"
                       className={classes.button}
                     >
-                      <ListIcon />
+                      <ListIcon onClick={handleClick} />
                     </Fab>
                   </Tooltip>
+                  <Popover
+                    open={open}
+                    anchorEl={anchor}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "center",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "center",
+                    }}
+                    style={{
+                      marginTop: 15,
+                    }}
+                  >
+                    <Box
+                      style={{
+                        width: 300,
+                        backgroundColor: "rgba(3,37,65,1)",
+                        opacity: 1,
+                        borderRadius: 4,
+                        borderColor: "#000",
+                        borderWidth: 0,
+                        borderStyle: "solid",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          width: "100%",
+                          color: "white",
+                          alignItems: "center",
+                          padding: "10px 10px",
+                          cursor: "pointer",
+                        }}
+                        onClick={handleCreateNewlist}
+                      >
+                        <AddIcon style={{ marginRight: 5, fontSize: 25 }} />
+                        <Typography
+                          style={{ fontStyle: "1.3em", fontWeight: 600 }}
+                        >
+                          Create New List
+                        </Typography>
+                      </div>
 
-                  <Tooltip title="Login to add this movie to your favorite list">
+                      <div
+                        style={{
+                          display: "flex",
+                          width: "100%",
+                          marginTop: 15,
+                          color: "white",
+                          alignItems: "center",
+                          paddingBottom: 10,
+                          cursor: "pointer",
+                        }}
+                        onClick={handleSubClick}
+                      >
+                        <Typography
+                          style={{
+                            marginLeft: 10,
+                            whiteSpace: "nowrap",
+                            opacity: 0.8,
+                          }}
+                        >
+                          Add {details.title} to one of your lists...
+                        </Typography>
+                        <ArrowDropDownIcon />
+                      </div>
+                    </Box>
+                  </Popover>
+                  <Popover
+                    open={subOpen}
+                    anchorEl={subAnchor}
+                    onClose={handleSubClose}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "center",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "center",
+                    }}
+                  >
+                    <Box style={{ width: 280, padding: "15px 15px" }}>
+                      <Typography
+                        className={classes.titleItemList}
+                        onClick={handleSubClose}
+                      >
+                        Add {details.title} to one of your lists...
+                      </Typography>
+                      <div>
+                        {lists.map((list) => (
+                          <Typography
+                            key={list._id}
+                            className={classes.itemList}
+                          >
+                            {list.listName} ({list.listMovie.length})
+                          </Typography>
+                        ))}
+                      </div>
+                    </Box>
+                  </Popover>
+                  <Tooltip
+                    title={
+                      isAuth
+                        ? "Add to your favorite list"
+                        : "Login to add this movie to your favorite list"
+                    }
+                  >
                     <Fab
                       size="medium"
                       color="primary"
@@ -260,7 +427,7 @@ const Header = ({ details, created_by }) => {
                         !isAuth
                           ? () =>
                               alert(
-                                "You need to login to add this movie to your watchlis"
+                                "You need to login to add this movie to your watchlist"
                               )
                           : !isAdded
                           ? () => handleAddMovie()
@@ -270,7 +437,11 @@ const Header = ({ details, created_by }) => {
                       <BookmarkIcon />
                     </Fab>
                   </Tooltip>
-                  <Tooltip title="Login to rate this movie">
+                  <Tooltip
+                    title={
+                      isAuth ? "Rate this movie" : "Login to rate this movie "
+                    }
+                  >
                     <Fab
                       size="medium"
                       color="primary"
