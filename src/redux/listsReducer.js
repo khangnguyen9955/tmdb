@@ -81,34 +81,19 @@ const listsReducer = (state = initialState, action) => {
       };
     case ADD_MOVIE_TO_LIST_SUCCESS:
       return update(state, {
+        message: { $set: [action.data.message] },
         lists: {
           [action.data.listIndex]: {
             listMovie: { $push: [action.data.movie] },
           },
         },
       });
-    //  case 'SOME_ACTION':
-    //   return update(state, {
-    //     contents: {
-    //       [action.id]: {
-    //         text: {$set: action.payload}
-    //       }
-    //     }
-    //   });
 
-    //case 'SOME_ACTION':
-    //    return {
-    //        ...state,
-    //        contents: state.contents.map(
-    //            (content, i) => i === 1 ? {...content, text: action.payload}
-    //                                    : content
-    //        )
-    //     }
     case ADD_MOVIE_TO_LIST_FAILURE:
       return {
         ...state,
         isAddingMovie: false,
-        message: action.err,
+        message: action.error,
       };
 
     default:

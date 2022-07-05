@@ -68,8 +68,7 @@ export const addMovieToList = (listId, movie) => async (dispatch) => {
     );
     dispatch(addMovieToListSuccess(res.data));
   } catch (e) {
-    dispatch(addMovieToListFailure(e));
-    console.log(e);
+    dispatch(addMovieToListFailure());
   }
 };
 
@@ -119,7 +118,7 @@ const addMovieToListSuccess = (data) => ({
   data,
 });
 
-const addMovieToListFailure = (err) => ({
+const addMovieToListFailure = () => ({
   type: ADD_MOVIE_TO_LIST_FAILURE,
-  err,
+  error: "This movie has been added to your list",
 });

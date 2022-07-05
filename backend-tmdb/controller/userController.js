@@ -189,7 +189,7 @@ const userController = {
         const ObjectId = mongoose.Types.ObjectId;
         const id = new ObjectId(listId);
         let indexList;
-        const test = findList.lists.map((list, index) => {
+        const getIndexList = findList.lists.map((list, index) => {
           if (list._id.equals(id)) indexList = index;
         });
         const findListMovie = findList.lists.filter((list) =>
@@ -203,9 +203,9 @@ const userController = {
           }
         });
         if (isAdded) {
-          res
-            .status(200)
-            .json({ message: "This movie has been added in list" });
+          res.status(400).json({
+            message: "This movie has been added in list",
+          });
         } else {
           listMovie.push(movie);
           findList.save();
