@@ -12,6 +12,7 @@ import {
   REMOVE_LIST_REQUEST,
   REMOVE_LIST_SUCCESS,
 } from "./types";
+import update from "react-addons-update";
 
 const initialState = {
   lists: [],
@@ -79,11 +80,30 @@ const listsReducer = (state = initialState, action) => {
         isAddingMovie: true,
       };
     case ADD_MOVIE_TO_LIST_SUCCESS:
-      return {
-        ...state,
-        message: action.data.message,
-      };
+      return update(state, {
+        lists: {
+          [action.data.listIndex]: {
+            listMovie: { $push: [action.data.movie] },
+          },
+        },
+      });
+    //  case 'SOME_ACTION':
+    //   return update(state, {
+    //     contents: {
+    //       [action.id]: {
+    //         text: {$set: action.payload}
+    //       }
+    //     }
+    //   });
 
+    //case 'SOME_ACTION':
+    //    return {
+    //        ...state,
+    //        contents: state.contents.map(
+    //            (content, i) => i === 1 ? {...content, text: action.payload}
+    //                                    : content
+    //        )
+    //     }
     case ADD_MOVIE_TO_LIST_FAILURE:
       return {
         ...state,

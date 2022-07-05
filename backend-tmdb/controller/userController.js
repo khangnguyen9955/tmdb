@@ -188,6 +188,10 @@ const userController = {
       }).then((findList) => {
         const ObjectId = mongoose.Types.ObjectId;
         const id = new ObjectId(listId);
+        let indexList;
+        const test = findList.lists.map((list, index) => {
+          if (list._id.equals(id)) indexList = index;
+        });
         const findListMovie = findList.lists.filter((list) =>
           list._id.equals(id)
         );
@@ -208,7 +212,7 @@ const userController = {
           res.status(200).json({
             message: "Added to your list",
             movie: movie,
-            listId: findListMovie[0]._id,
+            listIndex: indexList,
           });
         }
       });
