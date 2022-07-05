@@ -189,7 +189,7 @@ const userController = {
         const ObjectId = mongoose.Types.ObjectId;
         const id = new ObjectId(listId);
         const findListMovie = findList.lists.filter((list) =>
-          id.equals(list._id)
+          list._id.equals(id)
         );
         const listMovie = findListMovie[0].listMovie;
         let isAdded = false;
@@ -199,11 +199,17 @@ const userController = {
           }
         });
         if (isAdded) {
-          res.status(200).json("This movie has been added in list");
+          res
+            .status(200)
+            .json({ message: "This movie has been added in list" });
         } else {
           listMovie.push(movie);
           findList.save();
-          res.status(200).json("Added to your list");
+          res.status(200).json({
+            message: "Added to your list",
+            movie: movie,
+            listId: findListMovie[0]._id,
+          });
         }
       });
     } catch (err) {

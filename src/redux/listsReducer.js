@@ -81,13 +81,14 @@ const listsReducer = (state = initialState, action) => {
     case ADD_MOVIE_TO_LIST_SUCCESS:
       return {
         ...state,
-        isAddingMovie: false,
-        message: action.movie,
+        message: action.data.message,
       };
+
     case ADD_MOVIE_TO_LIST_FAILURE:
       return {
         ...state,
         isAddingMovie: false,
+        message: action.err,
       };
 
     default:

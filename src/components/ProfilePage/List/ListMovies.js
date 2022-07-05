@@ -99,7 +99,9 @@ const ListMovies = ({ listId, handleBackToLists }) => {
               ? new Date(b.release_date) - new Date(a.release_date)
               : b.popularity - a.popularity
           )
-          .map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+          .map((movie) => (
+            <MovieCard key={movie.id} movie={movie} handleRemove={null} />
+          ))}
       {type === "tv" &&
         totalTv
           .sort((a, b) =>

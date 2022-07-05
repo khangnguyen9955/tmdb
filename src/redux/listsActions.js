@@ -66,10 +66,9 @@ export const addMovieToList = (listId, movie) => async (dispatch) => {
       { listId, movie },
       { headers: { token: getAuth() } }
     );
-    console.log(res.data);
     dispatch(addMovieToListSuccess(res.data));
   } catch (e) {
-    dispatch(addMovieToListFailure());
+    dispatch(addMovieToListFailure(e));
     console.log(e);
   }
 };
@@ -115,11 +114,12 @@ const addNewListFailure = () => ({
 const addMovieToListRequest = () => ({
   type: ADD_MOVIE_TO_LIST_REQUEST,
 });
-const addMovieToListSuccess = (movie) => ({
+const addMovieToListSuccess = (data) => ({
   type: ADD_MOVIE_TO_LIST_SUCCESS,
-  movie,
+  data,
 });
 
-const addMovieToListFailure = () => ({
+const addMovieToListFailure = (err) => ({
   type: ADD_MOVIE_TO_LIST_FAILURE,
+  err,
 });

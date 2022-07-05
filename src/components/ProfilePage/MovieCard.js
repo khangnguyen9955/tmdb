@@ -6,8 +6,6 @@ import { DateTime } from "luxon";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/Star";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
-import { useDispatch } from "react-redux";
-import { removeFromWatchlist } from "../../redux/watchlistActions";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -82,9 +80,13 @@ const useStyles = makeStyles((theme) => ({
   title: { color: "white" },
 }));
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, handleRemove }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
+
+  const handleDeleteMovie = (movieId) => {
+    handleRemove(movieId);
+  };
+
   return (
     <Card
       className={classes.card}
@@ -127,7 +129,7 @@ const MovieCard = ({ movie }) => {
             </Typography>
             <IconButton
               size="small"
-              onClick={() => dispatch(removeFromWatchlist(movie.id))}
+              onClick={() => handleDeleteMovie(movie.id)}
               className={classes.removeButton}
             >
               <CloseIcon />
