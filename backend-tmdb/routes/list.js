@@ -21,4 +21,10 @@ router.post(
   userController.addMovieToList
 );
 
+router.post(
+  "/delete",
+  middlewareController.verifyToken,
+  userController.removeMovieFromList
+);
+
 module.exports = router;

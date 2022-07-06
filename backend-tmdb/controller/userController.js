@@ -185,17 +185,15 @@ const userController = {
     try {
       List.findOne({
         userId,
-      }).then((findList) => {
+      }).then((findUser) => {
         const ObjectId = mongoose.Types.ObjectId;
         const id = new ObjectId(listId);
         let indexList;
-        const getIndexList = findList.lists.map((list, index) => {
+        const getIndexList = findUser.lists.map((list, index) => {
           if (list._id.equals(id)) indexList = index;
         });
-        const findListMovie = findList.lists.filter((list) =>
-          list._id.equals(id)
-        );
-        const listMovie = findListMovie[0].listMovie;
+        const findList = findUser.lists.find((list) => list._id.equals(id));
+        const listMovie = findList.listMovie;
         let isAdded = false;
         listMovie.map((item) => {
           if (item.id === movie.id) {
@@ -208,13 +206,42 @@ const userController = {
           });
         } else {
           listMovie.push(movie);
-          findList.save();
+          findUser.save();
           res.status(200).json({
             message: "Added to your list",
             movie: movie,
             listIndex: indexList,
           });
         }
+      });
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    }
+  },
+
+  removeMovieFromList: async (req, res) => {
+    const movieId = req.body.movieId;
+    const userId = req.user.id;
+    const listId = req.body.listId;
+    try {
+      List.findOne({ userId }).then((findUser) => {
+        const ObjectId = mongoose.Types.ObjectId;
+        const id = new ObjectId(listId);
+        let indexList;
+        const findList = findUser.lists.map((list, index) => {
+          if (list._id.equals(id)) {
+            indexList = index;
+            findUser.lists[indexList].listMovie = findUser.lists[
+              indexList
+            ].listMovie.filter((movie) => movie.id !== movieId);
+          }
+        });
+        findUser.save();
+        res.status(200).json({
+          message: "Removed movie",
+          lists: findUser.lists,
+        });
       });
     } catch (err) {
       res.status(500).json(err);
