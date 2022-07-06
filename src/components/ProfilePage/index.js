@@ -63,7 +63,7 @@ const ProfilePage = () => {
       {showCreateListForm && (
         <CreateListForm createListForm={handleCreateListForm} />
       )}
-      <div style={{ position: "relative", width: "100%" }}>
+      <div style={{ width: "100%" }}>
         <Background children={<ProfileHeader user={currentUser} />} />
       </div>
       <Box className={classes.container}>

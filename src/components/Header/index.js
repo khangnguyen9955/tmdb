@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 64,
   },
   collapse: {
+    position: "relative",
     backgroundColor: "white",
     zIndex: 1,
   },
@@ -75,6 +76,7 @@ const Header = () => {
           />
         </Toolbar>
       </AppBar>
+
       <Collapse in={open} className={classes.collapse}>
         <Toolbar className={classes.search}>
           <Search
