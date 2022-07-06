@@ -13,6 +13,9 @@ import {
   REMOVE_LIST_FAILURE,
   REMOVE_LIST_REQUEST,
   REMOVE_LIST_SUCCESS,
+  REMOVE_MOVIE_FROM_LIST_FAILURE,
+  REMOVE_MOVIE_FROM_LIST_REQUEST,
+  REMOVE_MOVIE_FROM_LIST_SUCCESS,
 } from "./types";
 
 export const addNewList = (list) => async (dispatch) => {
@@ -43,7 +46,7 @@ export const getAllList = () => async (dispatch) => {
   }
 };
 
-export const removeFromList = (listId) => async (dispatch) => {
+export const removeList = (listId) => async (dispatch) => {
   dispatch(removeListRequest());
   try {
     const res = await axios.post(
@@ -72,13 +75,33 @@ export const addMovieToList = (listId, movie) => async (dispatch) => {
   }
 };
 
+export const removeMovieFromList = (listId, movieId) => async (dispatch) => {
+  dispatch(removeMovieFromListRequest());
+  try {
+    const res = await axios.post(
+      "http://localhost:8000/list/delete",
+      {
+        listId,
+        movieId,
+      },
+      {
+        headers: { token: getAuth() },
+      }
+    );
+    dispatch(removeMovieFromListSuccess(res.data));
+  } catch (e) {
+    console.log(e);
+    dispatch(removeMovieFromListFailure());
+  }
+};
+
 const removeListRequest = () => ({
   type: REMOVE_LIST_REQUEST,
 });
 
-const removeListSuccess = (moveId) => ({
+const removeListSuccess = (data) => ({
   type: REMOVE_LIST_SUCCESS,
-  moveId,
+  data,
 });
 
 const removeListFailure = () => ({
@@ -121,4 +144,17 @@ const addMovieToListSuccess = (data) => ({
 const addMovieToListFailure = () => ({
   type: ADD_MOVIE_TO_LIST_FAILURE,
   error: "This movie has been added to your list",
+});
+
+const removeMovieFromListRequest = () => ({
+  type: REMOVE_MOVIE_FROM_LIST_REQUEST,
+});
+
+const removeMovieFromListSuccess = (data) => ({
+  type: REMOVE_MOVIE_FROM_LIST_SUCCESS,
+  data,
+});
+
+const removeMovieFromListFailure = () => ({
+  type: REMOVE_MOVIE_FROM_LIST_FAILURE,
 });

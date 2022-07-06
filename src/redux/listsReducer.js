@@ -11,6 +11,9 @@ import {
   REMOVE_LIST_FAILURE,
   REMOVE_LIST_REQUEST,
   REMOVE_LIST_SUCCESS,
+  REMOVE_MOVIE_FROM_LIST_FAILURE,
+  REMOVE_MOVIE_FROM_LIST_REQUEST,
+  REMOVE_MOVIE_FROM_LIST_SUCCESS,
 } from "./types";
 import update from "react-addons-update";
 
@@ -20,7 +23,6 @@ const initialState = {
   isLoading: false,
   isRemoving: null,
   isAddingMovie: false,
-  isLoadingMovie: false,
   isRemovingMovie: null,
   message: {},
 };
@@ -62,17 +64,18 @@ const listsReducer = (state = initialState, action) => {
     case REMOVE_LIST_REQUEST:
       return {
         ...state,
-        isRemoving: action.listId,
+        isRemoving: true,
       };
     case REMOVE_LIST_SUCCESS:
       return {
         ...state,
-        lists: state.lists.filter((list) => list.id !== action.listId),
+        isRemoving: false,
+        lists: state.lists.filter((list) => list._id !== action.data.id),
       };
     case REMOVE_LIST_FAILURE:
       return {
         ...state,
-        isRemoving: null,
+        isRemoving: false,
       };
     case ADD_MOVIE_TO_LIST_REQUEST:
       return {
@@ -94,6 +97,23 @@ const listsReducer = (state = initialState, action) => {
         ...state,
         isAddingMovie: false,
         message: action.error,
+      };
+    case REMOVE_MOVIE_FROM_LIST_REQUEST:
+      return {
+        ...state,
+        isRemovingMovie: true,
+      };
+    case REMOVE_MOVIE_FROM_LIST_SUCCESS:
+      return {
+        ...state,
+        isRemovingMovie: false,
+        lists: action.data.lists,
+        message: action.data.message,
+      };
+    case REMOVE_MOVIE_FROM_LIST_FAILURE:
+      return {
+        ...state,
+        isRemovingMovie: false,
       };
 
     default:

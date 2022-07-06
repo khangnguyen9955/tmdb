@@ -43,7 +43,13 @@ const Watchlist = () => {
               ? new Date(b.release_date) - new Date(a.release_date)
               : b.popularity - a.popularity
           )
-          .map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+          .map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              handleRemove={handleRemoveFromWatchlist}
+            />
+          ))}
       {type === "tv" &&
         totalTv
           .sort((a, b) =>

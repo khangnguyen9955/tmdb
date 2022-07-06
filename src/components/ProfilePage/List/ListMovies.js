@@ -2,21 +2,27 @@ import React, { useState } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import FilterGroup from "../FilterGroup";
 import Filter from "../Filter";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "../MovieCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { removeList, removeMovieFromList } from "../../../redux/listsActions";
 
 const ListMovies = ({ listId, handleBackToLists }) => {
   const { lists } = useSelector((state) => state.lists);
   const findList = lists.filter((list) => list._id === listId);
-  const list = findList[0];
-  const totalTv = list.listMovie.filter((movie) => movie.media_type === "tv");
-  const totalMovie = list.listMovie.filter(
-    (movie) => movie.media_type === "movie"
-  );
+  const list = findList.length > 0 ? findList[0] : null;
+  const totalTv =
+    list !== null
+      ? list.listMovie.filter((movie) => movie.media_type === "tv")
+      : 0;
+  const totalMovie =
+    list !== null
+      ? list.listMovie.filter((movie) => movie.media_type === "movie")
+      : 0;
   const [type, setType] = useState("movie");
   const [sortBy, setSortBy] = useState("date_added");
+  const dispatch = useDispatch();
   const handleChangeType = (event, newValue) => {
     setType(newValue);
   };
@@ -25,6 +31,16 @@ const ListMovies = ({ listId, handleBackToLists }) => {
   };
   const backToLists = () => {
     handleBackToLists();
+  };
+  const handleRemoveFromList = (movieId) => {
+    dispatch(removeMovieFromList(listId, movieId));
+  };
+
+  const handleDeleteList = () => {
+    if (window.confirm("Are you sure want to delete this list?")) {
+      dispatch(removeList(listId));
+      backToLists();
+    }
   };
   return (
     <>
@@ -61,7 +77,10 @@ const ListMovies = ({ listId, handleBackToLists }) => {
               Back to lists
             </Typography>
           </div>
-          <div style={{ display: "flex", cursor: "pointer" }}>
+          <div
+            style={{ display: "flex", cursor: "pointer" }}
+            onClick={handleDeleteList}
+          >
             <DeleteIcon
               style={{
                 marginRight: 5,
@@ -100,7 +119,11 @@ const ListMovies = ({ listId, handleBackToLists }) => {
               : b.popularity - a.popularity
           )
           .map((movie) => (
-            <MovieCard key={movie.id} movie={movie} handleRemove={null} />
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              handleRemove={handleRemoveFromList}
+            />
           ))}
       {type === "tv" &&
         totalTv
@@ -111,7 +134,13 @@ const ListMovies = ({ listId, handleBackToLists }) => {
               ? new Date(b.release_date) - new Date(a.release_date)
               : b.popularity - a.popularity
           )
-          .map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+          .map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              handleRemove={handleRemoveFromList}
+            />
+          ))}
       {list.listMovie.length === 0 && (
         <Typography>You haven't added any movies in your list.</Typography>
       )}

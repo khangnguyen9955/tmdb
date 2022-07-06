@@ -60,7 +60,6 @@ export const removeFromWatchlist = (id) => async (dispatch) => {
         },
       }
     );
-    console.log(res.data);
     dispatch(removeFromWatchlistSuccess(res.data.id));
   } catch (err) {
     console.log(err);

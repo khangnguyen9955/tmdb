@@ -92,7 +92,7 @@ const userController = {
           userId: req.user.id,
         },
         { $pull: { movies: { id: req.body.id } } }
-      ).then((findMovie) => {
+      ).then(() => {
         res.status(200).json({
           message: "Removed",
           id: req.body.id,
@@ -156,21 +156,20 @@ const userController = {
     }
   },
   removeList: async (req, res) => {
+    const listId = req.body.listId;
+    const userId = req.user.id;
     try {
       List.updateOne(
-        { userId: req.user.id },
+        { userId },
         {
           $pull: {
             lists: {
-              _id: req.body.id,
+              _id: listId,
             },
           },
         }
       ).then(() => {
-        res.status(200).json({
-          message: "Removed",
-          id: req.body.id,
-        });
+        res.status(200).json({ id: listId });
       });
     } catch (err) {
       res.status(500).json(err);

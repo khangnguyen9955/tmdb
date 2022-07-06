@@ -144,18 +144,13 @@ const List = (props) => {
               >
                 My Lists
               </Typography>
-              <Button>
-                <Typography
-                  sx={{ fontWeight: 600 }}
-                  className={classes.button}
-                  onClick={createListForm}
-                >
+              <Button onClick={createListForm}>
+                <Typography sx={{ fontWeight: 600 }} className={classes.button}>
                   Create List
                 </Typography>
               </Button>
             </Grid>
             <Grid
-              item
               style={{
                 width: "100%",
                 display: "flex",
