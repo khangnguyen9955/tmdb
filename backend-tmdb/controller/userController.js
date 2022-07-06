@@ -189,15 +189,15 @@ const userController = {
         const ObjectId = mongoose.Types.ObjectId;
         const id = new ObjectId(listId);
         let indexList;
-        const getIndexList = findUser.lists.map((list, index) => {
-          if (list._id.equals(id)) indexList = index;
-        });
-        const findList = findUser.lists.find((list) => list._id.equals(id));
-        const listMovie = findList.listMovie;
         let isAdded = false;
-        listMovie.map((item) => {
-          if (item.id === movie.id) {
-            isAdded = true;
+        const findList = findUser.lists.map((list, index) => {
+          if (list._id.equals(id)) {
+            indexList = index;
+            findUser.lists[indexList].listMovie.map((item) => {
+              if (item.id === movie.id) {
+                isAdded = true;
+              }
+            });
           }
         });
         if (isAdded) {
@@ -205,7 +205,7 @@ const userController = {
             message: "This movie has been added in list",
           });
         } else {
-          listMovie.push(movie);
+          findUser.lists[indexList].listMovie.push(movie);
           findUser.save();
           res.status(200).json({
             message: "Added to your list",
