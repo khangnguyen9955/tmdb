@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
   },
   area: {
-    minWidth: 100,
-    height: 150,
+    minWidth: 95,
+    height: 140,
   },
   cardMedia: {
     height: "100%",
@@ -57,7 +57,7 @@ function SearchPeople({ people, params }) {
         <Card className={classes.card}>
           <CardActionArea
             className={classes.area}
-            sx={{ width: 100 }}
+            sx={{ width: 95 }}
             component={Link}
             to={`/person/${person.id}`}
           >
