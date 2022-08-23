@@ -483,7 +483,7 @@ const Header = ({ details, created_by }) => {
                             }
                           : () => {
                               dispatch(removeFromWatchlist(details.id));
-                              successToast("Removed from your watchlist");
+                              errorToast("Removed from your watchlist");
                             }
                       }
                     >
