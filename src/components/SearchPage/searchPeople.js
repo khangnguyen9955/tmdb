@@ -2,6 +2,7 @@ import { Card, makeStyles, Typography } from "@material-ui/core";
 import { CardActionArea, CardContent, CardMedia } from "@mui/material";
 import React from "react";
 import SearchPagination from "../SearchPage/SearchPagination";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -10,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
   },
   area: {
-    minWidth: 94,
-    height: 141,
+    minWidth: 100,
+    height: 150,
   },
   cardMedia: {
     height: "100%",
@@ -54,7 +55,12 @@ function SearchPeople({ people, params }) {
     <>
       {people.results.map((person) => (
         <Card className={classes.card}>
-          <CardActionArea className={classes.area} sx={{ width: "91px" }}>
+          <CardActionArea
+            className={classes.area}
+            sx={{ width: 100 }}
+            component={Link}
+            to={`/person/${person.id}`}
+          >
             <CardMedia
               component="img"
               image={person.profile_path}
@@ -64,7 +70,11 @@ function SearchPeople({ people, params }) {
               className={classes.cardMedia}
             />
           </CardActionArea>
-          <CardContent className={classes.cardContent}>
+          <CardContent
+            className={classes.cardContent}
+            component={Link}
+            to={`/person/${person.id}`}
+          >
             <Typography className={classes.title} variant="subtitle1">
               {person.name}
             </Typography>
