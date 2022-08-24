@@ -1,6 +1,6 @@
 import axios from "axios";
 import no_image from "../assets/no_image.png";
-import { API_KEY, url, poster_url } from "./config";
+import { API_KEY, poster_url, url } from "./config";
 
 import React from "react";
 
@@ -14,7 +14,7 @@ const searchCollections = async (query, page) => {
         page,
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       results: data.results.map((collection) => ({
         ...collection,
@@ -24,7 +24,6 @@ const searchCollections = async (query, page) => {
           : no_image,
       })),
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

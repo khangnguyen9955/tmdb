@@ -1,6 +1,6 @@
 import axios from "axios";
 import no_image from "../assets/no_image.png";
-import { API_KEY, url, poster_url } from "./config";
+import { API_KEY, poster_url, url } from "./config";
 
 const searchPeople = async (query, page) => {
   try {
@@ -12,7 +12,7 @@ const searchPeople = async (query, page) => {
         page,
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       results: data.results.map((person) => ({
         ...person,
@@ -25,7 +25,6 @@ const searchPeople = async (query, page) => {
         })),
       })),
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

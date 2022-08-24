@@ -1,6 +1,6 @@
 import axios from "axios";
 import no_image from "../assets/no_image.png";
-import { API_KEY, url, poster_url, backdrop_url } from "./config";
+import { API_KEY, backdrop_url, poster_url, url } from "./config";
 
 const fetchTrending = async (time) => {
   try {
@@ -10,7 +10,7 @@ const fetchTrending = async (time) => {
         language: "en-US",
       },
     });
-    const modifiedData = data.results.map((movie) => ({
+    return data.results.map((movie) => ({
       ...movie,
       title: movie.title ? movie.title : movie.name,
       poster_path: movie.poster_path
@@ -21,7 +21,6 @@ const fetchTrending = async (time) => {
         ? movie.release_date
         : movie.first_air_date,
     }));
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

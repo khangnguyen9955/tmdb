@@ -127,13 +127,15 @@ const MovieCard = ({ movie, handleRemove }) => {
             >
               {movie.title}
             </Typography>
-            <IconButton
-              size="small"
-              onClick={() => handleDeleteMovie(movie.id)}
-              className={classes.removeButton}
-            >
-              <CloseIcon />
-            </IconButton>
+            {handleRemove !== null && ( // for using this movie card in other pages
+              <IconButton
+                size="small"
+                onClick={() => handleDeleteMovie(movie.id)}
+                className={classes.removeButton}
+              >
+                <CloseIcon />
+              </IconButton>
+            )}
           </Box>
           <Typography className={classes.movie}>
             {movie.release_date &&

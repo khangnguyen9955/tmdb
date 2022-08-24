@@ -13,7 +13,7 @@ const fetchPerson = async (id) => {
       },
     });
 
-    const modifiedData = {
+    return {
       ...data,
 
       gender: 1 ? "Female" : "Male",
@@ -57,7 +57,6 @@ const fetchPerson = async (id) => {
           : "",
       },
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

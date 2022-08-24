@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_KEY, url, logo_url } from "./config";
+import { API_KEY, logo_url, url } from "./config";
 
 const searchCompanies = async (query, page) => {
   try {
@@ -11,14 +11,13 @@ const searchCompanies = async (query, page) => {
         page,
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       results: data.results.map((company) => ({
         ...company,
         logo_path: company.logo_path ? logo_url + company.logo_path : "",
       })),
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

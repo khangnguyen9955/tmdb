@@ -2,11 +2,11 @@ import React from "react";
 import axios from "axios";
 import {
   API_KEY,
-  url,
-  poster_url,
   backdrop_url,
-  video_url,
   logo_url,
+  poster_url,
+  url,
+  video_url,
 } from "./config";
 import no_image from "../assets/no_image.png";
 
@@ -20,7 +20,7 @@ const fetchTV = async (id) => {
           "content_ratings,credits,videos,recommendations,keywords",
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       media_type: "tv",
       title: data.name,
@@ -80,7 +80,6 @@ const fetchTV = async (id) => {
         : {},
       keywords: data.keywords.results,
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

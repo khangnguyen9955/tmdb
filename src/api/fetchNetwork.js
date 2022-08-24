@@ -1,4 +1,4 @@
-import { API_KEY, url, logo_url } from "./config";
+import { API_KEY, logo_url, url } from "./config";
 import no_image from "../assets/no_image.png";
 import axios from "axios";
 
@@ -10,11 +10,10 @@ const fetchNetwork = async (id) => {
         language: "en-US",
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       logo_path: data.logo_path ? logo_url + data.logo_path : no_image,
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

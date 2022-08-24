@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { API_KEY, url, poster_url, backdrop_url, video_url } from "./config";
+import { API_KEY, backdrop_url, poster_url, url, video_url } from "./config";
 import no_image from "../assets/no_image.png";
 
 const fetchMovie = async (id) => {
@@ -13,7 +13,7 @@ const fetchMovie = async (id) => {
           "release_dates,credits,videos,recommendations,keywords",
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       media_type: "movie",
       poster_path: data.poster_path ? poster_url + data.poster_path : no_image,
@@ -58,7 +58,6 @@ const fetchMovie = async (id) => {
 
       keywords: data.keywords.keywords,
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

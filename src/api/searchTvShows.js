@@ -1,6 +1,6 @@
 import axios from "axios";
 import no_image from "../assets/no_image.png";
-import { API_KEY, url, poster_url } from "./config";
+import { API_KEY, poster_url, url } from "./config";
 
 const searchTvShows = async (query, page) => {
   try {
@@ -12,7 +12,7 @@ const searchTvShows = async (query, page) => {
         page,
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       results: data.results.map((tvShow) => ({
         ...tvShow,
@@ -23,7 +23,6 @@ const searchTvShows = async (query, page) => {
         release_date: tvShow.first_air_date,
       })),
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

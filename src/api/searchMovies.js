@@ -1,6 +1,6 @@
 import axios from "axios";
 import no_image from "../assets/no_image.png";
-import { API_KEY, url, poster_url } from "./config";
+import { API_KEY, poster_url, url } from "./config";
 
 const searchMovies = async (query, page) => {
   try {
@@ -12,7 +12,7 @@ const searchMovies = async (query, page) => {
         page: page,
       },
     });
-    const modifiedData = {
+    return {
       ...data,
       results: data.results.map((movie) => ({
         ...movie,
@@ -21,7 +21,6 @@ const searchMovies = async (query, page) => {
           : no_image,
       })),
     };
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

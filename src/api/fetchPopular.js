@@ -1,6 +1,7 @@
 import axios from "axios";
-import { API_KEY, url, poster_url, backdrop_url } from "./config";
+import { API_KEY, backdrop_url, poster_url, url } from "./config";
 import no_image from "../assets/no_image.png";
+
 export const fetchPopular = async (type) => {
   try {
     const { data } = await axios.get(`${url}/${type}/popular`, {
@@ -10,7 +11,7 @@ export const fetchPopular = async (type) => {
         page: 1,
       },
     });
-    const modifiedData = data.results.map((movie) => ({
+    return data.results.map((movie) => ({
       ...movie,
       media_type: type,
       title: movie.title ? movie.title : movie.name,
@@ -24,7 +25,6 @@ export const fetchPopular = async (type) => {
         ? movie.release_date
         : movie.first_air_date,
     }));
-    return modifiedData;
   } catch (err) {
     console.log(err);
   }

@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { fetchUserLogin } from "./redux/userActions";
 import { getAllList } from "./redux/listsActions";
+import KeyWordPage from "./components/KeywordPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
             <Route path="/movie/:id" element={<MoviePage />} />
             <Route path="/tv/:id" element={<TVPage />} />
             <Route path="/person/:id" element={<PersonPage />} />
+            <Route path="/keyword/:id" element={<KeyWordPage />} />
             <Route
               path="/login"
               element={
