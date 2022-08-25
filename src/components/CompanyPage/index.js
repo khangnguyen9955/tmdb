@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Loading from "../common/Loading";
-import fetchKeyword from "../../api/fetchKeyWord";
-import { useParams } from "react-router-dom";
 import Background from "../common/Background";
 import BackgroundHeader from "../common/BackgroundHeader";
 import { Container } from "@mui/material";
 import MovieCard from "../ProfilePage/MovieCard";
 import LoadMore from "../common/LoadMore";
+import { useParams } from "react-router-dom";
+import fetchCompany from "../../api/fetchCompany";
+import Loading from "../common/Loading";
+import CompanyInfo from "./CompanyInfo";
 
-const KeyWordPage = () => {
-  const [keyword, setKeyword] = useState({});
+const CompanyPage = () => {
+  const [company, setCompany] = useState({});
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadMore] = useState(false);
@@ -18,18 +19,18 @@ const KeyWordPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (loading) {
-        setKeyword(await fetchKeyword(id, page));
+        setCompany(await fetchCompany(id, page));
         setLoading(false);
       } else {
         //set keyword again when clicking on load more
         setLoadMore(true);
-        setKeyword({
-          ...keyword,
+        setCompany({
+          ...company,
           movies: {
-            ...keyword.movies,
+            ...company.movies,
             results: [
-              ...keyword.movies.results,
-              ...(await fetchKeyword(id, page)).movies.results,
+              ...company.movies.results,
+              ...(await fetchCompany(id, page)).movies.results,
             ],
           },
         });
@@ -45,12 +46,19 @@ const KeyWordPage = () => {
     <Loading />
   ) : (
     <>
-      <Background children={<BackgroundHeader details={keyword} />} />
+      <Background
+        children={
+          <>
+            <BackgroundHeader details={company} />
+            <CompanyInfo details={company} />
+          </>
+        }
+      />
       <Container style={{ paddingTop: 30, paddingBottom: 30 }}>
-        {keyword.movies.results.map((movie) => (
+        {company.movies.results.map((movie) => (
           <MovieCard movie={movie} key={movie.id} handleRemove={null} />
         ))}
-        {page < keyword.movies.total_pages && (
+        {page < company.movies.total_pages && (
           <LoadMore handleClick={handleClick} loading={loadingMore} />
         )}
       </Container>
@@ -58,4 +66,4 @@ const KeyWordPage = () => {
   );
 };
 
-export default KeyWordPage;
+export default CompanyPage;

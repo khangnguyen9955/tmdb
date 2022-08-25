@@ -6,9 +6,11 @@ import company_header from "../../assets/company_header.jpeg";
 const useStyles = makeStyles((theme) => ({
   header: {
     display: "flex",
+    position: "relative",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
+    flexWrap: "wrap",
+    // width: "100%",
     backgroundImage: `linear-gradient(to right, 
 		   ${alpha(theme.palette.secondary.main, 0.9)},
             ${alpha(theme.palette.primary.main, 0.9)}),

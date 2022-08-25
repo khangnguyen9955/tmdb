@@ -4,18 +4,17 @@ import { CardMedia, Typography } from "@mui/material";
 
 const useStyles = makeStyles(() => ({
   cardMedia: {
-    height: 50,
-    width: "auto",
     borderRadius: 0,
+    height: 40,
   },
   background: {
     padding: 40,
     flexWrap: "nowrap",
-    justifyContent: "space-between",
     color: "#fff",
     display: "flex",
     maxWidth: 1300,
     width: "100%",
+    justifyContent: "space-between",
   },
 }));
 
@@ -31,6 +30,7 @@ const BackgroundHeader = ({ details }) => {
           title={details.title}
           loading="lazy"
           className={classes.cardMedia}
+          sx={{ width: "auto" }}
         />
       ) : (
         <Typography sx={{ fontWeight: 700, fontSize: "1.8em" }}>

@@ -23,6 +23,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import { fetchUserLogin } from "./redux/userActions";
 import { getAllList } from "./redux/listsActions";
 import KeyWordPage from "./components/KeywordPage";
+import CompanyPage from "./components/CompanyPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
             <Route path="/tv/:id" element={<TVPage />} />
             <Route path="/person/:id" element={<PersonPage />} />
             <Route path="/keyword/:id" element={<KeyWordPage />} />
+            <Route path="/company/:id" element={<CompanyPage />} />
             <Route
               path="/login"
               element={
