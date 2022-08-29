@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LinkIcon from "@material-ui/icons/Link";
 import isoLangs from "../common/isoLangs";
+
 const useStyles = makeStyles((theme) => ({
   status: {
     fontSize: "1rem",
@@ -22,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Details = ({ details }) => {
   const classes = useStyles();
+
+  console.log(details);
   return (
     <>
       <div>
@@ -41,7 +44,9 @@ const Details = ({ details }) => {
       <div>
         <Typography className={classes.status}>Original Language</Typography>
         <Typography className={classes.statusDetails}>
-          {isoLangs[details.original_language].name}
+          {isoLangs[details.original_language].name
+            ? isoLangs[details.original_language].name
+            : ""}
         </Typography>
       </div>
 
@@ -86,7 +91,7 @@ const Details = ({ details }) => {
           </div>
         </>
       )}
-      <div>
+      <div style={{ marginBottom: 10 }}>
         <Typography className={classes.status}>Keywords</Typography>
         {details.keywords.length > 0 ? (
           details.keywords.map((keyword) => (

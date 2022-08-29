@@ -24,6 +24,7 @@ import { fetchUserLogin } from "./redux/userActions";
 import { getAllList } from "./redux/listsActions";
 import KeyWordPage from "./components/KeywordPage";
 import CompanyPage from "./components/CompanyPage";
+import CollectionPage from "./components/CollectionPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
             <Route path="/person/:id" element={<PersonPage />} />
             <Route path="/keyword/:id" element={<KeyWordPage />} />
             <Route path="/company/:id" element={<CompanyPage />} />
+            <Route path="/collection/:id" element={<CollectionPage />} />
             <Route
               path="/login"
               element={

@@ -18,6 +18,7 @@ const fetchKeyword = async (id, page) => {
         ...data.movies,
         results: data.movies.results.map((movie) => ({
           ...movie,
+          media_type: "movie",
           poster_path: movie.poster_path
             ? poster_url + movie.poster_path
             : no_image,

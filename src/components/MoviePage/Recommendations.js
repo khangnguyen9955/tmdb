@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   div: { marginTop: 20, marginBottom: 20 },
   title: { color: "black", fontWeight: 600, fontSize: "1em" },
@@ -26,7 +27,13 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
   },
-  cardMedia: { borderRadius: 8, marginBottom: 10 },
+
+  cardMedia: {
+    borderRadius: 8,
+    marginBottom: 10,
+    maxWidth: 231,
+    maxHeight: 130,
+  },
 }));
 const Recommendations = ({ recommendations, media_type }) => {
   const classes = useStyles();

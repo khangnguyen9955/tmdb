@@ -12,7 +12,6 @@ const fetchCompany = async (id, page) => {
         page,
       },
     });
-    console.log(data);
     return {
       ...data,
       logo_path: data.logo_path ? logo_url + data.logo_path : "",
@@ -20,6 +19,7 @@ const fetchCompany = async (id, page) => {
         ...data.movies,
         results: data.movies.results.map((movie) => ({
           ...movie,
+          media_type: "movie",
           poster_path: movie.poster_path
             ? poster_url + movie.poster_path
             : no_image,

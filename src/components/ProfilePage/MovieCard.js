@@ -158,7 +158,7 @@ const MovieCard = ({ movie, handleRemove }) => {
         >
           <StarIcon />
           <Typography style={{ marginRight: 8 }}>
-            {movie.vote_average * 10}%
+            {Math.round(movie.vote_average * 10)}%
           </Typography>
           <QueryStatsIcon />
           <Typography> {Math.floor(movie.popularity)}</Typography>
