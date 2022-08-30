@@ -4,6 +4,7 @@ import { Button, Container, Typography } from "@mui/material";
 import no_image from "../../../assets/no_image3.svg";
 import { useSelector } from "react-redux";
 import ListMovies from "./ListMovies";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -106,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
 
 const List = (props) => {
   const classes = useStyles();
-  const { lists } = useSelector((state) => state.lists);
+  const { lists, message } = useSelector((state) => state.lists);
   const [openList, setOpenList] = useState(false);
   const [listId, setListId] = useState(null);
   const createListForm = () => {
@@ -117,9 +118,10 @@ const List = (props) => {
     setListId(id);
     setOpenList((state) => !state);
   };
-  const handleBackToLists = () => {
+  const handleBackToLists = (notify) => {
     setOpenList((state) => !state);
   };
+
   return (
     <>
       {openList ? (
@@ -133,6 +135,15 @@ const List = (props) => {
             padding: 0,
           }}
         >
+          <ToastContainer
+            draggable={false}
+            transition={Zoom}
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+          />
           <Grid container>
             <Grid item className={classes.containerTitle}>
               <Typography

@@ -7,6 +7,7 @@ import MovieCard from "../MovieCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeList, removeMovieFromList } from "../../../redux/listsActions";
+import { toast, ToastContainer, Zoom } from "react-toastify";
 
 const ListMovies = ({ listId, handleBackToLists }) => {
   const { lists } = useSelector((state) => state.lists);
@@ -23,6 +24,9 @@ const ListMovies = ({ listId, handleBackToLists }) => {
   const [type, setType] = useState("movie");
   const [sortBy, setSortBy] = useState("date_added");
   const dispatch = useDispatch();
+  const successToast = (message) => {
+    toast.success(message);
+  };
   const handleChangeType = (event, newValue) => {
     setType(newValue);
   };
@@ -34,6 +38,7 @@ const ListMovies = ({ listId, handleBackToLists }) => {
   };
   const handleRemoveFromList = (movieId) => {
     dispatch(removeMovieFromList(listId, movieId));
+    successToast("Remove the movie from your list successfully!");
   };
 
   const handleDeleteList = () => {
@@ -45,6 +50,15 @@ const ListMovies = ({ listId, handleBackToLists }) => {
   return (
     <>
       <Grid container>
+        <ToastContainer
+          draggable={false}
+          transition={Zoom}
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+        />
         <Box
           style={{
             marginBottom: 10,

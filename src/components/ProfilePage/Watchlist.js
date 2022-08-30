@@ -5,6 +5,7 @@ import Filter from "./Filter";
 import MovieCard from "./MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWatchlist } from "../../redux/watchlistActions";
+import { toast, ToastContainer, Zoom } from "react-toastify";
 
 const Watchlist = () => {
   const { watchlist } = useSelector((state) => state.watchlist);
@@ -13,6 +14,9 @@ const Watchlist = () => {
   const totalMovie = watchlist.filter((movie) => movie.media_type === "movie");
   const [sortBy, setSortBy] = useState("date_added");
   const dispatch = useDispatch();
+  const successToast = (message) => {
+    toast.success(message);
+  };
   const handleChangeType = (event, newValue) => {
     setType(newValue);
   };
@@ -21,9 +25,20 @@ const Watchlist = () => {
   };
   const handleRemoveFromWatchlist = (movieId) => {
     dispatch(removeFromWatchlist(movieId));
+    successToast("Remove the movie from your watchlist successfully!");
   };
   return (
     <>
+      {" "}
+      <ToastContainer
+        draggable={false}
+        transition={Zoom}
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+      />
       <Grid container justifyContent="space-between">
         <FilterGroup
           totalMovie={totalMovie.length}

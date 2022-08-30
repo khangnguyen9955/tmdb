@@ -18,7 +18,6 @@ const CollectionPage = () => {
     };
     fetchData();
   }, [id]);
-  console.log(collection);
   return loading ? (
     <Loading />
   ) : (

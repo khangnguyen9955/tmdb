@@ -51,6 +51,7 @@ const CreateListForm = (props) => {
   const classes = useStyles();
   const [nameList, setNameList] = useState("");
   const dispatch = useDispatch();
+
   const handleCreateNewList = () => {
     const newList = {
       listName: nameList,

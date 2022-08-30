@@ -55,6 +55,7 @@ const listsReducer = (state = initialState, action) => {
         ...state,
         isAdding: false,
         lists: [action.list, ...state.lists],
+        message: "Created new list successfully!",
       };
     case ADD_NEW_LIST_FAILURE:
       return {
@@ -71,6 +72,7 @@ const listsReducer = (state = initialState, action) => {
         ...state,
         isRemoving: false,
         lists: state.lists.filter((list) => list._id !== action.data.id),
+        message: "Removed the list successfully!",
       };
     case REMOVE_LIST_FAILURE:
       return {
@@ -84,7 +86,6 @@ const listsReducer = (state = initialState, action) => {
       };
     case ADD_MOVIE_TO_LIST_SUCCESS:
       return update(state, {
-        message: { $set: [action.data.message] },
         lists: {
           [action.data.listIndex]: {
             listMovie: { $push: [action.data.movie] },
@@ -96,7 +97,6 @@ const listsReducer = (state = initialState, action) => {
       return {
         ...state,
         isAddingMovie: false,
-        message: action.error,
       };
     case REMOVE_MOVIE_FROM_LIST_REQUEST:
       return {
@@ -108,7 +108,6 @@ const listsReducer = (state = initialState, action) => {
         ...state,
         isRemovingMovie: false,
         lists: action.data.lists,
-        message: action.data.message,
       };
     case REMOVE_MOVIE_FROM_LIST_FAILURE:
       return {
