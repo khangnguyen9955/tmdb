@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function SearchCompanies({ companies, params }) {
+const SearchCompanies = ({ companies, params }) => {
   const classes = useStyles();
   return companies.results.length > 0 ? (
     <>
@@ -55,6 +55,6 @@ function SearchCompanies({ companies, params }) {
   ) : (
     <Typography>There are no companies that matched your query.</Typography>
   );
-}
+};
 
 export default SearchCompanies;

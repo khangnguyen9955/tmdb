@@ -2,13 +2,14 @@ import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchPagination from "../SearchPage/SearchPagination";
+
 const useStyles = makeStyles((theme) => ({
   title: {
     textDecoration: "none",
     color: "black",
   },
 }));
-function SearchKeywords({ keywords, params }) {
+const SearchKeywords = ({ keywords, params }) => {
   const classes = useStyles();
   return keywords.results.length > 0 ? (
     <>
@@ -24,5 +25,5 @@ function SearchKeywords({ keywords, params }) {
   ) : (
     <Typography>There are no keywords that matched your query.</Typography>
   );
-}
+};
 export default SearchKeywords;

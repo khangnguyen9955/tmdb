@@ -3,7 +3,7 @@ import React from "react";
 import SearchCard from "../common/SearchCard";
 import SearchPagination from "../SearchPage/SearchPagination";
 
-function SearchCollections({ collections, params }) {
+const SearchCollections = ({ collections, params }) => {
   return collections.results.length > 0 ? (
     <>
       {collections.results.map((collection) => (
@@ -18,5 +18,5 @@ function SearchCollections({ collections, params }) {
   ) : (
     <Typography>There are no collections that matched your query.</Typography>
   );
-}
+};
 export default SearchCollections;

@@ -3,7 +3,7 @@ import React from "react";
 import SearchCard from "../common/SearchCard";
 import SearchPagination from "../SearchPage/SearchPagination";
 
-function SearchTvShows({ tvShows, params }) {
+const SearchTvShows = ({ tvShows, params }) => {
   return tvShows.results.length > 0 ? (
     <>
       {tvShows.results.map((tvShow) => (
@@ -14,6 +14,6 @@ function SearchTvShows({ tvShows, params }) {
   ) : (
     <Typography>There are no TV Shows that matched your query.</Typography>
   );
-}
+};
 
 export default SearchTvShows;

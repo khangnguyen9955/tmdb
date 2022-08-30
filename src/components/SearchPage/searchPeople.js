@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SearchPeople({ people, params }) {
+const SearchPeople = ({ people, params }) => {
   const classes = useStyles();
   return people.results.length > 0 ? (
     <>
@@ -94,6 +94,6 @@ function SearchPeople({ people, params }) {
   ) : (
     <Typography>There are no people that matched your query.</Typography>
   );
-}
+};
 
 export default SearchPeople;

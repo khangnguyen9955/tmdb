@@ -3,7 +3,7 @@ import React from "react";
 import SearchCard from "../common/SearchCard";
 import SearchPagination from "../SearchPage/SearchPagination";
 
-function SearchMovies({ movies, params }) {
+const SearchMovies = ({ movies, params }) => {
   return movies.results.length > 0 ? (
     <>
       {movies.results.map((movie) => (
@@ -14,6 +14,6 @@ function SearchMovies({ movies, params }) {
   ) : (
     <Typography>There are no movies that matched your query.</Typography>
   );
-}
+};
 
 export default SearchMovies;
