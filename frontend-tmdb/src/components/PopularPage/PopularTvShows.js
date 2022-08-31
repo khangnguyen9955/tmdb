@@ -7,7 +7,7 @@ const PopularTVShows = ({ tvShows, params }) => {
       {tvShows.results.map((tvShow) => (
         <MovieCard key={tvShow.id} details={tvShow} media_type={params.type} />
       ))}
-      <SearchPagination total_pages={tvShows.total_pages} params={params} />
+      <SearchPagination total_pages={500} params={params} />
     </>
   ) : (
     <Typography>There are no TV Shows. </Typography>
