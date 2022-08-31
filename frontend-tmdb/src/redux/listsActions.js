@@ -22,7 +22,7 @@ export const addNewList = (list) => async (dispatch) => {
   dispatch(addNewListRequest());
   try {
     const res = await axios.post(
-      "http://localhost:8000/list/create",
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/list/create",
       { list },
       { headers: { token: getAuth() } }
     );
@@ -36,9 +36,12 @@ export const addNewList = (list) => async (dispatch) => {
 export const getAllList = () => async (dispatch) => {
   dispatch(getAllListRequest());
   try {
-    const res = await axios.get("http://localhost:8000/list/", {
-      headers: { token: getAuth() },
-    });
+    const res = await axios.get(
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/list/",
+      {
+        headers: { token: getAuth() },
+      }
+    );
     dispatch(getAllListSuccess(res.data));
   } catch (e) {
     dispatch(getAllListFailure());
@@ -50,7 +53,7 @@ export const removeList = (listId) => async (dispatch) => {
   dispatch(removeListRequest());
   try {
     const res = await axios.post(
-      "http://localhost:8000/list/remove",
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/list/remove",
       { listId },
       { headers: { token: getAuth() } }
     );
@@ -65,7 +68,7 @@ export const addMovieToList = (listId, movie) => async (dispatch) => {
   dispatch(addMovieToListRequest());
   try {
     const res = await axios.post(
-      "http://localhost:8000/list/add",
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/list/add",
       { listId, movie },
       { headers: { token: getAuth() } }
     );
@@ -79,7 +82,7 @@ export const removeMovieFromList = (listId, movieId) => async (dispatch) => {
   dispatch(removeMovieFromListRequest());
   try {
     const res = await axios.post(
-      "http://localhost:8000/list/delete",
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/list/delete",
       {
         listId,
         movieId,

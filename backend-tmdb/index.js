@@ -7,11 +7,12 @@ const authRoute = require("./routes/user");
 const watchListRouter = require("./routes/watchlist");
 const listRouter = require("./routes/list");
 dotenv.config();
+dotenv.config({ path: ".env" });
 const app = express();
-
 mongoose.connect(process.env.MONGODB_URL, () => {
   console.log("Connected to MongoDB");
 });
+
 app.use(cors()); // avoid cors error
 app.use(cookieParser()); // to create and assign cookie
 app.use(express.json());

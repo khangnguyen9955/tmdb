@@ -5,7 +5,7 @@ import { getAuth } from "./watchlistActions";
 export const loginUser = (user) => async (dispatch) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post("http://localhost:8000/user/login", user);
+    const res = await axios.post("https://tmdb-server-khangnguyen9955.herokuapp.com/user/login", user);
     localStorage.setItem("token", JSON.stringify(res.data.accessToken));
     dispatch(loginSuccess(res.data));
   } catch (err) {
@@ -17,7 +17,7 @@ export const registerUser = (newUser) => async (dispatch) => {
   dispatch(loginStart());
   try {
     const res = await axios.post(
-      "http://localhost:8000/user/register",
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/user/register",
       newUser
     );
     localStorage.setItem("token", JSON.stringify(res.data.accessToken));
@@ -35,7 +35,7 @@ export const logOut = () => async (dispatch) => {
 export const fetchUserLogin = () => async (dispatch) => {
   dispatch(loginStart());
   try {
-    const res = await axios.get("http://localhost:8000/user/fetch", {
+    const res = await axios.get("https://tmdb-server-khangnguyen9955.herokuapp.com/user/fetch", {
       headers: { token: getAuth() },
     });
     dispatch(loginSuccess(res.data.user));

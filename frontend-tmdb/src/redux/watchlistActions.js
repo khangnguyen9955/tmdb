@@ -24,7 +24,7 @@ export const addToWatchlist = (movie) => async (dispatch) => {
   dispatch(addToWatchlistRequest());
   try {
     const res = await axios.post(
-      "http://localhost:8000/watchlist/add",
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/watchlist/add",
       { movie },
       { headers: { token: getAuth() } }
     );
@@ -38,9 +38,12 @@ export const addToWatchlist = (movie) => async (dispatch) => {
 export const getWatchlist = () => async (dispatch) => {
   dispatch(getWatchlistRequest());
   try {
-    const res = await axios.get("http://localhost:8000/watchlist/", {
-      headers: { token: getAuth() },
-    });
+    const res = await axios.get(
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/watchlist/",
+      {
+        headers: { token: getAuth() },
+      }
+    );
     dispatch(getWatchlistSuccess(res.data));
   } catch (err) {
     dispatch(getWatchlistFailure());
@@ -52,7 +55,7 @@ export const removeFromWatchlist = (id) => async (dispatch) => {
   dispatch(removeFromWatchlistRequest());
   try {
     const res = await axios.post(
-      "http://localhost:8000/watchlist/remove",
+      "https://tmdb-server-khangnguyen9955.herokuapp.com/watchlist/remove",
       { id },
       {
         headers: {
