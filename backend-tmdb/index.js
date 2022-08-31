@@ -20,6 +20,7 @@ app.use(express.json());
 app.use("/user", authRoute);
 app.use("/watchlist", watchListRouter);
 app.use("/list", listRouter);
+const port = process.env.PORT || 8000;
 app.listen(8000, () => {
   console.log("Server is running on 8000");
 });
