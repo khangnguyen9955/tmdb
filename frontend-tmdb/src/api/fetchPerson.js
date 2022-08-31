@@ -12,7 +12,6 @@ const fetchPerson = async (id) => {
         append_to_response: "movie_credits,external_ids",
       },
     });
-    console.log(data);
     return {
       ...data,
       gender: data.gender === 1 ? "Female" : "Male",
