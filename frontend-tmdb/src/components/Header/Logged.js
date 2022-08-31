@@ -15,15 +15,22 @@ const useStyles = makeStyles((theme) => (
             fontWeight: 600,
             alignItems: "center",
             padding: "0 20px",
+            display: "inline-block",
+            overflow: "hidden !important",
+            textOverflow: "ellipsis",
+            width: "100%",
+            minHeight: 24,
         },
         profileItem: {
             padding: "6px 20px",
             fontSize: "0.9em",
             display: "flex",
-            alignItems: "center", alignContent: "center",
+            alignItems: "center",
+            alignContent: "center",
             fontWeight: 600,
             color: "rgba(0,0,0,0.6)",
             backgroundColor: "transparent",
+            minHeight: 24
         },
         menu: {
             '& .MuiMenu-paper': {
@@ -47,7 +54,7 @@ const Logged = ({username}) => {
               getContentAnchorEl={null}
               anchorOrigin={{
                   vertical: "bottom",
-                  horizontal: "center",
+                  horizontal: "left",
               }}
               transformOrigin={{
                   vertical: "top",
