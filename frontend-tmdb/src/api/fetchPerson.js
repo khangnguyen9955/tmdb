@@ -12,11 +12,10 @@ const fetchPerson = async (id) => {
         append_to_response: "movie_credits,external_ids",
       },
     });
-
+    console.log(data);
     return {
       ...data,
-
-      gender: 1 ? "Female" : "Male",
+      gender: data.gender === 1 ? "Female" : "Male",
       profile_path: data.profile_path
         ? poster_url + data.profile_path
         : no_image,
