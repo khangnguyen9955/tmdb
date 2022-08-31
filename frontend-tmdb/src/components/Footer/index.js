@@ -65,7 +65,12 @@ const Footer = () => {
               component={Link}
               variant="contained"
             >
-              <Typography variant="subtitle1" color="primary">
+              <Typography
+                variant="subtitle1"
+                color="primary"
+                component={Link}
+                to={isAuth ? "/profile" : "/register"}
+              >
                 {isAuth ? `Hi,${currentUser.username}` : "SIGN UP"}
               </Typography>
             </Button>
