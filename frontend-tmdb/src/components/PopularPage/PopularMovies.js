@@ -8,7 +8,7 @@ const PopularMovies = ({ movies, params }) => {
       {movies.results.map((movie) => (
         <MovieCard key={movie.id} details={movie} media_type={params.type} />
       ))}
-      <SearchPagination total_pages={movies.total_pages} params={params} />
+      <SearchPagination total_pages={500} params={params} />
     </>
   ) : (
     <Typography>There are no movies. </Typography>
