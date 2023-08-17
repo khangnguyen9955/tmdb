@@ -14,7 +14,6 @@ const authController = {
             {expiresIn: "30m"}
         );
     },
-    //generate  refresh token
     generateRefreshToken: (user) => {
         return jwt.sign(
             {
@@ -31,7 +30,6 @@ const authController = {
             if (regiseredUser) {
                 return res.status(400).json("Your username has already been taken");
             }
-
             // hash password
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(req.body.password, salt);
